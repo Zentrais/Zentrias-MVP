@@ -77,7 +77,7 @@ export default function InvestorsPage() {
   const timelineMilestones = [
     {
       quarter: 'Q1 2026',
-      title: 'Chat & Debate MVP Environments Live',
+      title: 'Dialog & Perspective MVP Environments Live',
       icon: Zap,
     },
     {
@@ -87,7 +87,7 @@ export default function InvestorsPage() {
     },
     {
       quarter: 'Q3 2026',
-      title: 'Marketplace Launch & Expansion Phase',
+      title: 'Exchange Launch & Expansion Phase',
       icon: Users,
     },
     {
@@ -166,7 +166,7 @@ export default function InvestorsPage() {
   };
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#36454F' }}>
+    <div className="min-h-screen text-white relative overflow-hidden investors-tech investors-tone" style={{ backgroundColor: '#36454F' }}>
       {/* Fondo animado sutil */}
       <div className="fixed inset-0 pointer-events-none z-0">
         {/* Partículas suaves flotantes */}
@@ -194,49 +194,28 @@ export default function InvestorsPage() {
       {/* Investing in Integrity Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight font-sans">
-            Investing in Integrity.{' '}
-            <span className="text-pink-500">Not Hype</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+            {t('investors.integrity.title')}{' '}
+            <span className="tone-highlight investors-human">{t('investors.integrity.not')}</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed font-sans max-w-3xl mx-auto">
-            Empowering visionary investors to build trust-driven markets where transparency fuels real returns.
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto">
+            {t('investors.integrity.desc')}
           </p>
 
           {/* Video Placeholder */}
           <div className="mb-8 sm:mb-12">
             <div className="w-full max-w-4xl mx-auto bg-slate-800/50 rounded-3xl border border-indigo-400/30 p-16 sm:p-20 md:p-24 flex items-center justify-center min-h-[300px] sm:min-h-[400px] md:min-h-[500px]">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400 font-sans">
-                  Explainer
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400">
+                  {t('investors.integrity.video')}
                 </div>
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400 font-sans">
-                  Video
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-400 investors-human">
+                  {t('investors.integrity.video2')}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              onClick={handleInvestorRelations}
-              className="bg-pink-500 hover:bg-pink-600 text-white text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50 group relative overflow-hidden w-full sm:w-auto"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Know Investors
-                <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500"></span>
-            </Button>
-            <Button
-              onClick={() => router.push('https://cal.com/zentrais/investor-relations')}
-              variant="outline"
-              className="border-pink-500 text-pink-500 hover:bg-pink-500/10 text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-500 hover:scale-105 w-full sm:w-auto"
-            >
-              <Play className="w-5 h-5 mr-2" />
-              Watch Video
-            </Button>
-          </div>
         </div>
       </section>
 
@@ -244,58 +223,58 @@ export default function InvestorsPage() {
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight font-sans">
-              Find Your Investor{' '}
-              <span className="text-pink-500">Type</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight">
+              {t('investors.find.type.title')}{' '}
+              <span className="tone-highlight investors-human">{t('investors.find.type.subtitle')}</span>
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-sans max-w-2xl mx-auto">
-              Discover how your investment philosophy aligns with the Integrity Economy.
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+              {t('investors.find.type.desc')}
             </p>
           </div>
 
           {/* Investor Type Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
             {/* Frontier Investor */}
-            <div className="bg-slate-800/30 backdrop-blur-sm rounded-2xl border border-pink-400/20 p-6 sm:p-8 hover:border-pink-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10 flex flex-col">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 font-sans">
-                Frontier Investor
+            <div className="tone-card bg-slate-800/30 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 flex flex-col">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                {t('investors.find.frontier.title')}
               </h3>
-              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed font-sans">
-                For early adopters driving high-growth innovation in trust and technology.
+              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed">
+                {t('investors.find.frontier.desc')}
               </p>
               <div className="mt-auto">
-                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors cursor-pointer">
-                  Learn More
+                <button className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base investors-human transition-colors cursor-pointer">
+                  {t('investors.find.frontier.learn')}
                 </button>
               </div>
             </div>
 
             {/* Impact Investor */}
-            <div className="bg-slate-800/30 backdrop-blur-sm rounded-2xl border border-pink-400/20 p-6 sm:p-8 hover:border-pink-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10 flex flex-col">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 font-sans">
-                Impact Investor
+            <div className="tone-card bg-slate-800/30 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 flex flex-col">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                {t('investors.find.impact.title')}
               </h3>
-              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed font-sans">
-                For investors aligning capital with measurable ethical, and social impact.
+              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed">
+                {t('investors.find.impact.desc')}
               </p>
               <div className="mt-auto">
-                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors cursor-pointer">
-                  Learn More
+                <button className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base investors-human transition-colors cursor-pointer">
+                  {t('investors.find.impact.learn')}
                 </button>
               </div>
             </div>
 
             {/* Legacy Investor */}
-            <div className="bg-slate-800/30 backdrop-blur-sm rounded-2xl border border-pink-400/20 p-6 sm:p-8 hover:border-pink-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/10 flex flex-col">
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 font-sans">
-                Legacy Investor
+            <div className="tone-card bg-slate-800/30 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 flex flex-col">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                {t('investors.find.legacy.title')}
               </h3>
-              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed font-sans">
-                For Stewards of long-term value and intergenerational trust.
+              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed">
+                {t('investors.find.legacy.desc')}
               </p>
               <div className="mt-auto">
-                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors cursor-pointer">
-                  Learn More
+                <button className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base investors-human transition-colors cursor-pointer">
+                  {t('investors.find.legacy.learn')}
                 </button>
               </div>
             </div>
@@ -305,9 +284,9 @@ export default function InvestorsPage() {
           <div className="text-center">
             <Button
               onClick={handleJoinHub}
-              className="bg-pink-500 hover:bg-pink-600 text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50"
+              className="tone-button text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105"
             >
-              Join Hub
+              {t('investors.find.join')}
             </Button>
           </div>
         </div>
@@ -317,55 +296,55 @@ export default function InvestorsPage() {
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-6xl mx-auto">
           {/* Main Headline */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight font-sans text-center">
-            The Attention Economy Is Collapsing.{' '}
-            <span className="text-pink-500">Integrity Is Next.</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight text-center">
+            {t('investors.attention.title')}{' '}
+            <span className="tone-highlight investors-human">{t('investors.attention.integrity')}</span>
           </h2>
 
           {/* Descriptive Paragraph */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed font-sans text-center max-w-4xl mx-auto">
-            Every digital system today monetizes distraction. Zentrais replaces it with a new metric,{' '}
-            <span className="text-pink-500 font-semibold">Integrity Value</span>: turning truth into the world&apos;s next sustainable asset class.
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed text-center max-w-4xl mx-auto">
+            {t('investors.attention.desc')}{' '}
+            <span className="tone-highlight font-semibold investors-human">{t('investors.attention.value')}</span>{t('investors.attention.value2')}
           </p>
 
           {/* Statistical Boxes */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Box 1: Global AI Market */}
-            <div className="bg-pink-500/10 backdrop-blur-sm rounded-2xl border border-pink-400/30 p-6 sm:p-8 hover:border-pink-400/60 transition-all duration-300 hover:scale-105">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-pink-500 mb-2 font-sans">
+            <div className="tone-card bg-opacity-10 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)', borderColor: 'rgba(99, 102, 241, 0.3)' }}>
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 tone-highlight">
                 $300B+
               </div>
-              <div className="text-white text-lg sm:text-xl font-semibold mb-1 font-sans">
-                Global AI Market
+              <div className="text-white text-lg sm:text-xl font-semibold mb-1 ">
+                {t('investors.attention.ai')}
               </div>
-              <div className="text-gray-300 text-sm sm:text-base font-sans">
-                by 2026
+              <div className="text-gray-300 text-sm sm:text-base ">
+                {t('investors.attention.ai.by')}
               </div>
             </div>
 
             {/* Box 2: CAGR Growth */}
-            <div className="bg-pink-500/10 backdrop-blur-sm rounded-2xl border border-pink-400/30 p-6 sm:p-8 hover:border-pink-400/60 transition-all duration-300 hover:scale-105">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-pink-500 mb-2 font-sans">
+            <div className="tone-card bg-opacity-10 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)', borderColor: 'rgba(99, 102, 241, 0.3)' }}>
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 tone-highlight">
                 48%
               </div>
-              <div className="text-white text-lg sm:text-xl font-semibold mb-1 font-sans">
-                CAGR Growth
+              <div className="text-white text-lg sm:text-xl font-semibold mb-1 ">
+                {t('investors.attention.cagr')}
               </div>
-              <div className="text-gray-300 text-sm sm:text-base font-sans">
-                in trust-based platforms
+              <div className="text-gray-300 text-sm sm:text-base ">
+                {t('investors.attention.cagr.in')}
               </div>
             </div>
 
             {/* Box 3: Valuation Uplift */}
-            <div className="bg-pink-500/10 backdrop-blur-sm rounded-2xl border border-pink-400/30 p-6 sm:p-8 hover:border-pink-400/60 transition-all duration-300 hover:scale-105">
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-pink-500 mb-2 font-sans">
+            <div className="tone-card bg-opacity-10 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)', borderColor: 'rgba(99, 102, 241, 0.3)' }}>
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 tone-highlight">
                 5×
               </div>
-              <div className="text-white text-lg sm:text-xl font-semibold mb-1 font-sans">
-                Valuation Uplift
+              <div className="text-white text-lg sm:text-xl font-semibold mb-1 ">
+                {t('investors.attention.valuation')}
               </div>
-              <div className="text-gray-300 text-sm sm:text-base font-sans">
-                early movers in ethical AI
+              <div className="text-gray-300 text-sm sm:text-base ">
+                {t('investors.attention.valuation.early')}
               </div>
             </div>
           </div>
@@ -376,11 +355,11 @@ export default function InvestorsPage() {
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight font-sans">
-              Trusted Voices
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight investors-human">
+              {t('investors.trusted.title')}
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-sans max-w-2xl mx-auto">
-              Hear from the investors and partners shaping the Integrity Economy.
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+              {t('investors.trusted.desc')}
             </p>
           </div>
 
@@ -393,15 +372,15 @@ export default function InvestorsPage() {
                   <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
                 ))}
               </div>
-              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed font-sans italic">
-                &quot;Zentrals brings transparency and trust to a space that desperately needs it.&quot;
+              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed italic investors-human">
+                &quot;{t('investors.trusted.sarah.quote')}&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex-shrink-0"></div>
                 <div>
-                  <div className="text-white font-semibold text-sm sm:text-base font-sans">Sarah Chen</div>
-                  <div className="text-gray-400 text-xs sm:text-sm font-sans">Chief Financial Officer</div>
-                  <div className="text-gray-500 text-xs font-sans">Investor</div>
+                  <div className="text-white font-semibold text-sm sm:text-base">{t('investors.trusted.sarah.name')}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">{t('investors.trusted.sarah.role')}</div>
+                  <div className="text-gray-500 text-xs">{t('investors.trusted.sarah.type')}</div>
                 </div>
               </div>
             </div>
@@ -413,15 +392,15 @@ export default function InvestorsPage() {
                   <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
                 ))}
               </div>
-              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed font-sans italic">
-                &quot;Investing through Zentrals feels like aligning profit with purpose.&quot;
+              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed italic investors-human">
+                &quot;{t('investors.trusted.michael.quote')}&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex-shrink-0"></div>
                 <div>
-                  <div className="text-white font-semibold text-sm sm:text-base font-sans">Michael Rodriguez</div>
-                  <div className="text-gray-400 text-xs sm:text-sm font-sans">VP of Risk Management</div>
-                  <div className="text-gray-500 text-xs font-sans">Investor</div>
+                  <div className="text-white font-semibold text-sm sm:text-base">{t('investors.trusted.michael.name')}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">{t('investors.trusted.michael.role')}</div>
+                  <div className="text-gray-500 text-xs">{t('investors.trusted.michael.type')}</div>
                 </div>
               </div>
             </div>
@@ -433,15 +412,15 @@ export default function InvestorsPage() {
                   <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
                 ))}
               </div>
-              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed font-sans italic">
-                &quot;Their integrity-first approach makes frontier investments less risky and more meaningful.&quot;
+              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed italic investors-human">
+                &quot;{t('investors.trusted.jennifer.quote')}&quot;
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex-shrink-0"></div>
                 <div>
-                  <div className="text-white font-semibold text-sm sm:text-base font-sans">Jennifer Park</div>
-                  <div className="text-gray-400 text-xs sm:text-sm font-sans">Head of E-Commerce</div>
-                  <div className="text-gray-500 text-xs font-sans">Investor</div>
+                  <div className="text-white font-semibold text-sm sm:text-base">{t('investors.trusted.jennifer.name')}</div>
+                  <div className="text-gray-400 text-xs sm:text-sm">{t('investors.trusted.jennifer.role')}</div>
+                  <div className="text-gray-500 text-xs">{t('investors.trusted.jennifer.type')}</div>
                 </div>
               </div>
             </div>
@@ -452,12 +431,12 @@ export default function InvestorsPage() {
       {/* A Message From Our Founder Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight font-sans">
-            A Message From{' '}
-            <span className="text-pink-500">Our Founder</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+            {t('investors.founder.title')}{' '}
+            <span className="tone-highlight investors-human">{t('investors.founder.our')}</span>
           </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed font-sans">
-            How Zentrais is redefining trust, transparency, and value in investing.
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed">
+            {t('investors.founder.desc')}
           </p>
         </div>
       </section>
@@ -469,8 +448,8 @@ export default function InvestorsPage() {
             {/* Large Placeholder - Left */}
             <div className="lg:col-span-2">
               <div className="w-full bg-slate-700/50 rounded-2xl border border-indigo-400/30 p-16 sm:p-20 md:p-24 flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:min-h-[600px]">
-                <div className="text-center text-gray-400 text-lg font-sans">
-                  Content Placeholder
+                <div className="text-center text-gray-400 text-lg investors-human">
+                  {t('investors.founder.content')}
                 </div>
               </div>
             </div>
@@ -480,21 +459,21 @@ export default function InvestorsPage() {
               <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-indigo-400/30 p-6 sm:p-8 h-full">
                 <ul className="space-y-4 sm:space-y-6">
                   <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-pink-500 mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed font-sans">
-                      Building the Integrity Economy from the ground up
+                    <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0 tone-highlight" style={{ backgroundColor: 'var(--tone-primary)' }}></div>
+                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed investors-human">
+                      {t('investors.founder.bullet1')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-pink-500 mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed font-sans">
-                      Aligning capital with ethical and financial returns
+                    <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0 tone-highlight" style={{ backgroundColor: 'var(--tone-primary)' }}></div>
+                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed investors-human">
+                      {t('investors.founder.bullet2')}
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-pink-500 mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed font-sans">
-                      Empowering investors to take meaningful action
+                    <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0 tone-highlight" style={{ backgroundColor: 'var(--tone-primary)' }}></div>
+                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed investors-human">
+                      {t('investors.founder.bullet3')}
                     </span>
                   </li>
                 </ul>
@@ -506,9 +485,9 @@ export default function InvestorsPage() {
           <div className="text-center">
             <Button
               onClick={handleJoinHub}
-              className="bg-pink-500 hover:bg-pink-600 text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50"
+              className="tone-button text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105"
             >
-              Join Hub
+              {t('investors.founder.join')}
             </Button>
           </div>
         </div>
@@ -518,9 +497,9 @@ export default function InvestorsPage() {
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight font-sans">
-              The Team Behind the{' '}
-              <span className="text-pink-500">Transformation</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight investors-human">
+              {t('investors.team.behind')}{' '}
+              <span className="tone-highlight">{t('investors.team.transformation')}</span>
             </h2>
           </div>
 
@@ -569,17 +548,17 @@ export default function InvestorsPage() {
                         </div>
 
                         {/* Name */}
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 text-center font-sans">
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 text-center ">
                           {member.name}
                         </h3>
 
                         {/* Title */}
-                        <p className="text-pink-500 text-base sm:text-lg font-semibold mb-4 text-center font-sans">
+                        <p className="text-pink-500 text-base sm:text-lg font-semibold mb-4 text-center ">
                           {member.role}
                         </p>
 
                         {/* Description */}
-                        <p className="text-gray-300 text-base sm:text-lg leading-relaxed text-center font-sans max-w-2xl">
+                        <p className="text-gray-300 text-base sm:text-lg leading-relaxed text-center  max-w-2xl">
                           {member.bio}
                         </p>
                       </>
@@ -628,11 +607,11 @@ export default function InvestorsPage() {
       <section id="investor-form" className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-2xl mx-auto">
           <div className="bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-indigo-400/30 p-8 sm:p-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white leading-tight font-sans text-center">
-              Access the Investor Hub
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white leading-tight text-center investors-human">
+              {t('investors.hub.title')}
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed font-sans text-center">
-              Unlock exclusive insights, governance data, and private briefings.
+            <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed text-center">
+              {t('investors.hub.desc')}
             </p>
             
             <form 
@@ -643,99 +622,99 @@ export default function InvestorsPage() {
               className="space-y-6"
             >
               <div>
-                <label htmlFor="full-name" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Full Name
+                <label htmlFor="full-name" className="block text-white font-medium mb-2 text-sm sm:text-base">
+                  {t('investors.hub.fullname')}
                 </label>
                 <input
                   id="full-name"
                   type="text"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  placeholder="We'd love to get to know you"
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all font-sans text-sm sm:text-base"
+                  placeholder={t('investors.hub.fullname.placeholder')}
+                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="role-organization" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Role/Organization
+                <label htmlFor="role-organization" className="block text-white font-medium mb-2 text-sm sm:text-base">
+                  {t('investors.hub.role')}
                 </label>
                 <input
                   id="role-organization"
                   type="text"
                   value={formData.roleOrganization}
                   onChange={(e) => setFormData({ ...formData, roleOrganization: e.target.value })}
-                  placeholder="Role"
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all font-sans text-sm sm:text-base"
+                  placeholder={t('investors.hub.role.placeholder')}
+                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="investment-focus" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Investment Focus
+                <label htmlFor="investment-focus" className="block text-white font-medium mb-2 text-sm sm:text-base">
+                  {t('investors.hub.focus')}
                 </label>
                 <input
                   id="investment-focus"
                   type="text"
                   value={formData.investmentFocus}
                   onChange={(e) => setFormData({ ...formData, investmentFocus: e.target.value })}
-                  placeholder="Frontier / Impact / Legacy"
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all font-sans text-sm sm:text-base"
+                  placeholder={t('investors.hub.focus.placeholder')}
+                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="amount-interested" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Amount Interested
+                <label htmlFor="amount-interested" className="block text-white font-medium mb-2 text-sm sm:text-base">
+                  {t('investors.hub.amount')}
                 </label>
                 <input
                   id="amount-interested"
                   type="text"
                   value={formData.amountInterested}
                   onChange={(e) => setFormData({ ...formData, amountInterested: e.target.value })}
-                  placeholder="USD"
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all font-sans text-sm sm:text-base"
+                  placeholder={t('investors.hub.amount.placeholder')}
+                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Email
+                <label htmlFor="email" className="block text-white font-medium mb-2 text-sm sm:text-base">
+                  {t('investors.hub.email')}
                 </label>
                 <input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="youremail@gmail.com"
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all font-sans text-sm sm:text-base"
+                  placeholder={t('investors.hub.email.placeholder')}
+                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
                   required
                 />
               </div>
               
               <div>
-                <label htmlFor="comments" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Comments / Notes
+                <label htmlFor="comments" className="block text-white font-medium mb-2 text-sm sm:text-base">
+                  {t('investors.hub.comments')}
                 </label>
                 <textarea
                   id="comments"
                   value={formData.comments}
                   onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
-                  placeholder="Tell us something"
+                  placeholder={t('investors.hub.comments.placeholder')}
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all font-sans text-sm sm:text-base resize-none"
+                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base resize-none"
                 />
               </div>
               
               <button
                 type="submit"
-                className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/30 text-base sm:text-lg font-sans"
+                className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/30 text-base sm:text-lg "
               >
-                Submit Form
+                {t('investors.hub.submit')}
               </button>
             </form>
           </div>

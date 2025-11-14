@@ -16,14 +16,14 @@ export default function UserPage() {
       title: t('user.carousel.debate.title'),
       description: t('user.carousel.debate.desc'),
       icon: Gavel,
-      preview: 'Debate',
+      preview: 'Perspective',
     },
     {
       id: 'chat',
       title: t('user.carousel.chat.title'),
       description: t('user.carousel.chat.desc'),
       icon: MessageSquare,
-      preview: 'Chat',
+      preview: 'Dialog',
     },
     {
       id: 'market',
@@ -100,7 +100,7 @@ export default function UserPage() {
   };
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#36454F' }}>
+    <div className="min-h-screen text-white relative overflow-hidden user-tone" style={{ backgroundColor: '#36454F' }}>
       {/* Partículas de luz de fondo */}
       <div className="fixed inset-0 pointer-events-none z-0">
         {particles.map((particle) => (
@@ -129,20 +129,20 @@ export default function UserPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Texto a la izquierda */}
             <div className="text-left">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight font-sans">
-                Connect with People{' '}
-                <span className="block">Who Truly</span>{' '}
-                <span className="text-pink-500">Understand You</span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
+                {t('user.hero.connect.title')}{' '}
+                <span className="block">{t('user.hero.connect.subtitle')}</span>{' '}
+                <span className="tone-highlight">{t('user.hero.connect.understand')}</span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed font-sans">
-                Our AI helps you meet like-minded people and have conversations that feel natural, empathetic, and human. Be the first to experience it.
+                {t('user.hero.connect.desc')}
               </p>
               <Button
                 onClick={handleJoinBeta}
-                className="bg-pink-500 text-white hover:bg-pink-600 text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-6 rounded-xl font-semibold transition-all duration-500 hover:scale-105 group relative overflow-hidden hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] transition-shadow duration-[1500ms]"
+                className="tone-button text-white text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-6 rounded-xl font-bold transition-all duration-500 hover:scale-110 group relative overflow-hidden transition-shadow duration-[1500ms]"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Join Now
+                  {t('user.hero.connect.cta')}
                   <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" />
                 </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500"></span>
@@ -151,7 +151,7 @@ export default function UserPage() {
 
             {/* Celulares a la derecha */}
             <div className="relative h-[500px] sm:h-[600px] flex items-center justify-center">
-              {/* Celular izquierdo - The Integrity Debate */}
+              {/* Celular izquierdo - The Integrity Perspective */}
               <div
                 onClick={() => setSelectedPhone(0)}
                 className={`absolute transition-all duration-500 cursor-pointer ${
@@ -185,14 +185,14 @@ export default function UserPage() {
                       className="opacity-40 mb-4"
                     />
                     <div className="text-blue-300/70 text-sm font-sans text-center px-4">
-                      your idea or statement
+                      {t('user.dashboard.idea')}
                     </div>
                   </div>
                   <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-blue-400/40 rounded-full"></div>
                 </div>
               </div>
 
-              {/* Celular medio - Chat */}
+              {/* Celular medio - Dialog */}
               <div
                 onClick={() => setSelectedPhone(1)}
                 className={`absolute transition-all duration-500 cursor-pointer ${
@@ -233,7 +233,7 @@ export default function UserPage() {
                     {/* Barra de escritura estilo chat */}
                     <div className="pb-4 px-4">
                       <div className="bg-slate-800/50 rounded-full border border-emerald-400/30 px-4 py-2 flex items-center gap-2">
-                        <div className="flex-1 text-emerald-300/50 text-xs font-sans">Type a message...</div>
+                        <div className="flex-1 text-emerald-300/50 text-xs font-sans">{t('user.dashboard.type.message')}</div>
                         <div className="w-6 h-6 rounded-full bg-emerald-400/30 flex items-center justify-center">
                           <ArrowRight className="w-3 h-3 text-emerald-400" />
                         </div>
@@ -244,7 +244,7 @@ export default function UserPage() {
                 </div>
               </div>
 
-              {/* Celular derecho - The Integrity Marketplace */}
+              {/* Celular derecho - The Integrity Exchange */}
               <div
                 onClick={() => setSelectedPhone(2)}
                 className={`absolute transition-all duration-500 cursor-pointer ${
@@ -283,7 +283,7 @@ export default function UserPage() {
                     <div className="flex-1 px-3 py-4 space-y-3 overflow-y-auto">
                       <div className="flex flex-col items-end">
                         <div className="bg-orange-500/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
-                          <div className="text-orange-200 text-xs font-sans font-semibold mb-2">Selling: Modern Chair</div>
+                          <div className="text-orange-200 text-xs font-sans font-semibold mb-2">{t('user.dashboard.marketplace.selling')}</div>
                           <div className="relative w-full h-24 rounded-lg overflow-hidden mb-2">
                             <Image
                               src="/chair.jpg"
@@ -292,22 +292,22 @@ export default function UserPage() {
                               className="object-cover"
                             />
                           </div>
-                          <div className="text-orange-100/70 text-xs font-sans">$120 - Excellent condition</div>
+                          <div className="text-orange-100/70 text-xs font-sans">{t('user.dashboard.marketplace.price')}</div>
                         </div>
                       </div>
                       <div className="flex flex-col items-start">
                         <div className="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
-                          <div className="text-orange-300/80 text-xs font-sans">Is it still available? What&apos;s the condition?</div>
+                          <div className="text-orange-300/80 text-xs font-sans">{t('user.dashboard.marketplace.question1')}</div>
                         </div>
                       </div>
                       <div className="flex flex-col items-end">
                         <div className="bg-orange-500/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
-                          <div className="text-orange-200 text-xs font-sans">Yes! Like new, barely used. Can deliver today.</div>
+                          <div className="text-orange-200 text-xs font-sans">{t('user.dashboard.marketplace.answer1')}</div>
                         </div>
                       </div>
                       <div className="flex flex-col items-start">
                         <div className="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
-                          <div className="text-orange-300/80 text-xs font-sans">Perfect! I&apos;ll take it. Where can we meet?</div>
+                          <div className="text-orange-300/80 text-xs font-sans">{t('user.dashboard.marketplace.question2')}</div>
                         </div>
                       </div>
                     </div>
@@ -323,11 +323,11 @@ export default function UserPage() {
       {/* Experience Human-AI Symbiosis - Simple Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto text-left">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight font-sans">
-            Experience <span className="text-pink-500">Human-AI</span> Symbiosis
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
+            {t('user.symbiosis.title')}{' '}<span className="tone-highlight">{t('user.symbiosis.human')}</span>{' '}{t('user.symbiosis.subtitle')}
           </h2>
           <p className="text-lg sm:text-xl text-gray-300 leading-relaxed font-sans">
-            Discover a digital space built on trust, where deep reflection meets open dialogue. Our three-step journey is designed to respect your mind and measure your personal integrity footprint.
+            {t('user.symbiosis.desc')}
           </p>
         </div>
       </section>
@@ -335,80 +335,50 @@ export default function UserPage() {
       {/* Step 1 Section - Two Columns */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
             {/* Left Section - Text Content */}
-            <div className="text-left">
+            <div className="text-left flex flex-col">
               {/* Step 1 Badge */}
-              <div className="inline-block bg-pink-500 rounded-lg px-4 py-2 mb-4">
-                <span className="text-white font-semibold text-sm">Step 1</span>
+              <div className="inline-flex items-center justify-center rounded-full w-16 h-16 mb-4 tone-button" style={{ backgroundColor: 'var(--tone-primary)' }}>
+                <span className="text-white font-semibold text-xs">{t('user.step.badge')} 1</span>
               </div>
               
               {/* Main Title */}
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 font-sans">
-                Let&apos;s Get to Know You. Really!
-              </h3>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 font-sans tracking-tight">
+                {t('user.step1.title')}
+              </h2>
               
               {/* Descriptive Text */}
               <p className="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed font-sans">
-                Your journey begins with a feeling of intrigue and openness. We start with one simple prompt: &apos;What&apos;s in your mind today?&apos;
+                {t('user.step1.desc')}
               </p>
               
               {/* Three buttons with arrows */}
               <div className="space-y-3">
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans flex items-center gap-3">
-                  <ArrowRight className="w-4 h-4 flex-shrink-0" />
-                  <span>Select input: Text, Voice, or Gesture</span>
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans flex items-center gap-3 tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
+                  <span>{t('user.step1.button1')}</span>
                 </button>
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans flex items-center gap-3">
-                  <ArrowRight className="w-4 h-4 flex-shrink-0" />
-                  <span>Set the stage for authentic dialogue</span>
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans flex items-center gap-3 tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
+                  <span>{t('user.step1.button2')}</span>
                 </button>
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans flex items-center gap-3">
-                  <ArrowRight className="w-4 h-4 flex-shrink-0" />
-                  <span>Embrace the feeling of openness</span>
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans flex items-center gap-3 tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
+                  <span>{t('user.step1.button3')}</span>
                 </button>
-              </div>
-              
-              {/* Accent Circle */}
-              <div className="mt-8 flex justify-end lg:justify-start">
-                <div className="w-16 h-16 rounded-full bg-pink-500 border-2 border-pink-400"></div>
               </div>
             </div>
 
-            {/* Right Section - Phone Mockup */}
-            <div className="flex items-center justify-center lg:justify-end">
-              <div className="relative w-full max-w-md">
-                {/* Phone mockup */}
-                <div className="relative w-64 sm:w-72 mx-auto">
-                  <div className="relative bg-slate-900 rounded-[2.5rem] p-2 border-4 border-slate-800 shadow-2xl">
-                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] overflow-hidden flex flex-col" style={{ backgroundColor: '#151515' }}>
-                      {/* Notch */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-slate-800 z-10" style={{ backgroundColor: '#151515' }}></div>
-                      
-                      {/* Content */}
-                      <div className="flex-1 flex flex-col items-center justify-center px-6 py-12">
-                        <h3 className="text-white text-xl sm:text-2xl font-bold mb-8 text-center font-sans">
-                          What&apos;s in your mind today?
-                        </h3>
-                        
-                        {/* Buttons */}
-                        <div className="flex gap-3 sm:gap-4 w-full justify-center">
-                          <button className="px-4 sm:px-6 py-3 sm:py-4 bg-purple-900/50 rounded-xl text-white font-medium text-sm sm:text-base hover:bg-purple-800/50 transition-colors font-sans">
-                            Text
-                          </button>
-                          <button className="px-4 sm:px-6 py-3 sm:py-4 bg-purple-900/50 rounded-xl text-white font-medium text-sm sm:text-base hover:bg-purple-800/50 transition-colors font-sans">
-                            Voice
-                          </button>
-                          <button className="px-4 sm:px-6 py-3 sm:py-4 bg-purple-500 rounded-xl text-white font-medium text-sm sm:text-base shadow-[0_0_20px_rgba(168,85,247,0.8)] hover:shadow-[0_0_30px_rgba(168,85,247,1)] transition-all font-sans relative">
-                            Gesture
-                            <div className="absolute inset-0 bg-purple-400/30 rounded-xl animate-pulse"></div>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-slate-800 rounded-full"></div>
-                  </div>
-                </div>
+            {/* Right Section - Image */}
+            <div className="flex items-stretch justify-center lg:justify-end">
+              <div className="relative w-full max-w-md h-full min-h-[400px]">
+                <Image
+                  src="/user-image-1.png"
+                  alt="Step 1"
+                  fill
+                  className="rounded-2xl object-cover"
+                />
               </div>
             </div>
           </div>
@@ -418,81 +388,46 @@ export default function UserPage() {
       {/* Step 2 Section - Humanized Dialogue - Two Columns */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-            {/* Left Section - Phone Mockup */}
-            <div className="flex items-center justify-center lg:justify-start order-2 lg:order-1">
-              <div className="relative w-full max-w-md">
-                {/* Phone mockup */}
-                <div className="relative w-64 sm:w-72 mx-auto">
-                  <div className="relative bg-slate-900 rounded-[2.5rem] p-2 border-4 border-slate-800 shadow-2xl">
-                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] overflow-hidden flex flex-col" style={{ backgroundColor: '#151515' }}>
-                      {/* Notch */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-slate-800 z-10" style={{ backgroundColor: '#151515' }}></div>
-                      
-                      {/* Content */}
-                      <div className="flex-1 flex flex-col px-6 py-8">
-                        {/* Header */}
-                        <div className="mb-8">
-                          <h3 className="text-white text-lg sm:text-xl font-bold font-sans">Zentrais</h3>
-                        </div>
-                        
-                        {/* Radio button options */}
-                        <div className="space-y-4 flex-1">
-                          <label className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-xl cursor-pointer hover:bg-slate-800/70 transition-colors">
-                            <input type="radio" name="dialogue" className="w-5 h-5 text-purple-500" defaultChecked />
-                            <span className="text-white text-sm font-medium font-sans">I&apos;d love to get to know you</span>
-                          </label>
-                          <label className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-xl cursor-pointer hover:bg-slate-800/70 transition-colors">
-                            <input type="radio" name="dialogue" className="w-5 h-5 text-purple-500" />
-                            <span className="text-white text-sm font-medium font-sans">What&apos;s one truth you hold dear</span>
-                          </label>
-                          <label className="flex items-center gap-3 p-4 bg-slate-800/50 rounded-xl cursor-pointer hover:bg-slate-800/70 transition-colors">
-                            <input type="radio" name="dialogue" className="w-5 h-5 text-purple-500" />
-                            <span className="text-white text-sm font-medium font-sans">What are you curious about right now?</span>
-                          </label>
-                        </div>
-                        
-                        {/* Bottom interaction circle */}
-                        <div className="flex justify-center mt-6">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-[0_0_30px_rgba(59,130,246,0.8)] flex items-center justify-center">
-                            <div className="w-12 h-12 rounded-full bg-white/20"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-slate-800 rounded-full"></div>
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+            {/* Left Section - Image */}
+            <div className="flex items-stretch justify-center lg:justify-start order-2 lg:order-1">
+              <div className="relative w-full max-w-md h-full min-h-[400px]">
+                <Image
+                  src="/user-image-2.png"
+                  alt="Step 2"
+                  fill
+                  className="rounded-2xl object-cover"
+                />
               </div>
             </div>
 
             {/* Right Section - Text Content */}
-            <div className="text-left order-1 lg:order-2">
+            <div className="text-left order-1 lg:order-2 flex flex-col">
               {/* Step 2 Badge */}
-              <div className="inline-block bg-pink-500 rounded-lg px-4 py-2 mb-4">
-                <span className="text-white font-semibold text-sm">Step 2</span>
+              <div className="inline-flex items-center justify-center rounded-full w-16 h-16 mb-4 tone-button" style={{ backgroundColor: 'var(--tone-primary)' }}>
+                <span className="text-white font-semibold text-xs">{t('user.step.badge')} 2</span>
               </div>
 
               {/* Main Title */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans">
-                Humanized Dialogue: The Co-Think Space
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
+                {t('user.step2.title')}
               </h2>
 
               {/* Descriptive Paragraph */}
               <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed font-sans">
-                Experience true human-AI symbiosis. Our system engages you in a short, prompt-based dialogue to understand your mindset, not just your data.
+                {t('user.step2.desc')}
               </p>
 
               {/* Interactive Prompt Buttons */}
               <div className="space-y-4">
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
-                  What are you curious about right now?
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  {t('user.step2.button1')}
                 </button>
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
-                  What&apos;s one truth you hold dear
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  {t('user.step2.button2')}
                 </button>
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
-                  We&apos;d love to get to know you
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  {t('user.step2.button3')}
                 </button>
               </div>
             </div>
@@ -503,106 +438,47 @@ export default function UserPage() {
       {/* Step 3 Section - Snapshot: Your Integrity Profile - Two Columns */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
             {/* Left Section - Text Content */}
-            <div className="text-left">
+            <div className="text-left flex flex-col">
               {/* Step 3 Badge */}
-              <div className="inline-block bg-pink-500 rounded-lg px-4 py-2 mb-4">
-                <span className="text-white font-semibold text-sm">Step 3</span>
+              <div className="inline-flex items-center justify-center rounded-full w-16 h-16 mb-4 tone-button" style={{ backgroundColor: 'var(--tone-primary)' }}>
+                <span className="text-white font-semibold text-xs">{t('user.step.badge')} 3</span>
               </div>
 
               {/* Main Title */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans">
-                Snapshot: Your Integrity Profile
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
+                {t('user.step3.title')}
               </h2>
 
               {/* Descriptive Paragraph */}
               <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed font-sans">
-                See yourself reflected in your digital space. Receive a short, private profile that is friendly and affirming. This is your personal integrity footprint.
+                {t('user.step3.desc')}
               </p>
 
               {/* Three buttons/bullet points */}
               <div className="space-y-4">
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
-                  Tend to reflect deeply before reacting
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  {t('user.step3.button1')}
                 </button>
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
-                  The profile is private and not shared.
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  {t('user.step3.button2')}
                 </button>
-                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
-                  You value authentic dialogue
+                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
+                  {t('user.step3.button3')}
                 </button>
               </div>
             </div>
 
-            {/* Right Section - Phone Mockup */}
-            <div className="flex items-center justify-center lg:justify-end">
-              <div className="relative w-full max-w-md">
-                {/* Phone mockup */}
-                <div className="relative w-64 sm:w-72 mx-auto">
-                  <div className="relative bg-slate-900 rounded-[2.5rem] p-2 border-4 border-slate-800 shadow-2xl">
-                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] overflow-hidden flex flex-col" style={{ backgroundColor: '#151515' }}>
-                      {/* Notch */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-slate-800 z-10" style={{ backgroundColor: '#151515' }}></div>
-                      
-                      {/* Content */}
-                      <div className="flex-1 flex flex-col px-6 py-8">
-                        {/* Header with Zentrais */}
-                        <div className="mb-6">
-                          <h3 className="text-white text-sm font-semibold font-sans">Zentrais</h3>
-                        </div>
-                        
-                        {/* Title with Chevron */}
-                        <div className="mb-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h4 className="text-white text-lg sm:text-xl font-bold font-sans">Your Personality Integrity Snapshot</h4>
-                            <ChevronDown className="w-4 h-4 text-white" />
-                          </div>
-                        </div>
-                        
-                        {/* Descriptive Text */}
-                        <p className="text-white/70 text-xs sm:text-sm mb-6 leading-relaxed font-sans">
-                          Your profile reflects your authentic self. This snapshot captures your integrity footprint based on your interactions and dialogue patterns.
-                        </p>
-                        
-                        {/* Wavy Graph Visualization */}
-                        <div className="mb-6 relative h-20 w-full">
-                          <svg viewBox="0 0 200 60" className="w-full h-full" preserveAspectRatio="none">
-                            <path
-                              d="M 0 30 Q 25 10, 50 30 T 100 30 T 150 30 T 200 30"
-                              stroke="#ec4899"
-                              strokeWidth="3"
-                              fill="none"
-                              className="animate-pulse"
-                            />
-                            <path
-                              d="M 0 35 Q 25 15, 50 35 T 100 35 T 150 35 T 200 35"
-                              stroke="#f97316"
-                              strokeWidth="2"
-                              fill="none"
-                              opacity="0.7"
-                            />
-                            <path
-                              d="M 0 40 Q 25 20, 50 40 T 100 40 T 150 40 T 200 40"
-                              stroke="#10b981"
-                              strokeWidth="2"
-                              fill="none"
-                              opacity="0.5"
-                            />
-                          </svg>
-                        </div>
-                        
-                        {/* Bottom Play Button */}
-                        <div className="mt-auto flex justify-end">
-                          <button className="w-12 h-12 rounded-full border-2 border-blue-400/50 bg-blue-500/20 flex items-center justify-center hover:bg-blue-500/30 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.5)]">
-                            <Play className="w-5 h-5 text-blue-400 ml-1" fill="currentColor" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-slate-800 rounded-full"></div>
-                  </div>
-                </div>
+            {/* Right Section - Image */}
+            <div className="flex items-stretch justify-center lg:justify-end">
+              <div className="relative w-full max-w-md h-full min-h-[400px]">
+                <Image
+                  src="/user-image-3.png"
+                  alt="Step 3"
+                  fill
+                  className="rounded-2xl object-cover"
+                />
               </div>
             </div>
           </div>
@@ -612,14 +488,14 @@ export default function UserPage() {
       {/* The Beta Dashboard Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans">
-            The Beta Dashboard
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
+            {t('user.dashboard.title')}
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed font-sans">
-            Go beyond passive browsing. The Beta Dashboard provides three unique spaces:{' '}
-            <span className="text-blue-400 font-semibold">Debate</span>,{' '}
-            <span className="text-blue-400 font-semibold">Chat</span>, and{' '}
-            <span className="text-blue-400 font-semibold">Marketplace</span>, where you actively engage in human-AI symbiosis and build your personal integrity footprint.
+            {t('user.dashboard.desc')}{' '}
+            <span className="text-blue-400 font-semibold">{t('user.dashboard.debate')}</span>,{' '}
+            <span className="text-emerald-300 font-semibold">{t('user.dashboard.chat')}</span>, and{' '}
+            <span className="text-orange-300 font-semibold">{t('user.dashboard.marketplace')}</span>{t('user.dashboard.desc2')}
           </p>
         </div>
       </section>
@@ -627,32 +503,32 @@ export default function UserPage() {
       {/* The Beta Dashboard - Three Panels with Phones */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {/* The Integrity Debate */}
+          {/* The Integrity Perspective */}
           <div className="flex flex-col items-center hover:scale-105 transition-all duration-300">
-            <div className="text-xl sm:text-2xl font-bold text-blue-300 mb-3 sm:mb-4 font-sans">The Integrity Debate</div>
+            <div className="text-xl sm:text-2xl font-bold text-blue-300 mb-3 sm:mb-4 font-sans">{t('user.dashboard.integrity.debate')}</div>
             <div className="relative">
               <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-blue-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300">
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-blue-400/60" style={{ backgroundColor: '#151515' }}></div>
-                <div className="w-full h-full rounded-[2rem] border-2 border-blue-400/40 bg-blue-500/20 backdrop-blur-sm flex flex-col items-center justify-center pt-6 pb-6">
-                  <Image
-                    src="/icon.png"
-                    alt="Zentrais Logo"
-                    width={40}
-                    height={40}
-                    className="opacity-40 mb-4"
-                  />
-                  <div className="text-blue-300/70 text-sm font-sans text-center px-4">
-                    your idea or statement
+                  <div className="w-full h-full rounded-[2rem] border-2 border-blue-400/40 bg-blue-500/20 backdrop-blur-sm flex flex-col items-center justify-center pt-6 pb-6">
+                    <Image
+                      src="/icon.png"
+                      alt="Zentrais Logo"
+                      width={40}
+                      height={40}
+                      className="opacity-40 mb-4"
+                    />
+                    <div className="text-blue-300/70 text-sm font-sans text-center px-4">
+                      {t('user.dashboard.idea')}
+                    </div>
                   </div>
-                </div>
                 <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-blue-400/40 rounded-full"></div>
               </div>
             </div>
           </div>
 
-          {/* Chat */}
+          {/* Dialog */}
           <div className="flex flex-col items-center hover:scale-105 transition-all duration-300">
-            <div className="text-xl sm:text-2xl font-bold text-emerald-300 mb-3 sm:mb-4 font-sans">Chat</div>
+            <div className="text-xl sm:text-2xl font-bold text-emerald-300 mb-3 sm:mb-4 font-sans">{t('user.dashboard.chat')}</div>
             <div className="relative">
               <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-emerald-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300">
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-emerald-400/60" style={{ backgroundColor: '#151515' }}></div>
@@ -670,7 +546,7 @@ export default function UserPage() {
                   {/* Barra de escritura estilo chat */}
                   <div className="pb-4 px-4">
                     <div className="bg-slate-800/50 rounded-full border border-emerald-400/30 px-4 py-2 flex items-center gap-2">
-                      <div className="flex-1 text-emerald-300/50 text-xs font-sans">Type a message...</div>
+                      <div className="flex-1 text-emerald-300/50 text-xs font-sans">{t('user.dashboard.type.message')}</div>
                       <div className="w-6 h-6 rounded-full bg-emerald-400/30 flex items-center justify-center">
                         <ArrowRight className="w-3 h-3 text-emerald-400" />
                       </div>
@@ -682,55 +558,55 @@ export default function UserPage() {
             </div>
           </div>
 
-          {/* The Integrity Marketplace */}
+          {/* The Integrity Exchange */}
           <div className="flex flex-col items-center hover:scale-105 transition-all duration-300">
-            <div className="text-xl sm:text-2xl font-bold text-blue-300 mb-3 sm:mb-4 font-sans">The Integrity Marketplace</div>
+            <div className="text-xl sm:text-2xl font-bold text-orange-300 mb-3 sm:mb-4 font-sans">{t('user.dashboard.integrity.marketplace')}</div>
             <div className="relative">
               <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-orange-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-orange-400 hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300">
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-orange-400/60" style={{ backgroundColor: '#151515' }}></div>
-                <div className="w-full h-full rounded-[2rem] border-2 border-orange-400/40 bg-orange-400/20 backdrop-blur-sm flex flex-col">
-                  <div className="pt-6 pb-4 flex justify-center">
-                    <Image
-                      src="/icon.png"
-                      alt="Zentrais Logo"
-                      width={40}
-                      height={40}
-                      className="opacity-40"
-                    />
-                  </div>
-                  {/* Conversaciones de venta */}
-                  <div className="flex-1 px-3 py-4 space-y-3 overflow-y-auto">
-                    <div className="flex flex-col items-end">
-                      <div className="bg-orange-500/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
-                        <div className="text-orange-200 text-xs font-sans font-semibold mb-2">Selling: Modern Chair</div>
-                        <div className="relative w-full h-24 rounded-lg overflow-hidden mb-2">
-                          <Image
-                            src="/chair.jpg"
-                            alt="Chair for sale"
-                            fill
-                            className="object-cover"
-                          />
+                  <div className="w-full h-full rounded-[2rem] border-2 border-orange-400/40 bg-orange-400/20 backdrop-blur-sm flex flex-col">
+                    <div className="pt-6 pb-4 flex justify-center">
+                      <Image
+                        src="/icon.png"
+                        alt="Zentrais Logo"
+                        width={40}
+                        height={40}
+                        className="opacity-40"
+                      />
+                    </div>
+                    {/* Conversaciones de venta */}
+                    <div className="flex-1 px-3 py-4 space-y-3 overflow-y-auto">
+                      <div className="flex flex-col items-end">
+                        <div className="bg-orange-500/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                          <div className="text-orange-200 text-xs font-sans font-semibold mb-2">{t('user.dashboard.marketplace.selling')}</div>
+                          <div className="relative w-full h-24 rounded-lg overflow-hidden mb-2">
+                            <Image
+                              src="/chair.jpg"
+                              alt="Chair for sale"
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="text-orange-100/70 text-xs font-sans">{t('user.dashboard.marketplace.price')}</div>
                         </div>
-                        <div className="text-orange-100/70 text-xs font-sans">$120 - Excellent condition</div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-start">
-                      <div className="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
-                        <div className="text-orange-300/80 text-xs font-sans">Is it still available? What&apos;s the condition?</div>
+                      <div className="flex flex-col items-start">
+                        <div className="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                          <div className="text-orange-300/80 text-xs font-sans">{t('user.dashboard.marketplace.question1')}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-end">
-                      <div className="bg-orange-500/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
-                        <div className="text-orange-200 text-xs font-sans">Yes! Like new, barely used. Can deliver today.</div>
+                      <div className="flex flex-col items-end">
+                        <div className="bg-orange-500/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                          <div className="text-orange-200 text-xs font-sans">{t('user.dashboard.marketplace.answer1')}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-start">
-                      <div className="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
-                        <div className="text-orange-300/80 text-xs font-sans">Perfect! I&apos;ll take it. Where can we meet?</div>
+                      <div className="flex flex-col items-start">
+                        <div className="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                          <div className="text-orange-300/80 text-xs font-sans">{t('user.dashboard.marketplace.question2')}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1.5 bg-orange-400/40 rounded-full"></div>
               </div>
             </div>
@@ -748,10 +624,10 @@ export default function UserPage() {
                 <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
                   <Lock className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">Encrypted & Private</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">{t('user.insights.encrypted.title')}</h3>
               </div>
               <p className="text-gray-300 text-sm sm:text-base leading-relaxed font-sans">
-                Your data is encrypted and never sold
+                {t('user.insights.encrypted.desc')}
               </p>
             </div>
 
@@ -761,10 +637,10 @@ export default function UserPage() {
                 <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">Verified & Credited</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">{t('user.insights.verified.title')}</h3>
               </div>
               <p className="text-gray-300 text-sm sm:text-base leading-relaxed font-sans">
-                Every contribution is verified and credited to you
+                {t('user.insights.verified.desc')}
               </p>
             </div>
 
@@ -774,10 +650,10 @@ export default function UserPage() {
                 <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
                   <Shield className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">Ethical Standards</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">{t('user.insights.ethical.title')}</h3>
               </div>
               <p className="text-gray-300 text-sm sm:text-base leading-relaxed font-sans">
-                Zentrais follows strict ethical AI and data standards
+                {t('user.insights.ethical.desc')}
               </p>
             </div>
           </div>
@@ -788,11 +664,11 @@ export default function UserPage() {
       <section id="waitlist-form" className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-2xl mx-auto">
           <div className="bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-blue-400/30 p-8 sm:p-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 text-white leading-tight font-sans">
-              Be One of the First to Experience Digital Integrity.
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-6 text-white leading-tight font-sans tracking-tight">
+              {t('user.waitlist.title')}
             </h2>
             <p className="text-base sm:text-lg text-gray-300 text-center mb-8 leading-relaxed font-sans">
-              Secure your exclusive invitation to the Zentrals Demo/Beta, the space where exploratory thinkers engage in authentic dialogue and track their integrity footprint.
+              {t('user.waitlist.desc')}
             </p>
             
             <form 
@@ -804,14 +680,14 @@ export default function UserPage() {
             >
               <div>
                 <label htmlFor="waitlist-name" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Name
+                  {t('user.waitlist.name')}
                 </label>
                 <input
                   id="waitlist-name"
                   type="text"
                   value={waitlistName}
                   onChange={(e) => setWaitlistName(e.target.value)}
-                  placeholder="We'd love to get to know you"
+                  placeholder={t('user.waitlist.name.placeholder')}
                   className="w-full px-4 py-3 rounded-lg border border-blue-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all font-sans text-sm sm:text-base"
                   required
                 />
@@ -819,14 +695,14 @@ export default function UserPage() {
               
               <div>
                 <label htmlFor="waitlist-email" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
-                  Email
+                  {t('user.waitlist.email')}
                 </label>
                 <input
                   id="waitlist-email"
                   type="email"
                   value={waitlistEmail}
                   onChange={(e) => setWaitlistEmail(e.target.value)}
-                  placeholder="Your email for Demo access updates"
+                  placeholder={t('user.waitlist.email.placeholder')}
                   className="w-full px-4 py-3 rounded-lg border border-blue-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all font-sans text-sm sm:text-base"
                   required
                 />
@@ -834,9 +710,9 @@ export default function UserPage() {
               
               <button
                 type="submit"
-                className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-pink-500/30 text-base sm:text-lg font-sans"
+                className="tone-button w-full text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 text-lg sm:text-xl font-sans"
               >
-                Join Waitlist
+                {t('user.waitlist.submit')}
               </button>
             </form>
           </div>
