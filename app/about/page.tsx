@@ -19,10 +19,25 @@ export default function AboutPage() {
     setParticles(newParticles);
   }, []);
 
+  useEffect(() => {
+    // Asegurar que el fondo oscuro cubra toda la página
+    document.body.style.backgroundColor = '#36454F';
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      (mainElement as HTMLElement).style.backgroundColor = '#36454F';
+    }
+    return () => {
+      document.body.style.backgroundColor = 'transparent';
+      if (mainElement) {
+        (mainElement as HTMLElement).style.backgroundColor = '';
+      }
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen text-white relative overflow-hidden -mt-16 pt-16" style={{ backgroundColor: '#36454F' }}>
+    <div className="text-white relative flex flex-col w-full" style={{ backgroundColor: '#36454F', marginTop: '-64px', paddingTop: '64px', minHeight: '100vh', width: '100%' }}>
       {/* Fondo animado sutil */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="fixed inset-0 pointer-events-none z-0" style={{ backgroundColor: '#36454F' }}>
         {/* Partículas suaves flotantes */}
         {particles.map((particle) => (
           <div
@@ -46,86 +61,65 @@ export default function AboutPage() {
       </div>
 
       {/* Content Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16 md:pb-24 flex-1">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white font-sans mx-auto">
-              {t('about.title')}
+              About Us
             </h1>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white font-sans mx-auto">
-              {t('about.subtitle')}
-            </h2>
           </div>
 
-          {/* Introduction */}
-          <div className="mb-12">
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-6">
-              {t('about.intro')}
+          {/* Content */}
+          <div className="space-y-6 text-white font-sans text-base sm:text-lg leading-relaxed">
+            <p>
+              Zentrais is building the world's first <strong>Integrity Economy</strong>, a Human-AI ecosystem designed to restore trust, intelligence, and accountability to the internet.
             </p>
-          </div>
-
-          {/* Platform Modes */}
-          <div className="mb-12">
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans">
-                  {t('about.chat.title')}
-                </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-4">
-                  {t('about.chat.desc')}
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans">
-                  {t('about.debate.title')}
-                </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-4">
-                  {t('about.debate.desc')}
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans">
-                  {t('about.shopping.title')}
-                </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-4">
-                  {t('about.shopping.desc')}
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-sans">
-                  {t('about.business.title')}
-                </h3>
-                <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-6">
-                  {t('about.business.desc')}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Conclusion */}
-          <div className="mb-12">
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-6">
-              {t('about.conclusion')}
+            
+            <p>
+              Today's platforms profit from manipulation, noise, and anonymity. We reject that model entirely. Zentrais puts <strong>truth, trust, and transparency</strong> first.
             </p>
-          </div>
-
-          {/* Mission */}
-          <div className="mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-sans">
-              {t('about.mission.title')}
-            </h2>
-            <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans">
-              {t('about.mission.desc')}
+            
+            <p>
+              Our three engines create a new standard for digital interaction:
+            </p>
+            
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li><strong>Perspective</strong> — Verified insights without algorithmic distortion.</li>
+              <li><strong>Dialog</strong> — Accountable conversations rooted in identity and respect.</li>
+              <li><strong>Exchange</strong> — Real value created and traded through integrity, not attention.</li>
+            </ul>
+            
+            <p>
+              This is not social media 2.0.
+            </p>
+            
+            <p>
+              It's a new operating system for collective intelligence, powered by patented models, transparent architecture, and a roadmap built for global scale.
+            </p>
+            
+            <p>
+              Our 60+ global builders, engineers, creators, and researchers share one mission: Use AI to strengthen humanity, not weaken it.
+            </p>
+            
+            <p>
+              Zentrais proves that when people and machines collaborate with integrity, better ideas rise, decisions improve, and societies advance.
+            </p>
+            
+            <p>
+              We're not asking the world to trust AI. We're building AI the world can trust.
+            </p>
+            
+            <p className="font-bold text-xl mt-8">
+              <strong>Zentrais. The Integrity Economy Starts Here.</strong>
             </p>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <div className="mt-auto w-full flex-shrink-0" style={{ backgroundColor: '#36454F' }}>
+        <Footer />
+      </div>
     </div>
   );
 }

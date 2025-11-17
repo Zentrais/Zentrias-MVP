@@ -10,7 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
   
   // Rutas donde la navbar debe ser sticky
-  const stickyRoutes = ['/', '/user', '/investors', '/collaborator', '/media', '/privacy'];
+  const stickyRoutes = ['/', '/user', '/investors', '/collaborator', '/media', '/privacy', '/about', '/contact', '/terms', '/cookie-policy', '/security-policy', '/legal-center', '/dpa', '/legal-compliance-handbook', '/gdpr-cookie-consent', '/legal-governance-suite'];
   const isSticky = stickyRoutes.includes(pathname);
   const isHomepage = pathname === '/';
 
@@ -35,7 +35,7 @@ export default function Navbar() {
             <div className="flex-1"></div>
             <Link 
               href="/" 
-              className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
+              className="flex items-center -space-x-4 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
             >
               <Image
                 src="/logo-pink.png"
@@ -60,7 +60,7 @@ export default function Navbar() {
           <>
             <Link 
               href="/" 
-              className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
+              className="flex items-center -space-x-4 cursor-pointer hover:opacity-80 transition-all duration-300 hover:scale-105"
             >
               <Image
                 src="/logo-pink.png"

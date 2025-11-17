@@ -23,12 +23,12 @@ export default function DebateListPage() {
     <div className="container mx-auto py-8 px-4">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold">Debates</h1>
+          <h1 className="text-3xl font-bold">Perspectives</h1>
           <p className="text-gray-600">Explore truth through structured argumentation</p>
         </div>
         <Button onClick={() => router.push('/debate/new')}>
           <Plus className="w-4 h-4 mr-2" />
-          New Debate
+          New Perspective
         </Button>
       </div>
 

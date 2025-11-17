@@ -46,7 +46,7 @@ export default function PrivacyPage() {
       </div>
 
       {/* Content Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-12 text-center">

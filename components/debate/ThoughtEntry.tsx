@@ -18,14 +18,14 @@ export function ThoughtEntry() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Aquí iría la lógica para crear el debate
-    // Por ahora, solo redirigimos a la lista de debates
+    // Aquí iría la lógica para crear la perspectiva
+    // Por ahora, solo redirigimos a la lista de perspectivas
     try {
-      // Simular creación del debate
+      // Simular creación de la perspectiva
       await new Promise((resolve) => setTimeout(resolve, 500));
       router.push('/debate');
     } catch (error) {
-      console.error('Error creating debate:', error);
+      console.error('Error creating perspective:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -34,7 +34,7 @@ export function ThoughtEntry() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="title">Título del debate</Label>
+        <Label htmlFor="title">Título de la perspectiva</Label>
         <Input
           id="title"
           value={title}
@@ -75,7 +75,7 @@ export function ThoughtEntry() {
           disabled={isSubmitting}
           className="bg-emerald-500 text-white hover:bg-emerald-400"
         >
-          {isSubmitting ? 'Creando...' : 'Crear debate'}
+          {isSubmitting ? 'Creando...' : 'Crear perspectiva'}
         </Button>
         <Button
           type="button"

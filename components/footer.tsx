@@ -6,7 +6,7 @@ import { Twitter, Github, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
+    <footer className="relative z-20 bg-slate-900/95 backdrop-blur-lg border-t border-white/10 w-full">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
           {/* Left Column - Zentrais Info */}

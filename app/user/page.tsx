@@ -178,7 +178,7 @@ export default function UserPage() {
                 <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
                   <Image
                     src="/Debate-Zentrais.png"
-                    alt="Debate Interface"
+                    alt="Perspective Interface"
                     fill
                     className="object-contain rounded-2xl"
                   />
@@ -213,7 +213,7 @@ export default function UserPage() {
                 <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
                   <Image
                     src="/Chat-Zentrais.png"
-                    alt="Chat Interface"
+                    alt="Perspective Interface"
                     fill
                     className="object-contain rounded-2xl"
                   />
@@ -246,7 +246,7 @@ export default function UserPage() {
                 <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
                   <Image
                     src="/Marketplace-Zentrais.png"
-                    alt="Marketplace Interface"
+                    alt="Exchange Interface"
                     fill
                     className="object-contain rounded-2xl"
                   />
@@ -446,7 +446,7 @@ export default function UserPage() {
             <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[30rem] 2xl:w-[32rem] h-[36rem] sm:h-[40rem] md:h-[44rem] lg:h-[48rem] xl:h-[52rem] 2xl:h-[56rem]">
               <Image
                 src="/Debate-Zentrais.png"
-                alt="Debate Interface"
+                alt="Perspective Interface"
                 fill
                 className="object-contain rounded-2xl"
               />
@@ -459,7 +459,7 @@ export default function UserPage() {
             <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[30rem] 2xl:w-[32rem] h-[36rem] sm:h-[40rem] md:h-[44rem] lg:h-[48rem] xl:h-[52rem] 2xl:h-[56rem]">
               <Image
                 src="/Chat-Zentrais.png"
-                alt="Chat Interface"
+                alt="Perspective Interface"
                 fill
                 className="object-contain rounded-2xl"
               />
@@ -472,7 +472,7 @@ export default function UserPage() {
             <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[30rem] 2xl:w-[32rem] h-[36rem] sm:h-[40rem] md:h-[44rem] lg:h-[48rem] xl:h-[52rem] 2xl:h-[56rem]">
               <Image
                 src="/Marketplace-Zentrais.png"
-                alt="Marketplace Interface"
+                alt="Exchange Interface"
                 fill
                 className="object-contain rounded-2xl"
               />

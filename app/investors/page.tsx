@@ -8,6 +8,7 @@ import { ArrowRight, Download, Mail, Play, Users, Zap, DollarSign, Calendar, Sta
 import Footer from '../../components/footer';
 import { useLanguage } from '../../contexts/language-context';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../../components/ui/dialog';
 
 // Componente de contador animado
 function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
@@ -62,6 +63,7 @@ export default function InvestorsPage() {
     comments: '',
   });
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+  const [openModal, setOpenModal] = useState<string | null>(null);
 
   // Generar partículas suaves
   useEffect(() => {
@@ -274,7 +276,10 @@ export default function InvestorsPage() {
                 {t('investors.find.frontier.desc')}
               </p>
               <div className="mt-auto">
-                <button className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer">
+                <button 
+                  onClick={() => setOpenModal('frontier')}
+                  className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer"
+                >
                   {t('investors.find.frontier.learn')}
                 </button>
               </div>
@@ -289,7 +294,10 @@ export default function InvestorsPage() {
                 {t('investors.find.impact.desc')}
               </p>
               <div className="mt-auto">
-                <button className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer">
+                <button 
+                  onClick={() => setOpenModal('impact')}
+                  className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer"
+                >
                   {t('investors.find.impact.learn')}
                 </button>
               </div>
@@ -304,7 +312,10 @@ export default function InvestorsPage() {
                 {t('investors.find.legacy.desc')}
               </p>
               <div className="mt-auto">
-                <button className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer">
+                <button 
+                  onClick={() => setOpenModal('legacy')}
+                  className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer"
+                >
                   {t('investors.find.legacy.learn')}
                 </button>
               </div>
@@ -796,6 +807,53 @@ export default function InvestorsPage() {
           animation: progress 2s ease-out;
         }
       `}</style>
+
+      {/* Modals for Investor Types */}
+      <Dialog open={openModal === 'frontier'} onOpenChange={(open) => setOpenModal(open ? 'frontier' : null)}>
+        <DialogContent className="!w-[80vw] !max-w-[80vw] bg-slate-800 border-indigo-400/30 text-white max-h-[50vh] overflow-y-auto p-8 [&_button[data-slot='dialog-close']]:bg-slate-900/60 [&_button[data-slot='dialog-close']]:hover:bg-slate-900/80 [&_button[data-slot='dialog-close']]:w-10 [&_button[data-slot='dialog-close']]:h-10 [&_button[data-slot='dialog-close']]:rounded-lg [&_button[data-slot='dialog-close']]:flex [&_button[data-slot='dialog-close']]:items-center [&_button[data-slot='dialog-close']]:justify-center [&_button[data-slot='dialog-close']]:border [&_button[data-slot='dialog-close']]:border-gray-700 [&_button[data-slot='dialog-close']_svg]:text-white [&_button[data-slot='dialog-close']_svg]:w-6 [&_button[data-slot='dialog-close']_svg]:h-6">
+          <DialogHeader className="mb-2 !text-center items-center">
+            <DialogTitle className="text-3xl sm:text-4xl md:text-5xl text-white collaborator-heading !text-center w-full">
+              {t('investors.find.frontier.title')}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-2">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-normal collaborator-body">
+              A visionary profile that seeks high-potential opportunities in early-stage and emerging markets. Identifies value before the mainstream, combining strategic analysis with a forward-thinking mindset to unlock new frontiers of growth.
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={openModal === 'impact'} onOpenChange={(open) => setOpenModal(open ? 'impact' : null)}>
+        <DialogContent className="!w-[80vw] !max-w-[80vw] bg-slate-800 border-indigo-400/30 text-white max-h-[50vh] overflow-y-auto p-8 [&_button[data-slot='dialog-close']]:bg-slate-900/60 [&_button[data-slot='dialog-close']]:hover:bg-slate-900/80 [&_button[data-slot='dialog-close']]:w-10 [&_button[data-slot='dialog-close']]:h-10 [&_button[data-slot='dialog-close']]:rounded-lg [&_button[data-slot='dialog-close']]:flex [&_button[data-slot='dialog-close']]:items-center [&_button[data-slot='dialog-close']]:justify-center [&_button[data-slot='dialog-close']]:border [&_button[data-slot='dialog-close']]:border-gray-700 [&_button[data-slot='dialog-close']_svg]:text-white [&_button[data-slot='dialog-close']_svg]:w-6 [&_button[data-slot='dialog-close']_svg]:h-6">
+          <DialogHeader className="mb-2 !text-center items-center">
+            <DialogTitle className="text-3xl sm:text-4xl md:text-5xl text-white collaborator-heading !text-center w-full">
+              {t('investors.find.impact.title')}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-2">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-normal collaborator-body">
+              An investor committed to generating both financial returns and meaningful change. Allocates capital to initiatives that create positive social or environmental impact, balancing profitability with responsibility and purpose.
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={openModal === 'legacy'} onOpenChange={(open) => setOpenModal(open ? 'legacy' : null)}>
+        <DialogContent className="!w-[80vw] !max-w-[80vw] bg-slate-800 border-indigo-400/30 text-white max-h-[50vh] overflow-y-auto p-8 [&_button[data-slot='dialog-close']]:bg-slate-900/60 [&_button[data-slot='dialog-close']]:hover:bg-slate-900/80 [&_button[data-slot='dialog-close']]:w-10 [&_button[data-slot='dialog-close']]:h-10 [&_button[data-slot='dialog-close']]:rounded-lg [&_button[data-slot='dialog-close']]:flex [&_button[data-slot='dialog-close']]:items-center [&_button[data-slot='dialog-close']]:justify-center [&_button[data-slot='dialog-close']]:border [&_button[data-slot='dialog-close']]:border-gray-700 [&_button[data-slot='dialog-close']_svg]:text-white [&_button[data-slot='dialog-close']_svg]:w-6 [&_button[data-slot='dialog-close']_svg]:h-6">
+          <DialogHeader className="mb-2 !text-center items-center">
+            <DialogTitle className="text-3xl sm:text-4xl md:text-5xl text-white collaborator-heading !text-center w-full">
+              {t('investors.find.legacy.title')}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-2">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-normal collaborator-body">
+              A long-term–oriented investor focused on building and preserving value for future generations. Prioritizes stability, continuity, and strategic decision-making that reflects a lasting vision and a durable legacy.
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <Footer />
     </div>
   );

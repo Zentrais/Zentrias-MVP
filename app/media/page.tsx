@@ -98,7 +98,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Section - Text Content */}
             <div className="text-left">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight media-headline">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight collaborator-heading">
                 Let&apos;s Break{' '}
                 <span className="text-blue-300">the Mold.</span>{' '}
                 Together.
@@ -137,7 +137,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight media-headline">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight collaborator-heading">
               {t('media.debate.title')}
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -149,7 +149,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {/* Before Box */}
             <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-red-400/30 p-6 sm:p-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 media-headline">Before</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">Before</h3>
               <ul className="space-y-4 mb-6">
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-red-500 mt-2 flex-shrink-0"></div>
@@ -171,7 +171,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
 
             {/* After Box */}
             <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/30 p-6 sm:p-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 media-headline">After</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">After</h3>
               <ul className="space-y-4 mb-6">
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
@@ -197,7 +197,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       {/* Resources for Ethical Storytelling Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight media-headline">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight collaborator-heading">
             Resources for{' '}
             <span className="text-blue-300">Ethical</span>
             <br />
@@ -216,7 +216,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Press Kit Card */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 media-headline">Press Kit</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">Press Kit</h3>
               <div className="flex justify-center mb-6">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <Folder className="w-12 h-12 sm:w-14 sm:h-14 text-amber-800" />
@@ -235,7 +235,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
 
             {/* Press Release Card */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 media-headline">Press Release</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">Press Release</h3>
               <div className="flex justify-center mb-6">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <Megaphone className="w-12 h-12 sm:w-14 sm:h-14 text-red-600" />
@@ -254,7 +254,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
 
             {/* Story Briefs Card */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 media-headline">Story Briefs</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">Story Briefs</h3>
               <div className="flex justify-center mb-6">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <BookOpen className="w-12 h-12 sm:w-14 sm:h-14 text-amber-900" />
@@ -277,7 +277,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       {/* Explore Storylines Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-white text-center media-headline">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 text-white text-center collaborator-heading">
             Explore Storylines Shaping the{' '}
             <span className="text-blue-300">Integrity Economy</span>
           </h2>
@@ -302,7 +302,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
               {expandedStoryline === 'rebuilding-trust' && (
                 <div className="px-6 py-4 border-t border-blue-100 bg-blue-50/30">
                   <p className="text-gray-700 leading-relaxed">
-                    Zentrais leverages advanced AI verification systems to authenticate human contributions, creating a trust layer that scales across millions of interactions. Our technology ensures that every piece of content, every debate, and every transaction is verified for authenticity before it enters the Integrity Economy.
+                    Zentrais leverages advanced AI verification systems to authenticate human contributions, creating a trust layer that scales across millions of interactions. Our technology ensures that every piece of content, every perspective, and every transaction is verified for authenticity before it enters the Integrity Economy.
                   </p>
                 </div>
               )}
@@ -390,7 +390,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-2xl mx-auto">
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 md:p-12 shadow-xl">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-white media-headline">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-white collaborator-heading">
               Contacts:
             </h2>
             
@@ -436,7 +436,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       <section id="media-form" className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-2xl mx-auto">
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 md:p-12 shadow-xl">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white text-center media-headline">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white text-center collaborator-heading">
               Join the Zenzers Circle
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 mb-8 text-center leading-relaxed">
