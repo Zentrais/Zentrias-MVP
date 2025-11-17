@@ -175,7 +175,7 @@ export default function UserPage() {
                     : 'translateX(-50%) scale(0.8)',
                 }}
               >
-                <div className="relative w-72 sm:w-80 md:w-88 h-[36rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
+                <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
                   <Image
                     src="/Debate-Zentrais.png"
                     alt="Debate Interface"
@@ -210,7 +210,7 @@ export default function UserPage() {
                     : 'translateX(-50%) scale(0.8)',
                 }}
               >
-                <div className="relative w-72 sm:w-80 md:w-88 h-[36rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
+                <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
                   <Image
                     src="/Chat-Zentrais.png"
                     alt="Chat Interface"
@@ -243,7 +243,7 @@ export default function UserPage() {
                     : 'translateX(-50%) scale(0.8)',
                 }}
               >
-                <div className="relative w-72 sm:w-80 md:w-88 h-[36rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
+                <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
                   <Image
                     src="/Marketplace-Zentrais.png"
                     alt="Marketplace Interface"
