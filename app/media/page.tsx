@@ -100,8 +100,8 @@ Publication History / Focus Area: ${formData.publicationHistory}
             <div className="text-left">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight collaborator-heading">
                 {t('media.break.title')}{' '}
-                <span className="text-blue-300">{t('media.break.mold')}</span>{' '}
-                {t('media.break.together')}
+                {t('media.break.mold')}{' '}
+                <span className="text-blue-300">{t('media.break.together')}</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
                 {t('media.break.desc')}

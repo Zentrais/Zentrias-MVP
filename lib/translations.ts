@@ -1042,9 +1042,9 @@ export const translations: Record<Language, Record<string, string>> = {
     'media.footer': 'Zentrais está redefiniendo cómo se cuentan las historias de verdad: a través de la integridad, la transparencia y la conexión humana.',
     
     // Media Page - Additional translations (Spanish)
-    'media.break.title': 'Rompe',
-    'media.break.mold': 'el Molde.',
-    'media.break.together': 'Juntos.',
+    'media.break.title': 'Rompamos',
+    'media.break.mold': 'Juntos el',
+    'media.break.together': 'Molde',
     'media.break.desc': 'Únete a una red global de creadores y periodistas que están redefiniendo cómo se cuentan las historias, impulsado por el Motor de Perspectiva de Zentrais para un diálogo respetuoso y basado en la verdad.',
     'media.break.cta': 'Únete a Zenzers',
     'media.debate.title': 'Perspectiva en Acción',
