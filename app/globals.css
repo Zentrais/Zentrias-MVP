@@ -166,48 +166,57 @@ body {
 
 @keyframes shimmer {
   0% {
-    transform: translateX(-100%) skewX(-12deg);
+    transform: translate3d(-100%, 0, 0) skewX(-12deg);
   }
   100% {
-    transform: translateX(200%) skewX(-12deg);
+    transform: translate3d(200%, 0, 0) skewX(-12deg);
   }
 }
 
 .animate-shimmer {
   animation: shimmer 3s infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0) translateX(0);
+    transform: translate3d(0, 0, 0);
     opacity: 0.4;
   }
   50% {
-    transform: translateY(-20px) translateX(10px);
+    transform: translate3d(10px, -20px, 0);
     opacity: 0.8;
   }
 }
 
 @keyframes flow {
   0% {
-    transform: translateX(-100%);
+    transform: translate3d(-100%, 0, 0);
     opacity: 0;
   }
   50% {
     opacity: 1;
   }
   100% {
-    transform: translateX(100%);
+    transform: translate3d(100%, 0, 0);
     opacity: 0;
   }
 }
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .animate-flow {
   animation: flow 4s linear infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes gridMove {
@@ -299,17 +308,20 @@ body {
 @keyframes fade-in-up {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
   opacity: 0;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .animation-delay-200 {
@@ -344,6 +356,9 @@ body {
 .animate-gradient-shift {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
+  will-change: background-position;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes gradient-text {
@@ -361,6 +376,9 @@ body {
   -webkit-background-clip: text;
   animation: gradient-text 3s linear infinite;
   filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+  will-change: background-position;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @keyframes text-glow {
