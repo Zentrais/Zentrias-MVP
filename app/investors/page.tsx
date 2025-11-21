@@ -4,11 +4,10 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
-import { ArrowRight, Download, Mail, Play, Users, Zap, DollarSign, Calendar, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Download, Calendar, ChevronLeft, ChevronRight, AlertTriangle, X, CheckCircle, Shield, Users, MessageSquare, TrendingUp, BarChart3, Globe, Target, Zap, Cpu, FileText, RotateCw } from 'lucide-react';
 import Footer from '../../components/footer';
 import { useLanguage } from '../../contexts/language-context';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../../components/ui/dialog';
 
 // Componente de contador animado
 function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
@@ -63,11 +62,10 @@ export default function InvestorsPage() {
     comments: '',
   });
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
-  const [openModal, setOpenModal] = useState<string | null>(null);
 
-  // Generar partículas suaves
+  // Generar partículas suaves (reduced for performance)
   useEffect(() => {
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
+    const newParticles = Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -75,29 +73,6 @@ export default function InvestorsPage() {
     }));
     setParticles(newParticles);
   }, []);
-
-  const timelineMilestones = [
-    {
-      quarter: t('investors.timeline.q1.quarter'),
-      title: t('investors.timeline.q1.title'),
-      icon: Zap,
-    },
-    {
-      quarter: t('investors.timeline.q2.quarter'),
-      title: t('investors.timeline.q2.title'),
-      icon: DollarSign,
-    },
-    {
-      quarter: t('investors.timeline.q3.quarter'),
-      title: t('investors.timeline.q3.title'),
-      icon: Users,
-    },
-    {
-      quarter: t('investors.timeline.q4.quarter'),
-      title: t('investors.timeline.q4.title'),
-      icon: Calendar,
-    },
-  ];
 
   const teamMembers = [
     {
@@ -140,7 +115,7 @@ export default function InvestorsPage() {
       name: t('investors.team.davidson.name'),
       role: t('investors.team.davidson.role'),
       bio: t('investors.team.davidson.bio'),
-      image: null,
+      image: "/Davidson.jpeg",
     },
     {
       name: t('investors.team.advisory.name'),
@@ -206,7 +181,7 @@ export default function InvestorsPage() {
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-25 animate-float"
+            className="absolute w-1 h-1 bg-white rounded-full opacity-15"
             style={{
               left: `${particle.x}%`,
               top: `${particle.y}%`,
@@ -216,339 +191,794 @@ export default function InvestorsPage() {
           />
         ))}
         
-        {/* Líneas de flujo sutiles */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" />
-          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" style={{ animationDelay: '4s' }} />
+        {/* Líneas de flujo sutiles - removed for performance */}
         </div>
+
+      {/* Hero Section */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-20 sm:pb-24 md:pb-32 overflow-hidden">
+        {/* Animated Background Orbs - simplified for performance */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-indigo-500/10 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute top-1/2 -right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-2xl opacity-50"></div>
       </div>
 
-      {/* Investing in Integrity Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16 md:pb-24">
-        <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-white leading-tight collaborator-heading uppercase tracking-tight">
-            {t('investors.integrity.title')}{' '}
-            <span className="tone-highlight collaborator-heading">{t('investors.integrity.not')}.</span>
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto collaborator-body">
-            {t('investors.integrity.desc')}
-          </p>
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          {/* Headline with animation */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 sm:mb-8 text-white leading-tight collaborator-heading tracking-tight relative"
+          >
+            <span className="relative inline-block">
+              {t('investors.hero.title')}
+              {/* Shimmer effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 hover:opacity-100 transition-opacity duration-1000 pointer-events-none"></span>
+            </span>
+          </motion.h1>
 
-          {/* Video Placeholder */}
-          <div className="mb-8 sm:mb-12">
-            <div className="w-full max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto bg-slate-800/50 rounded-3xl border border-indigo-400/30 p-8 sm:p-12 md:p-16 lg:p-20 xl:p-24 2xl:p-28 flex items-center justify-center min-h-[250px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[400px] xl:min-h-[450px] 2xl:min-h-[500px]">
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl text-gray-400 collaborator-heading">
-                  {t('investors.integrity.video')}
-                </div>
-                <div className="text-2xl sm:text-3xl md:text-4xl text-gray-400 collaborator-heading">
-                  {t('investors.integrity.video2')}
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Sub-headline with animation */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-200 mb-10 sm:mb-12 md:mb-14 leading-relaxed max-w-4xl mx-auto collaborator-body relative group"
+          >
+            <span className="relative inline-block">
+              {t('investors.hero.subtitle')}
+              {/* Subtle glow on hover */}
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-400/0 via-indigo-400/10 to-indigo-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></span>
+            </span>
+          </motion.p>
 
+          {/* CTAs with enhanced animations */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
+          >
+            <Button
+              onClick={handleInvestorDeck}
+              className="group relative tone-button text-white text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-xl font-semibold transition-all duration-300 hover:scale-110 hover:shadow-2xl hover:shadow-indigo-500/50 flex items-center gap-2 overflow-hidden"
+            >
+              {/* Animated background gradient */}
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+              <span className="relative z-10 flex items-center gap-2">
+                {t('investors.hero.cta.primary')}
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
+            </Button>
+            <Button
+              onClick={handleInvestorRelations}
+              variant="outline"
+              className="group relative bg-transparent border-2 border-indigo-400/50 text-white text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-xl font-semibold transition-all duration-300 hover:scale-110 hover:border-indigo-400 hover:bg-indigo-400/20 hover:shadow-2xl hover:shadow-indigo-500/30 overflow-hidden"
+            >
+              {/* Animated border glow */}
+              <span className="absolute inset-0 border-2 border-indigo-400 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative z-10">{t('investors.hero.cta.secondary')}</span>
+            </Button>
+          </motion.div>
+
+          {/* Decorative elements */}
+          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-indigo-400/50 to-transparent"></div>
         </div>
       </section>
 
-      {/* Find Your Investor Type Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
-              {t('investors.find.type.title')}{' '}
-              <span className="tone-highlight collaborator-heading">{t('investors.find.type.subtitle')}</span>
+      {/* Find Your Investor Type Section - Emerald/Teal Theme */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-2xl opacity-50"></div>
+        </div>
+        <div className="max-w-6xl mx-auto relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-2 text-white leading-tight collaborator-heading tracking-tight">
+              {t('investors.find.type.title')}
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto collaborator-body">
+            <p className="text-sm sm:text-base text-gray-400 collaborator-body uppercase tracking-wider mb-4">{t('investors.find.type.subtitle')}</p>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-emerald-500/60 to-transparent mb-6"></div>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto collaborator-body">
               {t('investors.find.type.desc')}
             </p>
-          </div>
+          </motion.div>
 
           {/* Investor Type Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10">
             {/* Frontier Investor */}
-            <div className="tone-card bg-slate-800/30 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 flex flex-col">
-              <h3 className="text-xl sm:text-2xl text-white mb-4 collaborator-heading">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="tone-card bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-slate-800/40 rounded-2xl border-2 border-emerald-400/30 p-8 sm:p-10 hover:border-emerald-400/60 hover:shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 h-full flex flex-col group cursor-pointer"
+            >
+              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading group-hover:text-emerald-300 transition-colors">
                 {t('investors.find.frontier.title')}
               </h3>
-              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed collaborator-body">
+              <p className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors flex-1 mb-6">
                 {t('investors.find.frontier.desc')}
               </p>
-              <div className="mt-auto">
                 <button 
-                  onClick={() => setOpenModal('frontier')}
-                  className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer"
+                onClick={handleJoinHub}
+                className="w-full bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 hover:border-emerald-400 text-emerald-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-sm sm:text-base"
                 >
                   {t('investors.find.frontier.learn')}
                 </button>
-              </div>
-            </div>
+            </motion.div>
 
             {/* Impact Investor */}
-            <div className="tone-card bg-slate-800/30 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 flex flex-col">
-              <h3 className="text-xl sm:text-2xl text-white mb-4 collaborator-heading">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="tone-card bg-gradient-to-br from-teal-500/10 via-teal-500/5 to-slate-800/40 rounded-2xl border-2 border-teal-400/30 p-8 sm:p-10 hover:border-teal-400/60 hover:shadow-xl hover:shadow-teal-500/20 transition-all duration-300 h-full flex flex-col group cursor-pointer"
+            >
+              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading group-hover:text-teal-300 transition-colors">
                 {t('investors.find.impact.title')}
               </h3>
-              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed collaborator-body">
+              <p className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors flex-1 mb-6">
                 {t('investors.find.impact.desc')}
               </p>
-              <div className="mt-auto">
                 <button 
-                  onClick={() => setOpenModal('impact')}
-                  className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer"
+                onClick={handleJoinHub}
+                className="w-full bg-teal-500/20 hover:bg-teal-500/30 border border-teal-400/50 hover:border-teal-400 text-teal-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-sm sm:text-base"
                 >
                   {t('investors.find.impact.learn')}
                 </button>
-              </div>
-            </div>
+            </motion.div>
 
             {/* Legacy Investor */}
-            <div className="tone-card bg-slate-800/30 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 flex flex-col">
-              <h3 className="text-xl sm:text-2xl text-white mb-4 collaborator-heading">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="tone-card bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-slate-800/40 rounded-2xl border-2 border-cyan-400/30 p-8 sm:p-10 hover:border-cyan-400/60 hover:shadow-xl hover:shadow-cyan-500/20 transition-all duration-300 h-full flex flex-col group cursor-pointer"
+            >
+              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading group-hover:text-cyan-300 transition-colors">
                 {t('investors.find.legacy.title')}
               </h3>
-              <p className="text-gray-300 text-sm sm:text-base mb-6 flex-1 leading-relaxed collaborator-body">
+              <p className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors flex-1 mb-6">
                 {t('investors.find.legacy.desc')}
               </p>
-              <div className="mt-auto">
                 <button 
-                  onClick={() => setOpenModal('legacy')}
-                  className="tone-highlight hover:opacity-80 underline font-semibold text-sm sm:text-base collaborator-body transition-colors cursor-pointer"
+                onClick={handleJoinHub}
+                className="w-full bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/50 hover:border-cyan-400 text-cyan-300 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-sm sm:text-base"
                 >
                   {t('investors.find.legacy.learn')}
                 </button>
-              </div>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Join Hub Button */}
-          <div className="text-center">
+          {/* Join Hub CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center"
+          >
             <Button
               onClick={handleJoinHub}
-              className="tone-button text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105"
+              className="tone-button text-white text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/30 flex items-center gap-2 mx-auto"
             >
               {t('investors.find.join')}
+              <ArrowRight className="w-5 h-5" />
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* The Attention Economy Is Collapsing Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto">
-          {/* Main Headline */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight text-center collaborator-heading tracking-tight">
-            {t('investors.attention.title')}{' '}
-            <span className="tone-highlight collaborator-heading">{t('investors.attention.integrity')}</span>
+      {/* Problem → Solution Section */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-0 w-64 h-64 bg-red-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-2xl opacity-50"></div>
+                </div>
+
+        <div className="max-w-7xl mx-auto relative">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 flex-wrap justify-center">
+              <div className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-red-400/50"></div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-tight collaborator-heading tracking-tight">
+                {t('investors.problem.solution.heading').includes(' → ') ? (
+                  <>
+                    {t('investors.problem.solution.heading').split(' → ')[0]} <span className="text-red-400 mx-1 sm:mx-2">→</span> {t('investors.problem.solution.heading').split(' → ')[1]}
+                  </>
+                ) : (
+                  t('investors.problem.solution.heading')
+                )}
           </h2>
+              <div className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-indigo-400/50"></div>
+              </div>
+            <p className="text-xs sm:text-sm text-gray-400 collaborator-body uppercase tracking-wider">{t('investors.problem.solution.subtitle')}</p>
+          </motion.div>
 
-          {/* Descriptive Paragraph */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed text-center max-w-4xl mx-auto collaborator-body">
-            {t('investors.attention.desc')}{' '}
-            <span className="tone-highlight font-semibold collaborator-heading">{t('investors.attention.value')}</span>{t('investors.attention.value2')}
-          </p>
-
-          {/* Statistical Boxes */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {/* Box 1: Global AI Market */}
-            <div className="tone-card bg-opacity-10 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)', borderColor: 'rgba(99, 102, 241, 0.3)' }}>
-              <div className="text-4xl sm:text-5xl md:text-6xl mb-2 tone-highlight collaborator-heading">
-                $300B+
-              </div>
-              <div className="text-white text-lg sm:text-xl mb-1 collaborator-heading">
-                {t('investors.attention.ai')}
-              </div>
-              <div className="text-gray-300 text-sm sm:text-base collaborator-body">
-                {t('investors.attention.ai.by')}
-              </div>
-            </div>
-
-            {/* Box 2: CAGR Growth */}
-            <div className="tone-card bg-opacity-10 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)', borderColor: 'rgba(99, 102, 241, 0.3)' }}>
-              <div className="text-4xl sm:text-5xl md:text-6xl mb-2 tone-highlight collaborator-heading">
-                48%
-              </div>
-              <div className="text-white text-lg sm:text-xl mb-1 collaborator-heading">
-                {t('investors.attention.cagr')}
-              </div>
-              <div className="text-gray-300 text-sm sm:text-base collaborator-body">
-                {t('investors.attention.cagr.in')}
-              </div>
-            </div>
-
-            {/* Box 3: Valuation Uplift */}
-            <div className="tone-card bg-opacity-10 backdrop-blur-sm rounded-2xl border p-6 sm:p-8 transition-all duration-300 hover:scale-105" style={{ backgroundColor: 'rgba(99, 102, 241, 0.1)', borderColor: 'rgba(99, 102, 241, 0.3)' }}>
-              <div className="text-4xl sm:text-5xl md:text-6xl mb-2 tone-highlight collaborator-heading">
-                5×
-              </div>
-              <div className="text-white text-lg sm:text-xl mb-1 collaborator-heading">
-                {t('investors.attention.valuation')}
-              </div>
-              <div className="text-gray-300 text-sm sm:text-base collaborator-body">
-                {t('investors.attention.valuation.early')}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted Voices Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
-              {t('investors.trusted.title')}
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto collaborator-body">
-              {t('investors.trusted.desc')}
-            </p>
-          </div>
-
-          {/* Testimonial Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {/* Sarah Chen */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-indigo-400/30 p-6 sm:p-8 hover:border-indigo-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
-                ))}
-              </div>
-              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed collaborator-body">
-                &quot;{t('investors.trusted.sarah.quote')}&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex-shrink-0"></div>
-                <div>
-                  <div className="text-white font-semibold text-sm sm:text-base">{t('investors.trusted.sarah.name')}</div>
-                  <div className="text-gray-400 text-xs sm:text-sm">{t('investors.trusted.sarah.role')}</div>
-                  <div className="text-gray-500 text-xs">{t('investors.trusted.sarah.type')}</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Michael Rodriguez */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-indigo-400/30 p-6 sm:p-8 hover:border-indigo-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
-                ))}
-              </div>
-              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed collaborator-body">
-                &quot;{t('investors.trusted.michael.quote')}&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex-shrink-0"></div>
-                <div>
-                  <div className="text-white font-semibold text-sm sm:text-base">{t('investors.trusted.michael.name')}</div>
-                  <div className="text-gray-400 text-xs sm:text-sm">{t('investors.trusted.michael.role')}</div>
-                  <div className="text-gray-500 text-xs">{t('investors.trusted.michael.type')}</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Jennifer Park */}
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-indigo-400/30 p-6 sm:p-8 hover:border-indigo-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
-                ))}
-              </div>
-              <p className="text-gray-200 text-sm sm:text-base mb-6 leading-relaxed collaborator-body">
-                &quot;{t('investors.trusted.jennifer.quote')}&quot;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex-shrink-0"></div>
-                <div>
-                  <div className="text-white font-semibold text-sm sm:text-base">{t('investors.trusted.jennifer.name')}</div>
-                  <div className="text-gray-400 text-xs sm:text-sm">{t('investors.trusted.jennifer.role')}</div>
-                  <div className="text-gray-500 text-xs">{t('investors.trusted.jennifer.type')}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* A Message From Our Founder Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight collaborator-heading tracking-tight">
-            {t('investors.founder.title')}{' '}
-            <span className="tone-highlight collaborator-heading">{t('investors.founder.our')}</span>
-          </h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed collaborator-body">
-            {t('investors.founder.desc')}
-          </p>
-        </div>
-      </section>
-
-      {/* Founder Message Content Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
-            {/* Large Placeholder - Left */}
-            <div className="lg:col-span-2">
-              <div className="w-full bg-slate-700/50 rounded-2xl border border-indigo-400/30 p-8 sm:p-12 md:p-16 lg:p-20 xl:p-24 2xl:p-28 flex items-center justify-center min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px] 2xl:min-h-[550px]">
-                <div className="text-center text-gray-400 text-lg collaborator-body">
-                  {t('investors.founder.content')}
-                </div>
-              </div>
-            </div>
-
-            {/* Bullet Points Box - Right */}
-            <div className="lg:col-span-1">
-              <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-indigo-400/30 p-6 sm:p-8 h-full">
-                <ul className="space-y-4 sm:space-y-6">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0 tone-highlight" style={{ backgroundColor: 'var(--tone-primary)' }}></div>
-                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body">
-                      {t('investors.founder.bullet1')}
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0 tone-highlight" style={{ backgroundColor: 'var(--tone-primary)' }}></div>
-                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body">
-                      {t('investors.founder.bullet2')}
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full mt-2 flex-shrink-0 tone-highlight" style={{ backgroundColor: 'var(--tone-primary)' }}></div>
-                    <span className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body">
-                      {t('investors.founder.bullet3')}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Join Hub Button - Centered */}
-          <div className="text-center">
-            <Button
-              onClick={handleJoinHub}
-              className="tone-button text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16">
+            {/* The Problem */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative group"
             >
-              {t('investors.founder.join')}
+              <div className="tone-card bg-gradient-to-br from-slate-800/40 via-slate-800/30 to-slate-800/40  rounded-2xl sm:rounded-3xl border-2 border-red-400/20 p-6 sm:p-8 md:p-10 hover:border-red-400/40 hover:shadow-xl hover:shadow-red-500/10 transition-all duration-300 relative overflow-hidden h-full">
+                {/* Subtle background pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-red-500/10 rounded-full blur-2xl opacity-30"></div>
+                  <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-red-500/10 rounded-full blur-2xl opacity-30"></div>
+        </div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-red-400/20">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-red-500/15 border border-red-400/40 flex items-center justify-center flex-shrink-0">
+                      <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-red-400" />
+              </div>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white leading-tight collaborator-heading tracking-tight">
+                      {t('investors.problem.title')}
+            </h2>
+            </div>
+
+                  <ul className="space-y-4">
+                    {[
+                      { text: t('investors.problem.p1'), icon: X },
+                      { text: t('investors.problem.p2'), icon: AlertTriangle },
+                      { text: t('investors.problem.p3'), icon: Shield },
+                      { text: t('investors.problem.p4'), icon: X },
+                    ].map((item, index) => {
+                      const Icon = item.icon;
+                      return (
+                        <motion.li
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                          className="text-base sm:text-lg text-gray-300 leading-relaxed collaborator-body flex items-start gap-4 group/item"
+                        >
+                          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-red-500/10 border border-red-400/30 flex items-center justify-center mt-1 group-hover/item:bg-red-500/20 group-hover/item:border-red-400/50 transition-all">
+                            <Icon className="w-4 h-4 text-red-400" />
+              </div>
+                          <span className="flex-1">{item.text}</span>
+                        </motion.li>
+                      );
+                    })}
+                  </ul>
+              </div>
+              </div>
+            </motion.div>
+
+            {/* The Zentrais Solution */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative group"
+            >
+              <div className="tone-card bg-gradient-to-br from-indigo-900/20 via-slate-800/30 to-purple-900/20  rounded-2xl sm:rounded-3xl border-2 border-indigo-400/40 p-6 sm:p-8 md:p-10 hover:border-indigo-400/70 hover:shadow-2xl hover:shadow-indigo-500/30 transition-all duration-300 relative overflow-hidden h-full">
+                {/* Animated background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.2),transparent_50%)]"></div>
+                  <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.2),transparent_50%)]"></div>
+            </div>
+
+                {/* Corner accent */}
+                <div className="absolute top-0 left-0 w-32 h-32 bg-indigo-500/5 rounded-br-full"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-indigo-500/30 to-purple-600/20 border-2 border-indigo-400/50 flex items-center justify-center shadow-lg shadow-indigo-500/20 flex-shrink-0"
+                    >
+                      <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-indigo-400" />
+                    </motion.div>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-white leading-tight collaborator-heading tracking-tight">
+                      {t('investors.solution.title')}
+                    </h2>
+              </div>
+
+                  <div className="space-y-6">
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      className="text-base sm:text-lg text-gray-200 leading-relaxed collaborator-body"
+                    >
+                      {t('investors.solution.desc')}
+                    </motion.p>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      whileHover={{ scale: 1.02 }}
+                      className="bg-gradient-to-br from-indigo-500/15 to-purple-500/10 border-2 border-indigo-400/40 rounded-2xl p-6 space-y-4 relative overflow-hidden group/box"
+                    >
+                      {/* Shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/box:translate-x-full transition-transform duration-1000"></div>
+                      
+                      <div className="flex items-start gap-4 relative z-10">
+                        <motion.div
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.6 }}
+                          className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500/30 to-purple-500/20 border-2 border-indigo-400/50 flex items-center justify-center"
+                        >
+                          <TrendingUp className="w-6 h-6 text-indigo-400" />
+                        </motion.div>
+                        <p className="text-base sm:text-lg text-gray-100 leading-relaxed collaborator-body font-medium">
+                          {t('investors.solution.desc2')}
+                        </p>
+              </div>
+                    </motion.div>
+              </div>
+            </div>
+          </div>
+            </motion.div>
+          </div>
+
+          {/* Connecting Arrow/Line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="hidden lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-16 h-1 bg-gradient-to-r from-red-400/60 via-red-400/30 to-transparent rounded-full"></div>
+              <motion.div
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-red-400/20 to-indigo-400/20 border-2 border-indigo-400/50 flex items-center justify-center "
+              >
+                <ArrowRight className="w-6 h-6 text-indigo-400" />
+              </motion.div>
+              <div className="w-16 h-1 bg-gradient-to-l from-indigo-400/60 via-indigo-400/30 to-transparent rounded-full"></div>
+          </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* The Market Opportunity Section - Purple/Cyan Theme */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-2xl opacity-50"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight text-center collaborator-heading tracking-tight">
+              {t('investors.market.title')}
+            </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-purple-500/60 to-transparent mb-6"></div>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto collaborator-body">
+              {t('investors.market.desc')}
+            </p>
+          </motion.div>
+
+          {/* Market Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="tone-card bg-gradient-to-br from-indigo-500/15 via-indigo-500/10 to-purple-500/10  rounded-3xl border-2 border-indigo-400/40 p-8 sm:p-10 hover:border-indigo-400/70 hover:shadow-2xl hover:shadow-indigo-500/30 transition-all duration-300 relative overflow-hidden group"
+            >
+              {/* Animated background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-indigo-500/20 border-2 border-indigo-400/50 flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" />
+              </div>
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl tone-highlight collaborator-heading font-bold">
+                    {t('investors.market.size')}
+              </div>
+              </div>
+                <div className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body pl-0 sm:pl-16">
+                  {t('investors.market.size.desc')}
+            </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="tone-card bg-gradient-to-br from-pink-500/15 via-pink-500/10 to-purple-500/10  rounded-3xl border-2 border-pink-400/40 p-8 sm:p-10 hover:border-pink-400/70 hover:shadow-2xl hover:shadow-pink-500/30 transition-all duration-300 relative overflow-hidden group"
+            >
+              {/* Animated background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-pink-500/20 border-2 border-pink-400/50 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-pink-400" />
+              </div>
+                  <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl tone-highlight collaborator-heading font-bold">
+                    {t('investors.market.growth')}
+              </div>
+              </div>
+                <div className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body pl-0 sm:pl-16">
+                  {t('investors.market.growth.desc')}
+            </div>
+          </div>
+            </motion.div>
+            </div>
+
+          {/* Key Points Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="tone-card bg-slate-800/30  rounded-2xl border border-indigo-400/20 p-6 sm:p-8 hover:border-indigo-400/40 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-indigo-400" />
+              </div>
+                <p className="text-sm sm:text-base text-gray-200 leading-relaxed collaborator-body">
+                  {t('investors.market.opportunity')}
+            </p>
+                </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="tone-card bg-slate-800/30  rounded-2xl border border-purple-400/20 p-6 sm:p-8 hover:border-purple-400/40 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center flex-shrink-0">
+                  <Users className="w-5 h-5 text-purple-400" />
+              </div>
+                <p className="text-sm sm:text-base text-gray-200 leading-relaxed collaborator-body">
+                  {t('investors.market.shift')}
+                </p>
+            </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="tone-card bg-gradient-to-br from-indigo-500/20 to-purple-500/20  rounded-2xl border-2 border-indigo-400/50 p-6 sm:p-8 hover:border-indigo-400/70 hover:shadow-xl hover:shadow-indigo-500/20 transition-all duration-300 md:col-span-2 lg:col-span-1"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-indigo-500/30 border-2 border-indigo-400/60 flex items-center justify-center flex-shrink-0">
+                  <Zap className="w-5 h-5 text-indigo-400" />
+              </div>
+                <p className="text-sm sm:text-base text-gray-100 leading-relaxed collaborator-body font-semibold">
+                  {t('investors.market.positioning')}
+                </p>
+                </div>
+            </motion.div>
+              </div>
+            </div>
+      </section>
+
+      {/* Why Zentrais Wins Section - Indigo/Purple/Pink Theme */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-2xl opacity-50"></div>
+        </div>
+        <div className="max-w-6xl mx-auto relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
+              {t('investors.why.title')}
+            </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-indigo-500/60 to-transparent mb-4"></div>
+            <p className="text-sm sm:text-base text-gray-400 collaborator-body uppercase tracking-wider">Integrity Economy + IP</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* Defensible Technology */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="tone-card bg-gradient-to-br from-indigo-500/10 via-indigo-500/5 to-slate-800/40  rounded-2xl border-2 border-indigo-400/30 p-8 sm:p-10 hover:border-indigo-400/60 hover:shadow-xl hover:shadow-indigo-500/20 transition-all duration-300 h-full flex flex-col group cursor-pointer"
+            >
+              <h3 className="text-2xl sm:text-3xl text-white mb-6 collaborator-heading group-hover:text-indigo-300 transition-colors">
+                {t('investors.why.defensible.title')}
+              </h3>
+              <ul className="space-y-4 flex-1">
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.defensible.cri')}
+                </li>
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.defensible.integrity')}
+                </li>
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.defensible.identity')}
+                </li>
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.defensible.architecture')}
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* IP Positioning */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="tone-card bg-gradient-to-br from-purple-500/10 via-purple-500/5 to-slate-800/40  rounded-2xl border-2 border-purple-400/30 p-8 sm:p-10 hover:border-purple-400/60 hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 h-full flex flex-col group cursor-pointer"
+            >
+              <h3 className="text-2xl sm:text-3xl text-white mb-6 collaborator-heading group-hover:text-purple-300 transition-colors">
+                {t('investors.why.ip.title')}
+              </h3>
+              <ul className="space-y-4 flex-1">
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.ip.patents')}
+                </li>
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.ip.cri')}
+                </li>
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.ip.trademark')}
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Economic Flywheel */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="tone-card bg-gradient-to-br from-pink-500/10 via-pink-500/5 to-slate-800/40  rounded-2xl border-2 border-pink-400/30 p-8 sm:p-10 hover:border-pink-400/60 hover:shadow-xl hover:shadow-pink-500/20 transition-all duration-300 h-full flex flex-col group cursor-pointer"
+            >
+              <h3 className="text-2xl sm:text-3xl text-white mb-6 collaborator-heading group-hover:text-pink-300 transition-colors">
+                {t('investors.why.flywheel.title')}
+              </h3>
+              <ul className="space-y-4 flex-1">
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.flywheel.desc')}
+                </li>
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.flywheel.insight')}
+                </li>
+                <li className="text-gray-200 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors">
+                  {t('investors.why.flywheel.monetization')}
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Traction Snapshot Section - Multi-Color Theme */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-2xl opacity-50"></div>
+        </div>
+        <div className="max-w-6xl mx-auto relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
+              {t('investors.traction.title')}
+          </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent"></div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              { num: 1, color: 'indigo', gradient: 'from-indigo-500/30 via-indigo-500/15 to-slate-800/50', border: 'border-indigo-400/40', hoverBorder: 'hover:border-indigo-400/80', shadow: 'hover:shadow-indigo-500/30', glow: 'hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]' },
+              { num: 2, color: 'purple', gradient: 'from-purple-500/30 via-purple-500/15 to-slate-800/50', border: 'border-purple-400/40', hoverBorder: 'hover:border-purple-400/80', shadow: 'hover:shadow-purple-500/30', glow: 'hover:shadow-[0_0_30px_rgba(168,85,247,0.4)]' },
+              { num: 3, color: 'pink', gradient: 'from-pink-500/30 via-pink-500/15 to-slate-800/50', border: 'border-pink-400/40', hoverBorder: 'hover:border-pink-400/80', shadow: 'hover:shadow-pink-500/30', glow: 'hover:shadow-[0_0_30px_rgba(236,72,153,0.4)]' },
+              { num: 4, color: 'cyan', gradient: 'from-cyan-500/30 via-cyan-500/15 to-slate-800/50', border: 'border-cyan-400/40', hoverBorder: 'hover:border-cyan-400/80', shadow: 'hover:shadow-cyan-500/30', glow: 'hover:shadow-[0_0_30px_rgba(6,182,212,0.4)]' },
+              { num: 5, color: 'blue', gradient: 'from-blue-500/30 via-blue-500/15 to-slate-800/50', border: 'border-blue-400/40', hoverBorder: 'hover:border-blue-400/80', shadow: 'hover:shadow-blue-500/30', glow: 'hover:shadow-[0_0_30px_rgba(59,130,246,0.4)]' },
+              { num: 6, color: 'emerald', gradient: 'from-emerald-500/30 via-emerald-500/15 to-slate-800/50', border: 'border-emerald-400/40', hoverBorder: 'hover:border-emerald-400/80', shadow: 'hover:shadow-emerald-500/30', glow: 'hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]' },
+            ].map((item, index) => (
+              <motion.div
+                key={item.num}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.03, y: -5 }}
+                className={`tone-card bg-gradient-to-br ${item.gradient}  rounded-2xl border-2 ${item.border} ${item.hoverBorder} p-6 sm:p-8 hover:shadow-lg ${item.shadow} transition-all duration-300 cursor-pointer group relative overflow-hidden`}
+              >
+                {/* Simple shimmer effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                
+                <div className="relative z-10">
+                  <p className="text-gray-100 text-sm sm:text-base leading-relaxed collaborator-body group-hover:text-white transition-colors font-medium">
+                    {t(`investors.traction.${item.num}`)}
+          </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Product Preview for Investors Section - Blue/Cyan Theme */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-2xl opacity-50"></div>
+                </div>
+        <div className="max-w-6xl mx-auto relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
+              {t('investors.product.title')}
+            </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-blue-500/60 to-transparent mb-6"></div>
+          </motion.div>
+          
+          {/* Product Preview Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6 mb-10">
+            <div className="tone-card bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-2xl border border-indigo-400/30 p-4 sm:p-6 md:p-8 aspect-square flex items-center justify-center hover:border-indigo-400/50 hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 group">
+              <div className="text-gray-300 text-[10px] xs:text-xs sm:text-sm text-center collaborator-body group-hover:text-white transition-colors px-1">{t('investors.product.ui')}</div>
+                </div>
+            <div className="tone-card bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-400/30 p-4 sm:p-6 md:p-8 aspect-square flex items-center justify-center hover:border-purple-400/50 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group">
+              <div className="text-gray-300 text-[10px] xs:text-xs sm:text-sm text-center collaborator-body group-hover:text-white transition-colors px-1">{t('investors.product.cri')}</div>
+              </div>
+            <div className="tone-card bg-gradient-to-br from-pink-500/20 to-red-500/20 rounded-2xl border border-pink-400/30 p-4 sm:p-6 md:p-8 aspect-square flex items-center justify-center hover:border-pink-400/50 hover:shadow-lg hover:shadow-pink-500/20 transition-all duration-300 group">
+              <div className="text-gray-300 text-[10px] xs:text-xs sm:text-sm text-center collaborator-body group-hover:text-white transition-colors px-1">{t('investors.product.verification')}</div>
+            </div>
+            <div className="tone-card bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-2xl border border-blue-400/30 p-4 sm:p-6 md:p-8 aspect-square flex items-center justify-center hover:border-blue-400/50 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 group">
+              <div className="text-gray-300 text-[10px] xs:text-xs sm:text-sm text-center collaborator-body group-hover:text-white transition-colors px-1">{t('investors.product.chat')}</div>
+              </div>
+            <div className="tone-card bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl border border-cyan-400/30 p-4 sm:p-6 md:p-8 aspect-square flex items-center justify-center hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 group">
+              <div className="text-gray-300 text-[10px] xs:text-xs sm:text-sm text-center collaborator-body group-hover:text-white transition-colors px-1">{t('investors.product.marketplace')}</div>
+            </div>
+          </div>
+
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed text-center collaborator-body max-w-3xl mx-auto">
+            {t('investors.product.label')}
+          </p>
+        </div>
+      </section>
+
+      {/* Investor Materials Section - Indigo Theme */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/5 rounded-full blur-2xl opacity-50"></div>
+        </div>
+        <div className="max-w-4xl mx-auto relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
+              {t('investors.materials.title')}
+            </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-indigo-500/60 to-transparent mb-6"></div>
+          </motion.div>
+
+          <div className="space-y-4">
+            <Button
+              onClick={handleInvestorDeck}
+              className="w-full tone-button text-white text-base sm:text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-500/30 flex items-center justify-center gap-3"
+            >
+              <Download className="w-5 h-5" />
+              {t('investors.materials.deck')}
+            </Button>
+            <Button
+              onClick={handleDataRoom}
+              className="w-full bg-transparent border-2 border-indigo-400/50 text-white text-base sm:text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:border-indigo-400 hover:bg-indigo-400/10"
+            >
+              {t('investors.materials.dataroom')}
+            </Button>
+            <Button
+              onClick={handleInvestorDeck}
+              className="w-full bg-transparent border-2 border-indigo-400/50 text-white text-base sm:text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:border-indigo-400 hover:bg-indigo-400/10 flex items-center justify-center gap-3"
+            >
+              <Download className="w-5 h-5" />
+              {t('investors.materials.technical')}
+            </Button>
+            <Button
+              onClick={handleInvestorRelations}
+              className="w-full bg-transparent border-2 border-indigo-400/50 text-white text-base sm:text-lg px-8 py-6 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] hover:border-indigo-400 hover:bg-indigo-400/10 flex items-center justify-center gap-3"
+            >
+              <Calendar className="w-5 h-5" />
+              {t('investors.materials.call')}
             </Button>
           </div>
         </div>
       </section>
 
-      {/* The Team Behind the Transformation Section */}
+      {/* Team & Advisors Section - Pink/Indigo Theme */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
-        <div className="max-w-4xl mx-auto">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-2xl opacity-50"></div>
+        </div>
+        <div className="max-w-4xl mx-auto relative">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
-              {t('investors.team.behind')}{' '}
-              <span className="tone-highlight collaborator-heading">{t('investors.team.transformation')}</span>
+              {t('investors.team.heading')}
             </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-pink-500/60 to-transparent"></div>
           </div>
 
           {/* Carousel Container */}
           <div className="relative">
             {/* Team Card */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-14 hover:border-pink-400/30 transition-all duration-300 hover:shadow-xl min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px] 2xl:min-h-[550px] flex flex-col items-center justify-center overflow-hidden">
+            <div className="group relative bg-gradient-to-br from-white/8 to-white/3 rounded-3xl border-2 border-white/20 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-14 hover:border-pink-400/40 hover:shadow-[0_20px_60px_-15px_rgba(236,72,153,0.3)] transition-all duration-300 hover:scale-[1.01] min-h-[280px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px] 2xl:min-h-[550px] flex flex-col items-center justify-center overflow-hidden">
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative z-10">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentMemberIndex}
@@ -564,8 +994,8 @@ export default function InvestorsPage() {
                     return (
                       <>
                         {/* Avatar Circle with Image */}
-                        <div className="flex justify-center mb-6">
-                          <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-lg relative bg-slate-800/50 flex items-center justify-center">
+                        <div className="flex justify-center mb-4 sm:mb-6">
+                          <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-indigo-500/30 shadow-lg relative bg-slate-800/50 flex items-center justify-center">
                             {member.image ? (
                               <img
                                 src={getImageUrl(member.image)}
@@ -576,7 +1006,7 @@ export default function InvestorsPage() {
                                   margin: '0 auto',
                                   objectPosition: member.name === 'Levi Ezagui' 
                                     ? 'center 10%' 
-                                    : (member.name === 'Antonio Lovera' || member.name === 'David Shagalov' || member.name === 'Declan O\'Beirne')
+                                    : (member.name === 'Antonio Lovera' || member.name === 'David Shagalov' || member.name === 'Declan O\'Beirne' || member.name === 'Davidson Taylor')
                                     ? 'center 15%'
                                     : 'center center'
                                 }}
@@ -588,7 +1018,7 @@ export default function InvestorsPage() {
                                 }}
                               />
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center text-indigo-400 text-2xl sm:text-3xl font-bold collaborator-heading">
+                              <div className="w-full h-full flex items-center justify-center text-indigo-400 text-xl sm:text-2xl md:text-3xl font-bold collaborator-heading">
                                 {member.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
                               </div>
                             )}
@@ -596,17 +1026,17 @@ export default function InvestorsPage() {
                         </div>
 
                         {/* Name */}
-                        <h3 className="text-2xl sm:text-3xl text-white mb-3 text-center collaborator-heading">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl text-white mb-2 sm:mb-3 text-center collaborator-heading px-4">
                           {member.name}
                         </h3>
 
                         {/* Title */}
-                        <p className="text-indigo-500 text-base sm:text-lg mb-4 text-center collaborator-heading">
+                        <p className="text-indigo-500 text-sm sm:text-base md:text-lg mb-3 sm:mb-4 text-center collaborator-heading px-4">
                           {member.role}
                         </p>
 
                         {/* Description */}
-                        <p className="text-gray-300 text-base sm:text-lg leading-relaxed text-center  max-w-2xl collaborator-body">
+                        <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed text-center max-w-2xl collaborator-body px-4">
                           {member.bio}
                         </p>
                       </>
@@ -614,22 +1044,23 @@ export default function InvestorsPage() {
                   })()}
                 </motion.div>
               </AnimatePresence>
+              </div>
             </div>
 
             {/* Navigation Buttons */}
             <button
               onClick={prevMember}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-8 md:-translate-x-12 bg-indigo-500/80 hover:bg-indigo-500 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 shadow-lg z-10"
+              className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 -translate-x-0 sm:-translate-x-4 md:-translate-x-8 lg:-translate-x-12 bg-pink-500/80 hover:bg-pink-500 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 shadow-lg shadow-pink-500/30 z-10"
               aria-label={t('investors.team.navigation.previous')}
             >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
             <button
               onClick={nextMember}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-8 md:translate-x-12 bg-indigo-500/80 hover:bg-indigo-500 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 shadow-lg z-10"
+              className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 translate-x-0 sm:translate-x-4 md:translate-x-8 lg:translate-x-12 bg-indigo-500/80 hover:bg-indigo-500 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 shadow-lg shadow-indigo-500/30 z-10"
               aria-label={t('investors.team.navigation.next')}
             >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
 
             {/* Dots Indicator */}
@@ -651,14 +1082,56 @@ export default function InvestorsPage() {
         </div>
       </section>
 
+      {/* Final Call to Action Section - Gradient Theme */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-20 md:pb-24">
+        {/* Background decorative elements - simplified */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-indigo-500/5 to-pink-500/5 rounded-full blur-2xl opacity-50"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 rounded-full blur-2xl opacity-50"></div>
+        </div>
+        <div className="max-w-4xl mx-auto text-center relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-white leading-tight collaborator-heading tracking-tight">
+              {t('investors.final.title')}
+            </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-indigo-500/60 via-pink-500/60 to-transparent mb-6"></div>
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-12 leading-relaxed collaborator-body max-w-3xl mx-auto">
+              {t('investors.final.desc')}
+            </p>
+          </motion.div>
+
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+            <Button
+              onClick={handleInvestorDeck}
+              className="tone-button text-white text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30 flex items-center gap-2"
+            >
+              {t('investors.final.cta.deck')}
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+            <Button
+              onClick={handleInvestorRelations}
+              variant="outline"
+              className="bg-transparent border-2 border-indigo-400/50 text-white text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:border-indigo-400 hover:bg-indigo-400/10"
+            >
+              {t('investors.final.cta.founders')}
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Access the Investor Hub Form Section */}
-      <section id="investor-form" className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
+      <section id="investor-form" className="relative z-10 container mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-indigo-400/30 p-8 sm:p-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl mb-4 text-white leading-tight text-center collaborator-heading tracking-tight">
+          <div className="bg-gradient-to-br from-slate-900/80 to-slate-800/80  rounded-3xl border border-indigo-400/30 p-8 sm:p-12 shadow-2xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight text-center collaborator-heading tracking-tight">
               {t('investors.hub.title')}
             </h2>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed text-center collaborator-body">
+            <p className="text-base sm:text-lg text-gray-300 mb-10 leading-relaxed text-center collaborator-body">
               {t('investors.hub.desc')}
             </p>
             
@@ -679,7 +1152,7 @@ export default function InvestorsPage() {
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   placeholder={t('investors.hub.fullname.placeholder')}
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all text-sm sm:text-base hover:border-indigo-400/50"
                   required
                 />
               </div>
@@ -694,7 +1167,7 @@ export default function InvestorsPage() {
                   value={formData.roleOrganization}
                   onChange={(e) => setFormData({ ...formData, roleOrganization: e.target.value })}
                   placeholder={t('investors.hub.role.placeholder')}
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all text-sm sm:text-base hover:border-indigo-400/50"
                   required
                 />
               </div>
@@ -709,7 +1182,7 @@ export default function InvestorsPage() {
                   value={formData.investmentFocus}
                   onChange={(e) => setFormData({ ...formData, investmentFocus: e.target.value })}
                   placeholder={t('investors.hub.focus.placeholder')}
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all text-sm sm:text-base hover:border-indigo-400/50"
                   required
                 />
               </div>
@@ -724,7 +1197,7 @@ export default function InvestorsPage() {
                   value={formData.amountInterested}
                   onChange={(e) => setFormData({ ...formData, amountInterested: e.target.value })}
                   placeholder={t('investors.hub.amount.placeholder')}
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all text-sm sm:text-base hover:border-indigo-400/50"
                   required
                 />
               </div>
@@ -739,7 +1212,7 @@ export default function InvestorsPage() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder={t('investors.hub.email.placeholder')}
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all text-sm sm:text-base hover:border-indigo-400/50"
                   required
                 />
               </div>
@@ -754,13 +1227,13 @@ export default function InvestorsPage() {
                   onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
                   placeholder={t('investors.hub.comments.placeholder')}
                   rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all  text-sm sm:text-base resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-indigo-400/30 bg-slate-800/50 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 transition-all text-sm sm:text-base resize-none hover:border-indigo-400/50"
                 />
               </div>
               
               <button
                 type="submit"
-                className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30 text-base sm:text-lg "
+                className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-500/30 text-base sm:text-lg mt-2"
               >
                 {t('investors.hub.submit')}
               </button>
@@ -806,53 +1279,17 @@ export default function InvestorsPage() {
         .animate-progress {
           animation: progress 2s ease-out;
         }
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%) skewX(-12deg);
+          }
+          100% {
+            transform: translateX(200%) skewX(-12deg);
+          }
+        }
+        /* Float animation removed for performance */
       `}</style>
 
-      {/* Modals for Investor Types */}
-      <Dialog open={openModal === 'frontier'} onOpenChange={(open) => setOpenModal(open ? 'frontier' : null)}>
-        <DialogContent className="!w-[80vw] !max-w-[80vw] bg-slate-800 border-indigo-400/30 text-white max-h-[50vh] overflow-y-auto p-8 [&_button[data-slot='dialog-close']]:bg-slate-900/60 [&_button[data-slot='dialog-close']]:hover:bg-slate-900/80 [&_button[data-slot='dialog-close']]:w-10 [&_button[data-slot='dialog-close']]:h-10 [&_button[data-slot='dialog-close']]:rounded-lg [&_button[data-slot='dialog-close']]:flex [&_button[data-slot='dialog-close']]:items-center [&_button[data-slot='dialog-close']]:justify-center [&_button[data-slot='dialog-close']]:border [&_button[data-slot='dialog-close']]:border-gray-700 [&_button[data-slot='dialog-close']_svg]:text-white [&_button[data-slot='dialog-close']_svg]:w-6 [&_button[data-slot='dialog-close']_svg]:h-6">
-          <DialogHeader className="mb-2 !text-center items-center">
-            <DialogTitle className="text-3xl sm:text-4xl md:text-5xl text-white collaborator-heading !text-center w-full">
-              {t('investors.find.frontier.title')}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="py-2">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-normal collaborator-body">
-              {t('investors.find.frontier.modal')}
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={openModal === 'impact'} onOpenChange={(open) => setOpenModal(open ? 'impact' : null)}>
-        <DialogContent className="!w-[80vw] !max-w-[80vw] bg-slate-800 border-indigo-400/30 text-white max-h-[50vh] overflow-y-auto p-8 [&_button[data-slot='dialog-close']]:bg-slate-900/60 [&_button[data-slot='dialog-close']]:hover:bg-slate-900/80 [&_button[data-slot='dialog-close']]:w-10 [&_button[data-slot='dialog-close']]:h-10 [&_button[data-slot='dialog-close']]:rounded-lg [&_button[data-slot='dialog-close']]:flex [&_button[data-slot='dialog-close']]:items-center [&_button[data-slot='dialog-close']]:justify-center [&_button[data-slot='dialog-close']]:border [&_button[data-slot='dialog-close']]:border-gray-700 [&_button[data-slot='dialog-close']_svg]:text-white [&_button[data-slot='dialog-close']_svg]:w-6 [&_button[data-slot='dialog-close']_svg]:h-6">
-          <DialogHeader className="mb-2 !text-center items-center">
-            <DialogTitle className="text-3xl sm:text-4xl md:text-5xl text-white collaborator-heading !text-center w-full">
-              {t('investors.find.impact.title')}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="py-2">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-normal collaborator-body">
-              {t('investors.find.impact.modal')}
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={openModal === 'legacy'} onOpenChange={(open) => setOpenModal(open ? 'legacy' : null)}>
-        <DialogContent className="!w-[80vw] !max-w-[80vw] bg-slate-800 border-indigo-400/30 text-white max-h-[50vh] overflow-y-auto p-8 [&_button[data-slot='dialog-close']]:bg-slate-900/60 [&_button[data-slot='dialog-close']]:hover:bg-slate-900/80 [&_button[data-slot='dialog-close']]:w-10 [&_button[data-slot='dialog-close']]:h-10 [&_button[data-slot='dialog-close']]:rounded-lg [&_button[data-slot='dialog-close']]:flex [&_button[data-slot='dialog-close']]:items-center [&_button[data-slot='dialog-close']]:justify-center [&_button[data-slot='dialog-close']]:border [&_button[data-slot='dialog-close']]:border-gray-700 [&_button[data-slot='dialog-close']_svg]:text-white [&_button[data-slot='dialog-close']_svg]:w-6 [&_button[data-slot='dialog-close']_svg]:h-6">
-          <DialogHeader className="mb-2 !text-center items-center">
-            <DialogTitle className="text-3xl sm:text-4xl md:text-5xl text-white collaborator-heading !text-center w-full">
-              {t('investors.find.legacy.title')}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="py-2">
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-normal collaborator-body">
-              {t('investors.find.legacy.modal')}
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
 
       <Footer />
     </div>

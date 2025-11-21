@@ -45,66 +45,68 @@ export default function HomePage() {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed"
+      className="min-h-screen bg-cover bg-center bg-no-repeat bg-scroll"
       style={{ 
         backgroundImage: `url('/fondo-new.jpg')`,
         transform: 'translateZ(0)',
-        willChange: 'auto'
+        willChange: 'auto',
+        contain: 'layout style paint'
       }}
     >
       {/* HEADLINE SECTION */}
       <div className="container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 lg:pt-44 text-center relative">
-        {/* Animated background gradient */}
+        {/* Animated background gradient - optimized */}
         <div 
-          className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 animate-gradient-shift blur-3xl"
+          className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 blur-xl"
           style={{ 
-            willChange: 'background-position', 
             transform: 'translateZ(0)', 
-            backfaceVisibility: 'hidden'
+            backfaceVisibility: 'hidden',
+            contain: 'layout style paint',
+            willChange: 'auto'
           }}
         ></div>
         
-        {/* Floating orbs for extra life */}
+        {/* Floating orbs - reduced blur for performance */}
         <div 
-          className="absolute top-20 left-10 w-32 h-32 bg-cyan-400/20 rounded-full blur-2xl animate-float opacity-60"
-          style={{ willChange: 'transform', transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style paint' }}
+          className="absolute top-20 left-10 w-32 h-32 bg-cyan-400/20 rounded-full blur-xl animate-float opacity-60"
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style paint', willChange: 'auto' }}
         ></div>
         <div 
-          className="absolute bottom-20 right-10 w-40 h-40 bg-purple-400/20 rounded-full blur-2xl animate-float animation-delay-300 opacity-60"
-          style={{ willChange: 'transform', transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style paint' }}
+          className="absolute bottom-20 right-10 w-40 h-40 bg-purple-400/20 rounded-full blur-xl animate-float animation-delay-300 opacity-60"
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style paint', willChange: 'auto' }}
         ></div>
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-2xl font-sans animate-fade-in-up relative group">
-          <span className="inline-block bg-gradient-to-r from-white via-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent animate-gradient-text bg-[length:200%_auto] relative">
+          <span className="inline-block bg-gradient-to-r from-white via-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent bg-[length:200%_auto] relative" style={{ willChange: 'auto' }}>
             {t('home.headline')}
-            {/* Subtle glow behind text */}
-            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity -z-10" style={{ transitionDuration: '600ms' }}></span>
+            {/* Subtle glow behind text - reduced blur */}
+            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" style={{ transitionDuration: '300ms', willChange: 'opacity' }}></span>
           </span>
         </h1>
         <h2 
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-3 sm:mb-4 text-white/90 tracking-wide drop-shadow-lg font-sans animate-fade-in-up animation-delay-200 group/subheadline"
-          style={{ willChange: 'transform, opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'auto' }}
         >
           <span 
             className="inline-block bg-gradient-to-r from-cyan-200 via-white to-purple-200 bg-clip-text text-transparent transition-transform group-hover/subheadline:scale-105"
-            style={{ willChange: 'transform', transitionDuration: '400ms' }}
+            style={{ transitionDuration: '200ms', willChange: 'transform' }}
           >
             {t('home.subheadline')}
           </span>
         </h2>
         <p 
           className="text-base sm:text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-8 sm:mb-10 drop-shadow font-sans animate-fade-in-up animation-delay-400 relative group/desc"
-          style={{ willChange: 'transform, opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'auto' }}
         >
           <span 
             className="relative inline-block transition-opacity group-hover/desc:text-white/95"
-            style={{ willChange: 'opacity', transitionDuration: '400ms' }}
+            style={{ transitionDuration: '200ms', willChange: 'opacity' }}
           >
             {t('home.description')}
-            {/* Subtle shimmer effect on hover */}
+            {/* Subtle shimmer effect on hover - optimized */}
             <span 
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer opacity-0 group-hover/desc:opacity-100 transition-opacity pointer-events-none"
-              style={{ willChange: 'transform, opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '800ms' }}
+              style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms', willChange: 'opacity' }}
             ></span>
           </span>
         </p>
@@ -170,83 +172,69 @@ export default function HomePage() {
               return (
                 <div
                   key={card.id}
-                  className={`group relative p-6 sm:p-8 bg-white/10 backdrop-blur-sm rounded-xl shadow-lg ${colors.border} ${colors.borderHover} cursor-pointer overflow-hidden transition-transform hover:bg-white/20 hover:shadow-2xl ${colors.shadow} ${colors.shadowHover} hover:scale-110 hover:-translate-y-2 animate-fade-in-up active:scale-105`}
+                  className={`group relative p-6 sm:p-8 bg-white/10 backdrop-blur-sm rounded-xl shadow-lg ${colors.border} ${colors.borderHover} cursor-pointer overflow-hidden transition-all hover:bg-white/20 hover:shadow-2xl ${colors.shadow} ${colors.shadowHover} hover:scale-105 hover:-translate-y-1 animate-fade-in-up active:scale-105`}
                   style={{ 
                     animationDelay: `${index * 100 + 600}ms`,
-                    willChange: 'transform',
                     transform: 'translateZ(0)',
                     backfaceVisibility: 'hidden',
                     contain: 'layout style paint',
-                    transitionDuration: '400ms'
+                    transitionDuration: '200ms',
+                    willChange: 'transform'
                   }}
                   onClick={() => router.push(card.route)}
                 >
-                  {/* Animated border glow */}
+                  {/* Animated border glow - reduced blur */}
                   <div 
-                    className={`absolute -inset-0.5 bg-gradient-to-r ${colors.glow} rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity`}
-                    style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '600ms' }}
+                    className={`absolute -inset-0.5 bg-gradient-to-r ${colors.glow} rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity`}
+                    style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms', willChange: 'opacity' }}
                   ></div>
                   
-                  {/* Animación de luz flotante */}
+                  {/* Simplified light animation */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${colors.glow} opacity-0 group-hover:opacity-100 transition-opacity animate-pulse`}
-                    style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '600ms' }}
+                    className={`absolute inset-0 bg-gradient-to-br ${colors.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
+                    style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms', willChange: 'opacity' }}
                   ></div>
                   
-                  {/* Brillo animado que se mueve */}
+                  {/* Simplified shimmer - only on hover */}
                   <div
-                    className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ willChange: 'transform, opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '600ms' }}
+                    className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                    style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms', willChange: 'opacity' }}
                   ></div>
 
-                  {/* Floating particles effect */}
+                  {/* Reduced particles - only 2 instead of 3 */}
                   <div 
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                    style={{ willChange: 'opacity', transform: 'translateZ(0)', transitionDuration: '600ms' }}
+                    style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'opacity' }}
                   >
                     <div 
-                      className={`absolute top-4 left-4 w-2 h-2 ${colors.particle} rounded-full animate-float opacity-60`} 
-                      style={{ animationDelay: '0s', willChange: 'transform', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                      className={`absolute top-4 left-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
+                      style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                     ></div>
                     <div 
-                      className={`absolute bottom-4 right-4 w-2 h-2 ${colors.particle} rounded-full animate-float opacity-60`} 
-                      style={{ animationDelay: '0.5s', willChange: 'transform', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-                    ></div>
-                    <div 
-                      className={`absolute top-1/2 right-4 w-1.5 h-1.5 ${colors.particle} rounded-full animate-float opacity-60`} 
-                      style={{ animationDelay: '1s', willChange: 'transform', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                      className={`absolute bottom-4 right-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
+                      style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                     ></div>
                   </div>
-
-                  {/* Gradiente de fondo */}
-                  <div 
-                    className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/0 to-white/0 group-hover:from-white/10 group-hover:via-white/5 group-hover:to-transparent transition-opacity"
-                    style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '400ms' }}
-                  ></div>
                   
                   <div className="relative z-10">
                     <div 
                       className="relative inline-block"
-                      style={{ willChange: 'transform', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                      style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'transform' }}
                     >
                       <Icon
-                        className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} ${colors.iconHover} mx-auto mb-3 sm:mb-4 transition-transform group-hover:scale-125 group-hover:rotate-6 drop-shadow-lg`}
-                        style={{ willChange: 'transform', transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '400ms' }}
+                        className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} ${colors.iconHover} mx-auto mb-3 sm:mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 drop-shadow-lg`}
+                        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms', willChange: 'transform' }}
                       />
-                      <div 
-                        className={`absolute -top-1 -right-1 w-3 h-3 ${colors.particle} rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-opacity`}
-                        style={{ willChange: 'transform, opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '400ms' }}
-                      ></div>
                     </div>
                     <h3 
                       className="font-bold text-white text-base sm:text-lg mb-2 transition-opacity group-hover:text-white uppercase tracking-wider font-sans"
-                      style={{ willChange: 'transform, opacity', transform: 'translateZ(0)', transitionDuration: '400ms' }}
+                      style={{ transitionDuration: '200ms', willChange: 'opacity' }}
                     >
                       {card.title}
                     </h3>
                     <p 
                       className="text-xs sm:text-sm text-white/90 transition-opacity group-hover:text-white font-sans"
-                      style={{ willChange: 'opacity', transitionDuration: '400ms' }}
+                      style={{ transitionDuration: '200ms', willChange: 'opacity' }}
                     >
                       {card.description}
                     </p>
@@ -256,57 +244,57 @@ export default function HomePage() {
             })}
           </div>
 
-          {/* MICRO-PROOF BAR */}
+          {/* MICRO-PROOF BAR - optimized */}
           <div 
             className="mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-10 border-t border-white/20 animate-fade-in-up animation-delay-1000"
-            style={{ willChange: 'transform, opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'auto' }}
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 text-center text-white/70 text-sm sm:text-base">
               <div 
                 className="flex items-center gap-2 group/proof hover:text-white transition-opacity"
-                style={{ willChange: 'opacity', transitionDuration: '400ms' }}
+                style={{ transitionDuration: '200ms', willChange: 'opacity' }}
               >
                 <span 
-                  className="inline-block w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
-                  style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                  className="inline-block w-2 h-2 bg-cyan-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
+                  style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
                 <span 
                   className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform"
-                  style={{ willChange: 'transform', transform: 'translateZ(0)', transitionDuration: '400ms' }}
+                  style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'transform' }}
                 >{t('home.proof.builders')}</span>
               </div>
               <div 
-                className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent animate-pulse"
-                style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60"
+                style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
               ></div>
               <div 
                 className="flex items-center gap-2 group/proof hover:text-white transition-opacity"
-                style={{ willChange: 'opacity', transitionDuration: '400ms' }}
+                style={{ transitionDuration: '200ms', willChange: 'opacity' }}
               >
                 <span 
-                  className="inline-block w-2 h-2 bg-purple-400 rounded-full animate-pulse animation-delay-200"
-                  style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                  className="inline-block w-2 h-2 bg-purple-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
+                  style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
                 <span 
                   className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform"
-                  style={{ willChange: 'transform', transform: 'translateZ(0)', transitionDuration: '400ms' }}
+                  style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'transform' }}
                 >{t('home.proof.founders')}</span>
               </div>
               <div 
-                className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent animate-pulse animation-delay-400"
-                style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60"
+                style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
               ></div>
               <div 
                 className="flex items-center gap-2 group/proof hover:text-white transition-opacity"
-                style={{ willChange: 'opacity', transitionDuration: '400ms' }}
+                style={{ transitionDuration: '200ms', willChange: 'opacity' }}
               >
                 <span 
-                  className="inline-block w-2 h-2 bg-pink-400 rounded-full animate-pulse animation-delay-600"
-                  style={{ willChange: 'opacity', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                  className="inline-block w-2 h-2 bg-pink-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
+                  style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
                 <span 
                   className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform"
-                  style={{ willChange: 'transform', transform: 'translateZ(0)', transitionDuration: '400ms' }}
+                  style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'transform' }}
                 >{t('home.proof.beta')}</span>
               </div>
             </div>
