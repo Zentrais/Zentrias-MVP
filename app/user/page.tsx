@@ -122,8 +122,37 @@ export default function UserPage() {
         </div>
       </div>
 
+      {/* YouTube Video Embed */}
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-28 sm:pt-32 md:pt-36 lg:pt-40 flex justify-center">
+        <div className="w-full max-w-6xl px-4 sm:px-6">
+          <div className="relative w-full group" style={{ paddingBottom: '56.25%' }}>
+            {/* Glow effect behind video */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            {/* Border gradient */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-2xl opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+            
+            {/* Inner shadow container */}
+            <div className="absolute inset-0.5 bg-black/20 backdrop-blur-sm rounded-2xl"></div>
+            
+            {/* Video iframe */}
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-2xl border-2 border-white/20 shadow-2xl group-hover:border-white/40 transition-all duration-300"
+              src="https://www.youtube.com/embed/u2JkUcdGBKI?si=eFcBGwlXDAliWeFb&controls=0"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+            
+            {/* Shimmer effect on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
+          </div>
+        </div>
+      </div>
+
       {/* Sección principal - Hero con celulares */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Texto a la izquierda */}
@@ -243,35 +272,6 @@ export default function UserPage() {
           </div>
         </div>
       </section>
-
-      {/* YouTube Video Embed */}
-      <div className="relative z-10 mt-12 sm:mt-16 md:mt-20 flex justify-center">
-        <div className="w-full max-w-6xl px-4 sm:px-6">
-          <div className="relative w-full group" style={{ paddingBottom: '56.25%' }}>
-            {/* Glow effect behind video */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
-            {/* Border gradient */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-2xl opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
-            
-            {/* Inner shadow container */}
-            <div className="absolute inset-0.5 bg-black/20 backdrop-blur-sm rounded-2xl"></div>
-            
-            {/* Video iframe */}
-            <iframe
-              className="absolute top-0 left-0 w-full h-full rounded-2xl border-2 border-white/20 shadow-2xl group-hover:border-white/40 transition-all duration-300"
-              src="https://www.youtube.com/embed/u2JkUcdGBKI?si=eFcBGwlXDAliWeFb&controls=0"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-            
-            {/* Shimmer effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
-          </div>
-        </div>
-      </div>
 
       {/* Experience Human-AI Symbiosis - Simple Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16">
