@@ -10,7 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
   
   // Rutas donde la navbar debe ser sticky
-  const stickyRoutes = ['/', '/user', '/investors', '/collaborator', '/media', '/privacy', '/about', '/contact', '/career', '/terms', '/cookie-policy', '/security-policy', '/legal-center', '/dpa', '/legal-compliance-handbook', '/gdpr-cookie-consent', '/legal-governance-suite'];
+  const stickyRoutes = ['/', '/user', '/investors', '/collaborator', '/media', '/privacy', '/about', '/contact', '/career', '/reviews', '/terms', '/cookie-policy', '/security-policy', '/legal-center', '/dpa', '/legal-compliance-handbook', '/gdpr-cookie-consent', '/legal-governance-suite'];
   const isSticky = stickyRoutes.includes(pathname);
   const isHomepage = pathname === '/';
 

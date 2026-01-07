@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Users, DollarSign, Handshake, Camera } from 'lucide-react';
 import { useLanguage } from '../contexts/language-context';
+import Countdown from '../components/countdown';
 
 const VideoYoutube = dynamic(() => import('../components/video-youtube'), { ssr: false });
 
@@ -251,6 +252,12 @@ export default function HomePage() {
               );
             })}
           </div>
+
+          <Countdown
+            className="mt-10 sm:mt-12 md:mt-14 animate-fade-in-up animation-delay-750"
+            // Jan 17, 2026 11:00 AM Eastern Time (EST = -05:00)
+            targetISO="2026-01-17T11:00:00-05:00"
+          />
 
           {/* YouTube Video Embed */}
           <div className="mt-12 sm:mt-16 md:mt-20 flex justify-center animate-fade-in-up animation-delay-800">

@@ -124,6 +124,12 @@ export default function Footer() {
               >
                 Career
               </Link>
+              <Link 
+                href="/reviews" 
+                className="text-slate-400 hover:text-white transition-colors duration-300 font-sans text-sm"
+              >
+                Reviews
+              </Link>
             </div>
           </div>
 
