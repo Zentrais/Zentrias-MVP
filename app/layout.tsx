@@ -34,6 +34,28 @@ export const metadata = {
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
+  openGraph: {
+    title: "Zentrais",
+    description: "More than a social network!",
+    url: "https://www.zentrais.com",
+    siteName: "Zentrais",
+    images: [
+      {
+        url: "https://www.zentrais.com/favicon.png",
+        width: 1200,
+        height: 1200,
+        alt: "Zentrais Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Zentrais",
+    description: "More than a social network!",
+    images: ["https://www.zentrais.com/favicon.png"],
+  },
 };
 
 export default function RootLayout({
@@ -53,6 +75,20 @@ export default function RootLayout({
               gtag('js', new Date());
               gtag('config', 'G-QW0W2XQB7Y');
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Zentrais",
+              "url": "https://www.zentrais.com",
+              "logo": "https://www.zentrais.com/favicon.png",
+              "description": "More than a social network!",
+              "sameAs": []
+            }),
           }}
         />
       </head>

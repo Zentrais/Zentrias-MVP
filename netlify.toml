@@ -5,4 +5,9 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
+# Configuración para asegurar que los archivos estáticos de public se sirvan correctamente
+# El plugin de Next.js maneja esto automáticamente, pero esta configuración asegura compatibilidad
+[build.environment]
+  NODE_VERSION = "20"
+
 
