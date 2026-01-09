@@ -205,40 +205,44 @@ export default function InvestorForm() {
 
       const result = await response.json();
 
-      if (result.success) {
-        setIsSubmitted(true);
-        setFormData({
-          fullName: '',
-          email: '',
-          phone: '',
-          countryCity: '',
-          organizationFundName: '',
-          investorType: '',
-          fundSize: '',
-          typicalCheckSize: '',
-          preferredSectors: '',
-          whatCapturedInterest: '',
-          componentsMatterMost: '',
-          investmentTimeHorizon: '',
-          materialsPitchDeck: false,
-          materialsDataRoom: false,
-          materialsTechnicalArchitecture: false,
-          materialsCRIWhitepaper: false,
-          materialsFinancialModel: false,
-          wantMeetingWithFounders: '',
-          questionsForFounders: '',
-        });
-        setErrors({});
-
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
-      } else {
-        alert('Failed to submit form. Please try again.');
+      if (!response.ok || !result.success) {
+        const errorMessage = result.message || 'Failed to submit form. Please try again.';
+        console.error('Form submission error:', errorMessage);
+        alert(errorMessage);
+        return;
       }
+
+      setIsSubmitted(true);
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        countryCity: '',
+        organizationFundName: '',
+        investorType: '',
+        fundSize: '',
+        typicalCheckSize: '',
+        preferredSectors: '',
+        whatCapturedInterest: '',
+        componentsMatterMost: '',
+        investmentTimeHorizon: '',
+        materialsPitchDeck: false,
+        materialsDataRoom: false,
+        materialsTechnicalArchitecture: false,
+        materialsCRIWhitepaper: false,
+        materialsFinancialModel: false,
+        wantMeetingWithFounders: '',
+        questionsForFounders: '',
+      });
+      setErrors({});
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to submit form. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to submit form. Please try again.';
+      alert(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

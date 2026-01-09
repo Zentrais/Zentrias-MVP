@@ -101,24 +101,37 @@ Any questions for the Founders: ${formData.questionsForFounders || ''}`;
     // Email addresses are configured in .env.local
     // This is the investor form, so using RESEND_TO_EMAIL_INVES
     const resend = getResend();
-    const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
-      to: process.env.RESEND_TO_EMAIL_INVES || 'tech@zentrais.com',
+    const toEmail = process.env.RESEND_TO_EMAIL_INVES || 'tech@zentrais.com';
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+    
+    console.log(`Sending email to: ${toEmail}, from: ${fromEmail}`);
+    
+    const result = await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
       replyTo: formData.email || undefined, // Set reply-to to the investor's email
       subject: 'Investor Form Submission - Zentrais',
       html: emailBodyHtml,
       text: emailBodyText,
     });
 
-    if (error) {
-      console.error('Resend API Error:', error);
-      throw new Error(error.message || 'Failed to send email');
+    if (result.error) {
+      console.error('Resend API Error:', result.error);
+      const errorMessage = result.error.message || JSON.stringify(result.error);
+      throw new Error(`Failed to send email: ${errorMessage}`);
     }
 
+    if (!result.data) {
+      console.error('Resend API returned no data:', result);
+      throw new Error('Failed to send email: No response data from Resend');
+    }
+
+    console.log(`Email sent successfully. ID: ${result.data.id}`);
+    
     return NextResponse.json({
       success: true,
       message: 'Form submitted successfully',
-      emailId: data?.id,
+      emailId: result.data.id,
     });
   } catch (error) {
     console.error('Error submitting form:', error);

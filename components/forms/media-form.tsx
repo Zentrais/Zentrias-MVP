@@ -156,38 +156,42 @@ export default function MediaForm() {
 
       const data = await response.json();
 
-      if (data.success) {
-        setIsSubmitted(true);
-        // Reset form
-        setFormData({
-          fullName: '',
-          email: '',
-          phone: '',
-          mediaType: '',
-          organizationChannelHandle: '',
-          storyExploring: '',
-          theme: '',
-          interviewRequest: '',
-          assetsPressKit: false,
-          assetsLogosBrandAssets: false,
-          assetsFounderBioPack: false,
-          assetsProductCaptures: false,
-          assetsResearchData: false,
-          accessToTeam: '',
-          preferredTimeline: '',
-          specificQuestions: '',
-        });
-        setErrors({});
-
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 5000);
-      } else {
-        alert('Failed to submit form. Please try again.');
+      if (!response.ok || !data.success) {
+        const errorMessage = data.message || 'Failed to submit form. Please try again.';
+        console.error('Form submission error:', errorMessage);
+        alert(errorMessage);
+        return;
       }
+
+      setIsSubmitted(true);
+      // Reset form
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        mediaType: '',
+        organizationChannelHandle: '',
+        storyExploring: '',
+        theme: '',
+        interviewRequest: '',
+        assetsPressKit: false,
+        assetsLogosBrandAssets: false,
+        assetsFounderBioPack: false,
+        assetsProductCaptures: false,
+        assetsResearchData: false,
+        accessToTeam: '',
+        preferredTimeline: '',
+        specificQuestions: '',
+      });
+      setErrors({});
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 5000);
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to submit form. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Failed to submit form. Please try again.';
+      alert(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
