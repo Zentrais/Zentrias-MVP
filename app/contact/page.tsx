@@ -6,62 +6,31 @@ import { useLanguage } from '../../contexts/language-context';
 
 export default function ContactPage() {
   const { t } = useLanguage();
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
-
-  // Generar partículas suaves
   useEffect(() => {
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 5,
-    }));
-    setParticles(newParticles);
-  }, []);
-
-  useEffect(() => {
-    // Asegurar que el fondo oscuro cubra toda la página
-    document.body.style.backgroundColor = '#36454F';
-    const mainElement = document.querySelector('main');
-    if (mainElement) {
-      (mainElement as HTMLElement).style.backgroundColor = '#36454F';
-    }
-    return () => {
-      document.body.style.backgroundColor = 'transparent';
-      if (mainElement) {
-        (mainElement as HTMLElement).style.backgroundColor = '';
-      }
-    };
-  }, []);
+    document.title = `Zentrais | ${t('pagetitle.contact')}`;
+  }, [t]);
 
   return (
-    <div className="text-white relative flex flex-col w-full" style={{ backgroundColor: '#36454F', marginTop: '-64px', paddingTop: '64px', minHeight: '100vh', width: '100%' }}>
-      {/* Fondo animado sutil */}
-      <div className="fixed inset-0 pointer-events-none z-0" style={{ backgroundColor: '#36454F' }}>
-        {/* Partículas suaves flotantes */}
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-25 animate-float"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              animationDelay: `${particle.delay}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-        
-        {/* Líneas de flujo sutiles */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" />
-          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" style={{ animationDelay: '4s' }} />
-        </div>
+    <div className="min-h-screen relative flex flex-col w-full" style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}>
+      {/* Space Background - 4K Quality */}
+      <div className="space-background">
+        <div className="space-stars"></div>
+        <div className="space-nebula-1"></div>
+        <div className="space-nebula-2"></div>
+        <div className="space-nebula-3"></div>
+        <div className="space-nebula-4"></div>
+        {/* Random premium gradients */}
+        <div className="premium-gradient-1"></div>
+        <div className="premium-gradient-2"></div>
+        <div className="premium-gradient-3"></div>
+        <div className="premium-gradient-4"></div>
+        <div className="premium-gradient-5"></div>
       </div>
 
+      {/* Content */}
+      <div className="relative z-10 text-white">
       {/* Content Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16 md:pb-24 flex-1">
+      <section className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 pb-12 sm:pb-16 md:pb-24 flex-1">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-12 text-center">
@@ -138,8 +107,9 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <div className="mt-auto w-full flex-shrink-0" style={{ backgroundColor: '#36454F' }}>
+      <div className="mt-auto w-full flex-shrink-0 relative z-10">
         <Footer />
+      </div>
       </div>
     </div>
   );

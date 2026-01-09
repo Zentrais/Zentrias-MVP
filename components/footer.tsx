@@ -30,7 +30,14 @@ const RedditIcon = ({ className }: { className?: string }) => (
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 bg-slate-900/95 backdrop-blur-lg border-t border-white/10 w-full">
+    <footer 
+      className="relative z-20 backdrop-blur-sm shadow-sm border-t border-white/5 w-full"
+      style={{
+        background: 'linear-gradient(to bottom, rgba(34, 23, 43, 0.98) 0%, rgba(34, 23, 43, 0.98) 70%, rgba(37, 24, 46, 0.98) 85%, rgba(39, 25, 48, 0.98) 100%)',
+        backdropFilter: 'blur(8px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+      }}
+    >
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
           {/* Left Column - Zentrais Info */}

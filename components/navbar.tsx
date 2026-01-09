@@ -16,18 +16,14 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`w-full ${
-        isHomepage 
-          ? 'backdrop-blur-sm shadow-sm border-b border-white/5' 
-          : 'bg-slate-900/90 backdrop-blur-sm shadow-lg border-b border-white/10'
-      } ${
+      className={`w-full backdrop-blur-sm shadow-sm border-b border-white/5 ${
         isSticky ? 'fixed top-0 left-0 right-0 z-50' : ''
       }`}
-      style={!isHomepage ? {
-        background: 'rgba(15, 23, 42, 0.85)',
+      style={{
+        background: 'linear-gradient(to bottom, rgba(34, 23, 43, 0.98) 0%, rgba(34, 23, 43, 0.98) 70%, rgba(37, 24, 46, 0.98) 85%, rgba(39, 25, 48, 0.98) 100%)',
         backdropFilter: 'blur(8px) saturate(180%)',
         WebkitBackdropFilter: 'blur(8px) saturate(180%)',
-      } : undefined}
+      }}
     >
       <div className="flex justify-between items-center py-0 px-4 sm:px-6 h-auto min-h-0">
         {isHomepage ? (

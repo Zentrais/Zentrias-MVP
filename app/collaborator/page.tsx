@@ -28,18 +28,6 @@ export default function CollaboratorPage() {
     collaborationTrack: '',
     optionalNotes: '',
   });
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
-
-  // Generar partículas suaves
-  useEffect(() => {
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 5,
-    }));
-    setParticles(newParticles);
-  }, []);
 
   const handleBecomePartner = () => {
     const formElement = document.getElementById('collaborator-form');
@@ -81,33 +69,26 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
   };
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden collaborator-body collaborator-tone -mt-16 pt-16" style={{ backgroundColor: '#36454F' }}>
-      {/* Fondo animado sutil */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        {/* Partículas suaves flotantes */}
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-25 animate-float"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              animationDelay: `${particle.delay}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-        
-        {/* Líneas de flujo sutiles */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" />
-          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" style={{ animationDelay: '4s' }} />
-        </div>
+    <div className="min-h-screen relative overflow-hidden collaborator-body collaborator-tone" style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}>
+      {/* Space Background - 4K Quality */}
+      <div className="space-background">
+        <div className="space-stars"></div>
+        <div className="space-nebula-1"></div>
+        <div className="space-nebula-2"></div>
+        <div className="space-nebula-3"></div>
+        <div className="space-nebula-4"></div>
+        {/* Random premium gradients */}
+        <div className="premium-gradient-1"></div>
+        <div className="premium-gradient-2"></div>
+        <div className="premium-gradient-3"></div>
+        <div className="premium-gradient-4"></div>
+        <div className="premium-gradient-5"></div>
       </div>
 
+      {/* Content */}
+      <div className="relative z-10 text-white">
       {/* Hero Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16 md:pb-24 overflow-hidden">
+      <section className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 pb-12 sm:pb-16 md:pb-24 overflow-hidden">
         {/* YouTube Video Embed */}
         <div className="relative z-10 mb-12 sm:mb-16 md:mb-20 flex justify-center">
           <div className="w-full max-w-6xl px-4 sm:px-6">
@@ -800,6 +781,7 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
       </div>
 
       <Footer />
+      </div>
     </div>
   );
 }

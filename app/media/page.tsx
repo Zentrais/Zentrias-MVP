@@ -28,18 +28,6 @@ export default function MediaPage() {
     followerCount: '',
     publicationHistory: '',
   });
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
-
-  // Generate subtle particles
-  useEffect(() => {
-    const newParticles = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 5,
-    }));
-    setParticles(newParticles);
-  }, []);
 
   const handlePressKit = () => {
     window.location.href = 'mailto:media@zentrais.com?subject=Media%20Kit%20Request';
@@ -79,35 +67,29 @@ Publication History / Focus Area: ${formData.publicationHistory}
   };
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden media-body media-tone -mt-16 pt-16" style={{ backgroundColor: '#36454F' }}>
-      {/* Subtle animated background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        {/* Soft floating particles */}
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-25 animate-float"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              animationDelay: `${particle.delay}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
-        
-        {/* Subtle flow lines */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" />
-          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" style={{ animationDelay: '4s' }} />
-        </div>
+    <div className="min-h-screen relative overflow-hidden media-body media-tone" style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}>
+      {/* Space Background - 4K Quality */}
+      <div className="space-background">
+        <div className="space-stars"></div>
+        <div className="space-nebula-1"></div>
+        <div className="space-nebula-2"></div>
+        <div className="space-nebula-3"></div>
+        <div className="space-nebula-4"></div>
+        {/* Random premium gradients */}
+        <div className="premium-gradient-1"></div>
+        <div className="premium-gradient-2"></div>
+        <div className="premium-gradient-3"></div>
+        <div className="premium-gradient-4"></div>
+        <div className="premium-gradient-5"></div>
       </div>
 
+      {/* Content */}
+      <div className="relative z-10 text-white">
+
       {/* 1. Hero / Headline */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-16 sm:pb-20 md:pb-24">
+      <section className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 pb-16 sm:pb-20 md:pb-24">
         {/* YouTube Video Embed */}
-        <div className="relative z-10 mb-12 sm:mb-16 md:mb-20 flex justify-center">
+        <div className="mb-12 sm:mb-16 md:mb-20 flex justify-center">
           <div className="w-full max-w-6xl px-4 sm:px-6">
             <div className="relative w-full group" style={{ paddingBottom: '56.25%' }}>
               {/* Glow effect behind video */}
@@ -163,7 +145,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* 2. Media Kit */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
+      <section className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-5xl mx-auto bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 md:p-10 shadow-xl">
           <div className="flex items-start gap-4 mb-6">
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
@@ -210,7 +192,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* 3. Key Facts & Figures */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
+      <section className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 text-center collaborator-heading">
             {isEs ? 'Datos y cifras clave' : 'Key Facts & Figures'}
@@ -278,7 +260,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* 4. What&apos;s in the News / Why Now? */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
+      <section className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-center collaborator-heading">
             {isEs ? '¿Qué está pasando en las noticias? ¿Por qué ahora?' : "What’s in the News / Why Now?"}
@@ -327,7 +309,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* 5. The Zentrais Narrative (Media-Ready) */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
+      <section className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 text-center collaborator-heading">
             {isEs ? 'La narrativa de Zentrais' : 'The Zentrais Narrative'}
@@ -341,7 +323,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* 6. Vista previa del producto */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
+      <section className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 collaborator-heading">
             {isEs ? 'Vista previa del producto' : 'Product Preview'}
@@ -367,7 +349,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* 7. Media Contact */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
+      <section className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24">
         <div className="max-w-3xl mx-auto bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 md:p-10 shadow-xl">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 collaborator-heading">
             {isEs ? 'Contacto de prensa' : 'Media Contact'}
@@ -395,7 +377,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* 8. Final CTA Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-12 sm:pb-16 md:pb-20">
+      <section className="container mx-auto px-4 sm:px-6 pt-8 sm:pt-10 md:pt-12 pb-12 sm:pb-16 md:pb-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 collaborator-heading">
             {isEs
@@ -427,7 +409,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       {/* Media / Zenzers Form Section */}
-      <section id="media-form" className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
+      <section id="media-form" className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
           <div className="bg-slate-900/60 backdrop-blur-sm rounded-2xl border border-blue-400/30 p-8 sm:p-12 media-tone">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 leading-tight font-sans tracking-tight tone-highlight">
@@ -442,6 +424,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </section>
 
       <Footer />
+      </div>
     </div>
   );
 }

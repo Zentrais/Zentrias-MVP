@@ -1,23 +1,149 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo, memo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Users, DollarSign, Handshake, Camera } from 'lucide-react';
 import { useLanguage } from '../contexts/language-context';
-import Countdown from '../components/countdown';
 
-const VideoYoutube = dynamic(() => import('../components/video-youtube'), { ssr: false });
+const VideoYoutube = dynamic(() => import('../components/video-youtube'), { 
+  ssr: false,
+  loading: () => null
+});
+const Countdown = dynamic(() => import('../components/countdown'), { 
+  ssr: false,
+  loading: () => null
+});
+
+// Color classes constant - moved outside component to avoid recreation
+const colorClasses = {
+  emerald: {
+    border: 'border-emerald-400/30',
+    borderHover: 'group-hover:border-emerald-400/60',
+    shadow: 'shadow-emerald-500/20',
+    shadowHover: 'group-hover:shadow-emerald-500/40',
+    icon: 'text-emerald-400',
+    iconHover: 'group-hover:text-emerald-300',
+    glow: 'from-emerald-400/20 via-emerald-500/10 to-transparent',
+    particle: 'bg-emerald-400',
+  },
+  indigo: {
+    border: 'border-indigo-400/30',
+    borderHover: 'group-hover:border-indigo-400/60',
+    shadow: 'shadow-indigo-500/20',
+    shadowHover: 'group-hover:shadow-indigo-500/40',
+    icon: 'text-indigo-400',
+    iconHover: 'group-hover:text-indigo-300',
+    glow: 'from-indigo-400/20 via-indigo-500/10 to-transparent',
+    particle: 'bg-indigo-400',
+  },
+  amber: {
+    border: 'border-amber-400/30',
+    borderHover: 'group-hover:border-amber-400/60',
+    shadow: 'shadow-amber-500/20',
+    shadowHover: 'group-hover:shadow-amber-500/40',
+    icon: 'text-amber-400',
+    iconHover: 'group-hover:text-amber-300',
+    glow: 'from-amber-400/20 via-amber-500/10 to-transparent',
+    particle: 'bg-amber-400',
+  },
+  pink: {
+    border: 'border-pink-400/30',
+    borderHover: 'group-hover:border-pink-400/60',
+    shadow: 'shadow-pink-500/20',
+    shadowHover: 'group-hover:shadow-pink-500/40',
+    icon: 'text-pink-400',
+    iconHover: 'group-hover:text-pink-300',
+    glow: 'from-pink-400/20 via-pink-500/10 to-transparent',
+    particle: 'bg-pink-400',
+  },
+};
+
+// Memoized card component to prevent unnecessary re-renders
+const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: any, index: number, onNavigate: (route: string) => void, colors: typeof colorClasses[keyof typeof colorClasses] }) => {
+  const Icon = card.icon;
+  const handleClick = useCallback(() => onNavigate(card.route), [card.route, onNavigate]);
+  
+  return (
+    <div
+      className={`group relative p-6 sm:p-8 bg-white/10 backdrop-blur-sm rounded-xl shadow-lg ${colors.border} ${colors.borderHover} cursor-pointer overflow-hidden transition-all hover:bg-white/20 hover:shadow-2xl ${colors.shadow} ${colors.shadowHover} hover:scale-105 hover:-translate-y-1 animate-fade-in-up active:scale-105`}
+      style={{ 
+        animationDelay: `${index * 100 + 600}ms`,
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+        contain: 'layout style paint',
+        transitionDuration: '200ms'
+      }}
+      onClick={handleClick}
+    >
+      {/* Animated border glow - reduced blur */}
+      <div 
+        className={`absolute -inset-0.5 bg-gradient-to-r ${colors.glow} rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity`}
+        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
+      ></div>
+      
+      {/* Simplified light animation */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${colors.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
+        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
+      ></div>
+      
+      {/* Simplified shimmer - only on hover */}
+      <div
+        className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms' }}
+      ></div>
+
+      {/* Reduced particles - only 2 instead of 3 */}
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+        style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}
+      >
+        <div 
+          className={`absolute top-4 left-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+        ></div>
+        <div 
+          className={`absolute bottom-4 right-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+        ></div>
+      </div>
+      
+      <div className="relative z-10">
+        <div className="relative inline-block" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
+          <Icon
+            className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} ${colors.iconHover} mx-auto mb-3 sm:mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 drop-shadow-lg`}
+            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
+          />
+        </div>
+        <h3 className="font-bold text-white text-base sm:text-lg mb-2 transition-opacity group-hover:text-white uppercase tracking-wider font-sans">
+          {card.title}
+        </h3>
+        <p className="text-xs sm:text-sm text-white/90 transition-opacity group-hover:text-white font-sans">
+          {card.description}
+        </p>
+      </div>
+    </div>
+  );
+});
+
+AudienceCard.displayName = 'AudienceCard';
 
 export default function HomePage() {
   const router = useRouter();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   useEffect(() => {
     document.title = 'Zentrais';
   }, []);
 
-  const audienceCards = [
+  // Memoized navigation handler
+  const handleNavigate = useCallback((route: string) => {
+    router.push(route);
+  }, [router]);
+
+  // Memoize audienceCards to avoid recreation on every render
+  const audienceCards = useMemo(() => [
     {
       id: 'user',
       title: t('home.card.user.title'),
@@ -50,72 +176,58 @@ export default function HomePage() {
       color: 'pink',
       icon: Camera,
     },
-  ];
+  ], [t]);
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center bg-no-repeat bg-scroll"
-      style={{ 
-        backgroundImage: `url('/fondo-new.jpg')`,
-        transform: 'translateZ(0)',
-        willChange: 'auto',
-        contain: 'layout style paint'
-      }}
-    >
+    <div className="min-h-screen relative" style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}>
+      {/* Space Background - 4K Quality */}
+      <div className="space-background">
+        <div className="space-stars"></div>
+        <div className="space-nebula-1"></div>
+        <div className="space-nebula-2"></div>
+        <div className="space-nebula-3"></div>
+        <div className="space-nebula-4"></div>
+        {/* Random premium gradients */}
+        <div className="premium-gradient-1"></div>
+        <div className="premium-gradient-2"></div>
+        <div className="premium-gradient-3"></div>
+        <div className="premium-gradient-4"></div>
+        <div className="premium-gradient-5"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10">
       {/* HEADLINE SECTION */}
-      <div className="container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 lg:pt-44 text-center relative">
-        {/* Animated background gradient - optimized */}
-        <div 
-          className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 blur-xl"
-          style={{ 
-            transform: 'translateZ(0)', 
-            backfaceVisibility: 'hidden',
-            contain: 'layout style paint',
-            willChange: 'auto'
-          }}
-        ></div>
-        
-        {/* Floating orbs - reduced blur for performance */}
-        <div 
-          className="absolute top-20 left-10 w-32 h-32 bg-cyan-400/20 rounded-full blur-xl animate-float opacity-60"
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style paint', willChange: 'auto' }}
-        ></div>
-        <div 
-          className="absolute bottom-20 right-10 w-40 h-40 bg-purple-400/20 rounded-full blur-xl animate-float animation-delay-300 opacity-60"
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style paint', willChange: 'auto' }}
-        ></div>
+      <div className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 text-center relative">
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-2xl font-sans animate-fade-in-up relative group">
-          <span className="inline-block bg-gradient-to-r from-white via-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent bg-[length:200%_auto] relative" style={{ willChange: 'auto' }}>
+          <span className="inline-block bg-gradient-to-r from-white via-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent bg-[length:200%_auto] relative">
             {t('home.headline')}
             {/* Subtle glow behind text - reduced blur */}
-            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" style={{ transitionDuration: '300ms', willChange: 'opacity' }}></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" style={{ transitionDuration: '300ms' }}></span>
           </span>
         </h1>
         <h2 
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-3 sm:mb-4 text-white/90 tracking-wide drop-shadow-lg font-sans animate-fade-in-up animation-delay-200 group/subheadline"
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'auto' }}
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
         >
           <span 
             className="inline-block bg-gradient-to-r from-cyan-200 via-white to-purple-200 bg-clip-text text-transparent transition-transform group-hover/subheadline:scale-105"
-            style={{ transitionDuration: '200ms', willChange: 'transform' }}
+            style={{ transitionDuration: '200ms' }}
           >
             {t('home.subheadline')}
           </span>
         </h2>
         <p 
           className="text-base sm:text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-8 sm:mb-10 drop-shadow font-sans animate-fade-in-up animation-delay-400 relative group/desc"
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'auto' }}
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
         >
-          <span 
-            className="relative inline-block transition-opacity group-hover/desc:text-white/95"
-            style={{ transitionDuration: '200ms', willChange: 'opacity' }}
-          >
+          <span className="relative inline-block transition-opacity group-hover/desc:text-white/95" style={{ transitionDuration: '200ms' }}>
             {t('home.description')}
             {/* Subtle shimmer effect on hover - optimized */}
             <span 
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer opacity-0 group-hover/desc:opacity-100 transition-opacity pointer-events-none"
-              style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms', willChange: 'opacity' }}
+              style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms' }}
             ></span>
           </span>
         </p>
@@ -132,123 +244,15 @@ export default function HomePage() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center">
             {audienceCards.map((card, index) => {
-              const Icon = card.icon;
-              const colorClasses = {
-                emerald: {
-                  border: 'border-emerald-400/30',
-                  borderHover: 'group-hover:border-emerald-400/60',
-                  shadow: 'shadow-emerald-500/20',
-                  shadowHover: 'group-hover:shadow-emerald-500/40',
-                  icon: 'text-emerald-400',
-                  iconHover: 'group-hover:text-emerald-300',
-                  glow: 'from-emerald-400/20 via-emerald-500/10 to-transparent',
-                  particle: 'bg-emerald-400',
-                },
-                indigo: {
-                  border: 'border-indigo-400/30',
-                  borderHover: 'group-hover:border-indigo-400/60',
-                  shadow: 'shadow-indigo-500/20',
-                  shadowHover: 'group-hover:shadow-indigo-500/40',
-                  icon: 'text-indigo-400',
-                  iconHover: 'group-hover:text-indigo-300',
-                  glow: 'from-indigo-400/20 via-indigo-500/10 to-transparent',
-                  particle: 'bg-indigo-400',
-                },
-                amber: {
-                  border: 'border-amber-400/30',
-                  borderHover: 'group-hover:border-amber-400/60',
-                  shadow: 'shadow-amber-500/20',
-                  shadowHover: 'group-hover:shadow-amber-500/40',
-                  icon: 'text-amber-400',
-                  iconHover: 'group-hover:text-amber-300',
-                  glow: 'from-amber-400/20 via-amber-500/10 to-transparent',
-                  particle: 'bg-amber-400',
-                },
-                pink: {
-                  border: 'border-pink-400/30',
-                  borderHover: 'group-hover:border-pink-400/60',
-                  shadow: 'shadow-pink-500/20',
-                  shadowHover: 'group-hover:shadow-pink-500/40',
-                  icon: 'text-pink-400',
-                  iconHover: 'group-hover:text-pink-300',
-                  glow: 'from-pink-400/20 via-pink-500/10 to-transparent',
-                  particle: 'bg-pink-400',
-                },
-              };
-
               const colors = colorClasses[card.color as keyof typeof colorClasses];
-
               return (
-                <div
+                <AudienceCard
                   key={card.id}
-                  className={`group relative p-6 sm:p-8 bg-white/10 backdrop-blur-sm rounded-xl shadow-lg ${colors.border} ${colors.borderHover} cursor-pointer overflow-hidden transition-all hover:bg-white/20 hover:shadow-2xl ${colors.shadow} ${colors.shadowHover} hover:scale-105 hover:-translate-y-1 animate-fade-in-up active:scale-105`}
-                  style={{ 
-                    animationDelay: `${index * 100 + 600}ms`,
-                    transform: 'translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    contain: 'layout style paint',
-                    transitionDuration: '200ms',
-                    willChange: 'transform'
-                  }}
-                  onClick={() => router.push(card.route)}
-                >
-                  {/* Animated border glow - reduced blur */}
-                  <div 
-                    className={`absolute -inset-0.5 bg-gradient-to-r ${colors.glow} rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity`}
-                    style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms', willChange: 'opacity' }}
-                  ></div>
-                  
-                  {/* Simplified light animation */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${colors.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
-                    style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms', willChange: 'opacity' }}
-                  ></div>
-                  
-                  {/* Simplified shimmer - only on hover */}
-                  <div
-                    className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                    style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms', willChange: 'opacity' }}
-                  ></div>
-
-                  {/* Reduced particles - only 2 instead of 3 */}
-                  <div 
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-                    style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'opacity' }}
-                  >
-                    <div 
-                      className={`absolute top-4 left-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
-                      style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-                    ></div>
-                    <div 
-                      className={`absolute bottom-4 right-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
-                      style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-                    ></div>
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <div 
-                      className="relative inline-block"
-                      style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'transform' }}
-                    >
-                      <Icon
-                        className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} ${colors.iconHover} mx-auto mb-3 sm:mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 drop-shadow-lg`}
-                        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms', willChange: 'transform' }}
-                      />
-                    </div>
-                    <h3 
-                      className="font-bold text-white text-base sm:text-lg mb-2 transition-opacity group-hover:text-white uppercase tracking-wider font-sans"
-                      style={{ transitionDuration: '200ms', willChange: 'opacity' }}
-                    >
-                      {card.title}
-                    </h3>
-                    <p 
-                      className="text-xs sm:text-sm text-white/90 transition-opacity group-hover:text-white font-sans"
-                      style={{ transitionDuration: '200ms', willChange: 'opacity' }}
-                    >
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
+                  card={card}
+                  index={index}
+                  onNavigate={handleNavigate}
+                  colors={colors}
+                />
               );
             })}
           </div>
@@ -288,59 +292,36 @@ export default function HomePage() {
           {/* MICRO-PROOF BAR - optimized */}
           <div 
             className="mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-10 border-t border-white/20 animate-fade-in-up animation-delay-1000"
-            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'auto' }}
+            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 text-center text-white/70 text-sm sm:text-base">
-              <div 
-                className="flex items-center gap-2 group/proof hover:text-white transition-opacity"
-                style={{ transitionDuration: '200ms', willChange: 'opacity' }}
-              >
+              <div className="flex items-center gap-2 group/proof hover:text-white transition-opacity" style={{ transitionDuration: '200ms' }}>
                 <span 
                   className="inline-block w-2 h-2 bg-cyan-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
                   style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
-                <span 
-                  className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform"
-                  style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'transform' }}
-                >{t('home.proof.builders')}</span>
+                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.builders')}</span>
               </div>
-              <div 
-                className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60"
-                style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-              ></div>
-              <div 
-                className="flex items-center gap-2 group/proof hover:text-white transition-opacity"
-                style={{ transitionDuration: '200ms', willChange: 'opacity' }}
-              >
+              <div className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}></div>
+              <div className="flex items-center gap-2 group/proof hover:text-white transition-opacity" style={{ transitionDuration: '200ms' }}>
                 <span 
                   className="inline-block w-2 h-2 bg-purple-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
                   style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
-                <span 
-                  className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform"
-                  style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'transform' }}
-                >{t('home.proof.founders')}</span>
+                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.founders')}</span>
               </div>
-              <div 
-                className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60"
-                style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-              ></div>
-              <div 
-                className="flex items-center gap-2 group/proof hover:text-white transition-opacity"
-                style={{ transitionDuration: '200ms', willChange: 'opacity' }}
-              >
+              <div className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}></div>
+              <div className="flex items-center gap-2 group/proof hover:text-white transition-opacity" style={{ transitionDuration: '200ms' }}>
                 <span 
                   className="inline-block w-2 h-2 bg-pink-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
                   style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
-                <span 
-                  className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform"
-                  style={{ transform: 'translateZ(0)', transitionDuration: '200ms', willChange: 'transform' }}
-                >{t('home.proof.beta')}</span>
+                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.beta')}</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -63,20 +63,8 @@ export default function UserPage() {
     },
   ];
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
   const [currentParticipants, setCurrentParticipants] = useState(342);
   const [selectedPhone, setSelectedPhone] = useState(1);
-
-  // Generar partículas de luz
-  useEffect(() => {
-    const newParticles = Array.from({ length: 30 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 5,
-    }));
-    setParticles(newParticles);
-  }, []);
 
   // Auto-rotar carrusel
   useEffect(() => {
@@ -106,31 +94,26 @@ export default function UserPage() {
   };
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden user-tone -mt-16 pt-16" style={{ backgroundColor: '#36454F' }}>
-      {/* Partículas de luz de fondo */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-40 animate-float"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              animationDelay: `${particle.delay}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-        {/* Flujos de datos animados */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-flow" />
-          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-flow" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
-        </div>
+    <div className="min-h-screen relative overflow-hidden user-tone" style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}>
+      {/* Space Background - 4K Quality */}
+      <div className="space-background">
+        <div className="space-stars"></div>
+        <div className="space-nebula-1"></div>
+        <div className="space-nebula-2"></div>
+        <div className="space-nebula-3"></div>
+        <div className="space-nebula-4"></div>
+        {/* Random premium gradients */}
+        <div className="premium-gradient-1"></div>
+        <div className="premium-gradient-2"></div>
+        <div className="premium-gradient-3"></div>
+        <div className="premium-gradient-4"></div>
+        <div className="premium-gradient-5"></div>
       </div>
 
+      {/* Content */}
+      <div className="relative z-10 text-white">
       {/* YouTube Video Embed */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-28 sm:pt-32 md:pt-36 lg:pt-40 flex justify-center">
+      <div className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 flex justify-center">
         <div className="w-full max-w-6xl px-4 sm:px-6">
           <div className="relative w-full group" style={{ paddingBottom: '56.25%' }}>
             {/* Glow effect behind video */}
@@ -575,6 +558,7 @@ export default function UserPage() {
 
       {/* Footer con información de la empresa */}
       <Footer />
+      </div>
     </div>
   );
 }

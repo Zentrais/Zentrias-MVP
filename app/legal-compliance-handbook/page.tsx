@@ -20,7 +20,7 @@ export default function LegalComplianceHandbookPage() {
   }, []);
 
   return (
-    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#36454F', marginTop: '-64px', paddingTop: '64px' }}>
+    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#36454F' }}>
       {/* Fondo animado sutil */}
       <div className="fixed inset-0 pointer-events-none z-0">
         {/* Partículas suaves flotantes */}
@@ -46,7 +46,7 @@ export default function LegalComplianceHandbookPage() {
       </div>
 
       {/* Content Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-12 text-center">
