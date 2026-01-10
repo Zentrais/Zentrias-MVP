@@ -45,7 +45,11 @@ export function BottomNav() {
               <span
                 className={cn(
                   'h-1.5 w-1.5 rounded-full mb-0.5',
-                  isActive ? 'bg-pink-500' : 'bg-gray-700',
+                  isActive 
+                    ? tab.key === 'dialogue' 
+                      ? 'bg-green-500' 
+                      : 'bg-pink-500'
+                    : 'bg-gray-700',
                 )}
               />
               <span>{tab.label}</span>
