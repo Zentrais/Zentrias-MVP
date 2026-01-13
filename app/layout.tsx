@@ -95,14 +95,20 @@ export default function RootLayout({
       </head>
       <body className={`min-h-screen flex flex-col ${spaceGrotesk.variable} ${playfairDisplay.variable} ${inter.variable}`} style={{ backgroundColor: 'transparent' }}>
         <LanguageProviderWrapper>
-          {/* NAVBAR */}
-          <Navbar />
+          {/* FONDO GLOBAL ÚNICO - Renderizado una sola vez */}
+          <div className="app-bg"></div>
+          
+          {/* CONTENIDO DE LA APLICACIÓN */}
+          <main className="app-content">
+            {/* NAVBAR */}
+            <Navbar />
 
-          {/* CONTENIDO PRINCIPAL */}
-          <main className="flex-grow">{children}</main>
+            {/* CONTENIDO PRINCIPAL */}
+            <div className="flex-grow">{children}</div>
 
-          {/* FLOATING CTA */}
-          <FloatingCTA />
+            {/* FLOATING CTA */}
+            <FloatingCTA />
+          </main>
         </LanguageProviderWrapper>
       </body>
     </html>

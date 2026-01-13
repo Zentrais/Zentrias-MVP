@@ -270,21 +270,6 @@ export default function HomePage() {
   // Render content immediately, even before components are fully loaded
   return (
     <div className="min-h-screen relative" style={{ transform: 'translateZ(0)', contain: 'layout style paint', willChange: 'auto', minHeight: '100vh' }}>
-      {/* Space Background - 4K Quality - Render immediately */}
-      <div className="space-background" style={{ contain: 'layout style paint', willChange: 'auto' }}>
-        <div className="space-stars" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="space-nebula-1" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="space-nebula-2" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="space-nebula-3" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="space-nebula-4" style={{ willChange: 'transform, opacity' }}></div>
-        {/* Random premium gradients */}
-        <div className="premium-gradient-1" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="premium-gradient-2" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="premium-gradient-3" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="premium-gradient-4" style={{ willChange: 'transform, opacity' }}></div>
-        <div className="premium-gradient-5" style={{ willChange: 'transform, opacity' }}></div>
-      </div>
-      
       {/* Content - Render immediately */}
       <div className="relative z-10" style={{ contain: 'layout style', visibility: 'visible' }}>
       {/* HEADLINE SECTION */}

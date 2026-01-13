@@ -70,21 +70,6 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
 
   return (
     <div className="min-h-screen relative overflow-hidden collaborator-body collaborator-tone" style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}>
-      {/* Space Background - 4K Quality */}
-      <div className="space-background">
-        <div className="space-stars"></div>
-        <div className="space-nebula-1"></div>
-        <div className="space-nebula-2"></div>
-        <div className="space-nebula-3"></div>
-        <div className="space-nebula-4"></div>
-        {/* Random premium gradients */}
-        <div className="premium-gradient-1"></div>
-        <div className="premium-gradient-2"></div>
-        <div className="premium-gradient-3"></div>
-        <div className="premium-gradient-4"></div>
-        <div className="premium-gradient-5"></div>
-      </div>
-
       {/* Content */}
       <div className="relative z-10 text-white">
       {/* Hero Section */}
