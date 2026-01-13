@@ -273,7 +273,7 @@ export default function HomePage() {
       {/* Content - Render immediately */}
       <div className="relative z-10" style={{ contain: 'layout style', visibility: 'visible' }}>
       {/* HEADLINE SECTION */}
-      <div className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 text-center relative" style={{ contain: 'layout style', opacity: 1 }}>
+      <div className="container mx-auto px-4 sm:px-6 pt-6 sm:pt-8 md:pt-10 text-center relative" style={{ contain: 'layout style', opacity: 1 }}>
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-2xl font-sans animate-fade-in-up relative group" style={{ contain: 'layout style', opacity: 1 }}>
           <span className="inline-block bg-gradient-to-r from-white via-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent bg-[length:200%_auto] relative">
