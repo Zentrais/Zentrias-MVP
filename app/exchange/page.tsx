@@ -46,6 +46,26 @@ type Filters = {
   radiusMiles: number;
 };
 
+type AIChatMessage = {
+  id: string;
+  text: string;
+  isFromAI: boolean;
+  timestamp: string;
+  imageResults?: {
+    id: string;
+    title: string;
+    price: number;
+    imageUrl: string;
+  }[];
+};
+
+type ChatHistory = {
+  id: string;
+  title: string;
+  lastMessage: string;
+  timestamp: string;
+};
+
 const DEFAULT_FILTERS: Filters = {
   minPrice: null,
   maxPrice: null,
@@ -302,6 +322,167 @@ function FilterModal({
         >
           Apply Filter
         </button>
+      </div>
+    </div>
+  );
+}
+
+/** ✅ Location Screen */
+function LocationScreen({ onBack, onLocationSelect }: { onBack: () => void; onLocationSelect: (location: string) => void }) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [mapView, setMapView] = useState<'Map' | 'Satellite'>('Map');
+  const [currentLocation, setCurrentLocation] = useState('Birmingham');
+  const [recentLocations] = useState(['Toronto', 'Calgary', 'Vancouver']);
+
+  // Get current GPS location (placeholder)
+  const getCurrentLocation = () => {
+    // TODO: Implement GPS location detection
+    setCurrentLocation('Current Location');
+    alert('GPS location feature will be implemented with Google Maps integration');
+  };
+
+  // Search for location (placeholder)
+  const searchLocation = () => {
+    if (!searchQuery.trim()) return;
+    
+    // TODO: Implement location search with Google Maps Geocoding
+    setCurrentLocation(searchQuery);
+    alert(`Search for "${searchQuery}" will be implemented with Google Maps integration`);
+  };
+
+  // Handle search on Enter key
+  const handleSearchKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      searchLocation();
+    }
+  };
+
+  // Apply selected location
+  const applyLocation = () => {
+    onLocationSelect(currentLocation);
+    onBack();
+  };
+
+  return (
+    <div className="min-h-dvh bg-[#F5EEE6] text-slate-900">
+      {/* Header */}
+      <header className="sticky top-0 z-20 bg-[#F5EEE6]/95 backdrop-blur border-b border-black/5">
+        <div className="mx-auto w-full max-w-md px-4 py-3 sm:max-w-full">
+          <div className="flex items-center justify-between">
+            <h1 className="text-[18px] font-semibold text-slate-800">Location</h1>
+            <button
+              type="button"
+              onClick={onBack}
+              aria-label="Close"
+              className="grid h-9 w-9 place-items-center rounded-full active:scale-95 transition"
+            >
+              <X className="h-5 w-5 text-slate-600" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Content */}
+      <main className="mx-auto w-full max-w-md px-4 pb-[calc(80px+env(safe-area-inset-bottom))] sm:max-w-full">
+        {/* Locate Me Button */}
+        <div className="mt-4">
+          <button
+            type="button"
+            onClick={getCurrentLocation}
+            className="w-full rounded-lg bg-[#B56A1E] px-4 py-3 text-[14px] font-semibold text-white shadow-md active:scale-[0.99] transition"
+          >
+            Locate Me
+          </button>
+        </div>
+
+        {/* Search */}
+        <div className="mt-4">
+          <div className="flex items-center rounded-lg border border-slate-300 bg-white px-4 py-3">
+            <input
+              type="text"
+              placeholder="Search city,state,country"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={handleSearchKeyPress}
+              className="w-full bg-transparent text-[14px] text-slate-800 placeholder:text-slate-500 outline-none"
+            />
+            <Search className="h-4 w-4 text-slate-400 ml-2" />
+          </div>
+        </div>
+
+        {/* Map View Toggle */}
+        <div className="mt-4 flex gap-2">
+          {(['Map', 'Satellite'] as const).map((view) => (
+            <button
+              key={view}
+              type="button"
+              onClick={() => setMapView(view)}
+              className={cn(
+                'rounded-md px-4 py-2 text-[13px] font-medium transition',
+                mapView === view
+                  ? 'bg-[#B56A1E] text-white'
+                  : 'bg-white text-slate-700 ring-1 ring-black/10 hover:bg-slate-50'
+              )}
+            >
+              {view}
+            </button>
+          ))}
+        </div>
+
+        {/* Map Placeholder */}
+        <div className="mt-4 relative h-64 overflow-hidden rounded-lg bg-slate-200 border border-slate-300">
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
+            <div className="text-center">
+              <MapPin className="mx-auto h-12 w-12 mb-3 text-slate-400" />
+              <p className="text-[14px] font-medium text-slate-600 mb-1">Google Maps Integration</p>
+              <p className="text-[12px] text-slate-500">Interactive map will be added here</p>
+              <div className="mt-3 px-3 py-1.5 bg-white rounded-full text-[11px] text-slate-600 inline-block">
+                {mapView} View • {currentLocation}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Locations */}
+        <div className="mt-6">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-[14px] font-semibold text-slate-800">Recent Locations</h3>
+            <button className="text-[12px] text-[#B56A1E] font-medium">See All</button>
+          </div>
+          
+          <div className="space-y-2">
+            {recentLocations.map((loc) => (
+              <button
+                key={loc}
+                type="button"
+                onClick={() => {
+                  setCurrentLocation(loc);
+                  setSearchQuery(loc);
+                }}
+                className="flex w-full items-center justify-between rounded-lg bg-white p-3 text-left ring-1 ring-black/5 hover:bg-slate-50 active:scale-[0.99] transition"
+              >
+                <span className="text-[14px] text-slate-800">{loc}</span>
+                <ChevronLeft className="h-4 w-4 rotate-180 text-slate-400" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      {/* Bottom Action */}
+      <div className="fixed bottom-0 left-0 right-0 z-30 bg-[#F5EEE6]/95 backdrop-blur">
+        <div className="mx-auto w-full max-w-md px-4 pb-[calc(16px+env(safe-area-inset-bottom))] pt-3 sm:max-w-3xl">
+          <button
+            type="button"
+            onClick={applyLocation}
+            className={cn(
+              'w-full rounded-lg py-3 text-[14px] font-semibold',
+              'bg-[#B56A1E] text-white shadow-md active:scale-[0.99] transition'
+            )}
+          >
+            Apply Now
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -904,73 +1085,509 @@ function ProductDetailScreen({
   );
 }
 
+// AI Chat Screen Component - moved outside to prevent re-creation on every render
+function AIChatScreen({ 
+  aiMessages, 
+  aiInputText, 
+  setAiInputText, 
+  sendAIMessage, 
+  setChatHistoryOpen, 
+  setAiChatOpen 
+}: {
+  aiMessages: AIChatMessage[];
+  aiInputText: string;
+  setAiInputText: (text: string) => void;
+  sendAIMessage: () => void;
+  setChatHistoryOpen: (open: boolean) => void;
+  setAiChatOpen: (open: boolean) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 bg-[#F5EEE6] flex flex-col">
+      {/* Header */}
+      <header className="sticky top-0 bg-[#F5EEE6]/95 backdrop-blur border-b border-black/5 px-4 py-3">
+        <div className="flex items-center justify-between">
+          <button
+            type="button"
+            onClick={() => setChatHistoryOpen(true)}
+            className="p-2 rounded-full hover:bg-black/5"
+          >
+            <div className="w-5 h-5 flex flex-col justify-center space-y-1">
+              <div className="w-full h-0.5 bg-[#B56A1E] rounded"></div>
+              <div className="w-full h-0.5 bg-[#B56A1E] rounded"></div>
+              <div className="w-full h-0.5 bg-[#B56A1E] rounded"></div>
+            </div>
+          </button>
+          
+          <div className="items-center space-x-2">
+            <div className="flex items-center justify-center">
+              <Sparkles className="h-5 w-5 text-[#B56A1E]" />
+            </div>
+            <span className="text-sm text-slate-600">Zentrais AI V.1</span>
+          </div>
+          
+          <button
+            type="button"
+            onClick={() => setAiChatOpen(false)}
+            className="p-2"
+          >
+            <X className="h-5 w-5 text-slate-600" />
+          </button>
+        </div>
+      </header>
+
+      {/* Chat Content */}
+      <div className="flex-1 flex flex-col">
+        {aiMessages.length === 0 ? (
+          // Initial state
+          <div className="flex-1 flex flex-col justify-center items-center px-4">
+            <h1 className="text-2xl font-semibold text-slate-800 mb-8">Hey John</h1>
+          </div>
+        ) : (
+          // Chat messages
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {aiMessages.map((message) => (
+              <div key={message.id} className={`flex ${message.isFromAI ? 'justify-start' : 'justify-end'}`}>
+                <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${
+                  message.isFromAI 
+                    ? 'bg-white text-slate-800 border border-slate-200' 
+                    : 'bg-[#B56A1E] text-white'
+                }`}>
+                  <p className="text-sm">{message.text}</p>
+                  {message.imageResults && (
+                    <div className="grid grid-cols-2 gap-2 mt-3">
+                      {message.imageResults.slice(0, 4).map((item) => (
+                        <div key={item.id} className="bg-slate-50 rounded-lg p-2">
+                          <img 
+                            src={item.imageUrl} 
+                            alt={item.title}
+                            className="w-full h-20 object-cover rounded-md mb-2"
+                          />
+                          <p className="text-xs font-medium text-slate-800">{item.title}</p>
+                          <p className="text-xs text-[#B56A1E] font-semibold">${item.price}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {message.imageResults && message.imageResults.length > 4 && (
+                    <div className="mt-2">
+                      <div className="bg-slate-50 rounded-lg p-2">
+                        <img 
+                          src={message.imageResults[4].imageUrl} 
+                          alt={message.imageResults[4].title}
+                          className="w-full h-20 object-cover rounded-md mb-2"
+                        />
+                        <p className="text-xs font-medium text-slate-800">{message.imageResults[4].title}</p>
+                        <p className="text-xs text-[#B56A1E] font-semibold">${message.imageResults[4].price}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Input Area */}
+        <div className="border-t border-black/5 p-4">
+          <div className="flex items-center space-x-2">
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                value={aiInputText}
+                onChange={(e) => setAiInputText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendAIMessage();
+                  }
+                }}
+                placeholder={aiMessages.length === 0 ? "What are you getting today" : "Type Something"}
+                className="w-full bg-white border border-slate-300 rounded-full px-4 py-3 text-sm text-black focus:outline-none focus:ring-2 focus:ring-[#B56A1E] focus:border-transparent"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={sendAIMessage}
+              disabled={!aiInputText.trim()}
+              className="bg-[#B56A1E] hover:bg-[#b5957b] disabled:bg-[#b5957b] text-white rounded-full p-3 transition-colors"
+            >
+              <Send className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Chat History Sidebar Component - moved outside to prevent re-creation
+function ChatHistorySidebar({ 
+  chatHistories, 
+  setChatHistoryOpen 
+}: {
+  chatHistories: ChatHistory[];
+  setChatHistoryOpen: (open: boolean) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex">
+      {/* Sidebar */}
+      <div className="w-80 bg-[#B56A1E] flex flex-col">
+        {/* Header */}
+        <div className="p-4 border-b border-white/10">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Search className="h-4 w-4 text-white" />
+              <input 
+                type="text" 
+                placeholder="Search"
+                className="bg-transparent text-white placeholder-white/70 text-sm focus:outline-none"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={() => setChatHistoryOpen(false)}
+              className="text-white p-1"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* New Chat Button */}
+        <div className="p-4 border-b border-white/10">
+          <button className="flex items-center space-x-2 text-white text-sm">
+            <div className="w-4 h-4 border border-white rounded-sm flex items-center justify-center">
+              <Plus className="h-3 w-3" />
+            </div>
+            <span>New Chat</span>
+          </button>
+        </div>
+
+        {/* Chat History */}
+        <div className="flex-1 overflow-y-auto">
+          {/* Today */}
+          <div className="p-4">
+            <h3 className="text-white/70 text-xs font-medium mb-3">Today</h3>
+            {chatHistories
+              .filter(chat => chat.timestamp === 'today')
+              .map((chat) => (
+                <div key={chat.id} className="flex items-center justify-between py-2 px-2 rounded hover:bg-white/10 cursor-pointer group">
+                  <span className="text-white text-sm truncate flex-1">{chat.title}</span>
+                  <button className="opacity-0 group-hover:opacity-100 text-white/70">
+                    <div className="w-4 h-4 flex justify-center items-center">•••</div>
+                  </button>
+                </div>
+              ))}
+          </div>
+
+          {/* Yesterday */}
+          <div className="p-4">
+            <h3 className="text-white/70 text-xs font-medium mb-3">Yesterday</h3>
+            {chatHistories
+              .filter(chat => chat.timestamp === 'yesterday')
+              .map((chat) => (
+                <div key={chat.id} className="flex items-center justify-between py-2 px-2 rounded hover:bg-white/10 cursor-pointer group">
+                  <span className="text-white text-sm truncate flex-1">{chat.title}</span>
+                  <button className="opacity-0 group-hover:opacity-100 text-white/70">
+                    <div className="w-4 h-4 flex justify-center items-center">•••</div>
+                  </button>
+                </div>
+              ))}
+          </div>
+
+          {/* Last Week */}
+          <div className="p-4">
+            <h3 className="text-white/70 text-xs font-medium mb-3">Last Week</h3>
+            {chatHistories
+              .filter(chat => chat.timestamp === 'lastweek')
+              .map((chat) => (
+                <div key={chat.id} className="flex items-center justify-between py-2 px-2 rounded hover:bg-white/10 cursor-pointer group">
+                  <span className="text-white text-sm truncate flex-1">{chat.title}</span>
+                  <button className="opacity-0 group-hover:opacity-100 text-white/70">
+                    <div className="w-4 h-4 flex justify-center items-center">•••</div>
+                  </button>
+                </div>
+              ))}
+          </div>
+        </div>
+
+        {/* Clear History */}
+        <div className="p-4 border-t border-white/10">
+          <button className="flex items-center space-x-2 text-white text-sm">
+            <div className="w-4 h-4 border border-white rounded-full"></div>
+            <span>Clear History</span>
+          </button>
+        </div>
+
+        {/* Profile Avatar */}
+        <div className="p-4">
+          <div className="flex justify-center">
+            <div className="w-8 h-8 rounded-full overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=300&q=60"
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay */}
+      <div 
+        className="flex-1 bg-black/20"
+        onClick={() => setChatHistoryOpen(false)}
+      />
+    </div>
+  );
+}
+
 export default function ExchangePage() {
+  // AI Chat state
+  const [aiChatOpen, setAiChatOpen] = useState(false);
+  const [chatHistoryOpen, setChatHistoryOpen] = useState(false);
+  const [aiMessages, setAiMessages] = useState<AIChatMessage[]>([]);
+  const [aiInputText, setAiInputText] = useState('');
+  const [chatHistories] = useState<ChatHistory[]>([
+    { id: '1', title: 'Chat Title', lastMessage: 'Looking for antique tables...', timestamp: 'today' },
+    { id: '2', title: 'Chat Title', lastMessage: 'Camera equipment search', timestamp: 'today' },
+    { id: '3', title: 'Chat Title', lastMessage: 'Furniture recommendations', timestamp: 'today' },
+    { id: '4', title: 'Chat Title', lastMessage: 'Electronics deals', timestamp: 'yesterday' },
+    { id: '5', title: 'Chat Title', lastMessage: 'Vintage items query', timestamp: 'yesterday' },
+    { id: '6', title: 'Chat Title', lastMessage: 'Pricing advice needed', timestamp: 'yesterday' },
+    { id: '7', title: 'Chat Title', lastMessage: 'Local marketplace tips', timestamp: 'lastweek' },
+    { id: '8', title: 'Chat Title', lastMessage: 'Negotiation strategies', timestamp: 'lastweek' },
+    { id: '9', title: 'Chat Title', lastMessage: 'Best selling practices', timestamp: 'lastweek' },
+  ]);
+
+  // All existing state hooks
+  const [mode, setMode] = useState<'grid' | 'search' | 'messaging' | 'sell' | 'detail' | 'location'>('grid');
+  const [searchText, setSearchText] = useState('');
+  const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
+  const [selectedChat, setSelectedChat] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [inputText, setInputText] = useState('');
+  const [selected, setSelected] = useState<Listing | null>(null);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [draft, setDraft] = useState<{
+    minPriceText: string;
+    maxPriceText: string;
+    sortBy: SortBy;
+    radiusMiles: number;
+  }>({
+    minPriceText: '',
+    maxPriceText: '',
+    sortBy: 'newest',
+    radiusMiles: 10,
+  });
+  const [appliedFilters, setAppliedFilters] = useState<Filters>(DEFAULT_FILTERS);
+
+  // Sell form state
+  const [sellForm, setSellForm] = useState({
+    title: '',
+    description: '',
+    price: '',
+    category: '',
+    condition: '',
+    location: 'Birmingham',
+    images: [] as string[]
+  });
+
+  // Handle sending AI message
+  const sendAIMessage = () => {
+    if (!aiInputText.trim()) return;
+    
+    const userMessage: AIChatMessage = {
+      id: Date.now().toString(),
+      text: aiInputText,
+      isFromAI: false,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+    
+    setAiMessages(prev => [...prev, userMessage]);
+    
+    // Simulate AI response based on message content
+    setTimeout(() => {
+      let aiResponse: AIChatMessage;
+      
+      if (aiMessages.length === 0) {
+        // First message - ask about budget
+        aiResponse = {
+          id: (Date.now() + 1).toString(),
+          text: "I can see you are in Calgary Alberta, do you want me to limit my search there and also can I know your budget?",
+          isFromAI: true,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+      } else if (aiInputText.toLowerCase().includes('$500') || aiInputText.includes('500')) {
+        // Budget provided - show search results
+        aiResponse = {
+          id: (Date.now() + 1).toString(),
+          text: "I Found 5 Antique tables in Canada. Check them out",
+          isFromAI: true,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          imageResults: [
+            {
+              id: '1',
+              title: 'Victorian Dining Table',
+              price: 450,
+              imageUrl: 'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=300&q=80'
+            },
+            {
+              id: '2', 
+              title: 'Antique Oak Table',
+              price: 380,
+              imageUrl: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=300&q=80'
+            },
+            {
+              id: '3',
+              title: 'Vintage Round Table',
+              price: 520,
+              imageUrl: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=300&q=80'
+            },
+            {
+              id: '4',
+              title: 'Mahogany Side Table',
+              price: 280,
+              imageUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=300&q=80'
+            },
+            {
+              id: '5',
+              title: 'Classic Wood Table',
+              price: 495,
+              imageUrl: 'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=300&q=80'
+            }
+          ]
+        };
+      } else {
+        // Default response
+        aiResponse = {
+          id: (Date.now() + 1).toString(),
+          text: "I'd be happy to help you find what you're looking for! Can you tell me more about your budget and specific preferences?",
+          isFromAI: true,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+      }
+      
+      setAiMessages(prev => [...prev, aiResponse]);
+    }, 1000);
+    
+    setAiInputText('');
+  };
+
   const listings = useMemo<Listing[]>(
     () => [
       {
         id: '1',
-        title: 'Antique Bottle',
-        subtitle: 'Bottle',
-        price: 450,
-        timeAgo: '2d ago',
-        imageUrl: 'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1200&q=80',
+        title: 'MacBook Pro 14" M2 2023',
+        subtitle: 'Laptop',
+        price: 1899,
+        timeAgo: '2h ago',
+        imageUrl: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80',
         images: [
-          'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1549497537-3fe2ab5f9e2b?auto=format&fit=crop&w=1200&q=80',
-          'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80',
         ],
-        categories: ['Collectibles', 'Antique'],
-        sellerName: 'Sarah K.',
+        categories: ['Electronics', 'Computer'],
+        sellerName: 'Emma T.',
+        description: 'Excellent condition MacBook Pro with M2 chip, 16GB RAM, 512GB SSD. Perfect for work or creative projects. Includes original charger and box.',
       },
       {
         id: '2',
-        title: 'Vintage Oak Artic Table',
-        subtitle: 'Table',
-        price: 450,
-        timeAgo: '1h ago',
-        imageUrl: 'https://images.unsplash.com/photo-1523413452902-6f6a0f7d3a9a?auto=format&fit=crop&w=1200&q=80',
+        title: 'Vintage Danish Teak Dining Table',
+        subtitle: 'Furniture',
+        price: 850,
+        timeAgo: '1d ago',
+        imageUrl: 'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1200&q=80',
         images: [
-          'https://images.unsplash.com/photo-1523413452902-6f6a0f7d3a9a?auto=format&fit=crop&w=1400&q=80',
-          'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1400&q=80',
-          'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1400&q=80',
+          'https://images.unsplash.com/photo-1549497538-303791108f95?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=80',
         ],
-        categories: ['Furniture', 'Antique'],
-        sellerName: 'Sarah K.',
+        categories: ['Furniture', 'Vintage'],
+        sellerName: 'Marcus K.',
+        description: 'Beautiful mid-century modern dining table from the 1960s. Solid teak construction, seats 6 people comfortably. Minor wear consistent with age.',
       },
       {
         id: '3',
-        title: 'Running Shoes',
-        subtitle: 'Shoes',
-        price: 250,
-        timeAgo: '5h ago',
-        imageUrl: 'https://images.unsplash.com/photo-1528701800489-20be3c6fd1a8?auto=format&fit=crop&w=1200&q=80',
-        categories: ['Shoes', 'Sports'],
-        sellerName: 'Mike J.',
+        title: 'Canon EOS R5 Camera + 24-70mm Lens',
+        subtitle: 'Camera',
+        price: 2850,
+        timeAgo: '4h ago',
+        imageUrl: 'https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?auto=format&fit=crop&w=1200&q=80',
+        images: [
+          'https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1200&q=80',
+        ],
+        categories: ['Electronics', 'Photography'],
+        sellerName: 'Alex P.',
+        description: 'Professional mirrorless camera with RF 24-70mm f/2.8 lens. Low shutter count, pristine condition. Perfect for photography enthusiasts.',
       },
       {
         id: '4',
-        title: 'Telephone',
-        subtitle: 'Phone',
-        price: 120,
-        timeAgo: '10min ago',
-        imageUrl: 'https://images.unsplash.com/photo-1520975693411-b2b2682a35f5?auto=format&fit=crop&w=1200&q=80',
-        categories: ['Electronics', 'Vintage'],
-        sellerName: 'Alex R.',
+        title: 'Nike Air Jordan 1 Retro High',
+        subtitle: 'Sneakers',
+        price: 180,
+        timeAgo: '30min ago',
+        imageUrl: 'https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?auto=format&fit=crop&w=1200&q=80',
+        categories: ['Shoes', 'Fashion'],
+        sellerName: 'Jordan M.',
+        description: 'Classic Chicago colorway, size 10.5. Worn a few times, excellent condition. Comes with original box and laces.',
+      },
+      {
+        id: '5',
+        title: 'Fender Stratocaster Electric Guitar',
+        subtitle: 'Musical Instrument',
+        price: 650,
+        timeAgo: '6h ago',
+        imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80',
+        categories: ['Music', 'Instrument'],
+        sellerName: 'Riley S.',
+        description: 'Mexican-made Fender Strat in sunburst finish. Great tone, plays beautifully. Perfect for beginners or experienced players.',
+      },
+      {
+        id: '6',
+        title: 'Dyson V15 Detect Cordless Vacuum',
+        subtitle: 'Home Appliance',
+        price: 420,
+        timeAgo: '3h ago',
+        imageUrl: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1200&q=80',
+        categories: ['Home', 'Appliance'],
+        sellerName: 'Lisa H.',
+        description: 'Barely used Dyson V15 with laser dust detection. Includes all attachments and charging dock. Moving sale!',
+      },
+      {
+        id: '7',
+        title: 'Specialized Road Bike - Carbon Frame',
+        subtitle: 'Bicycle',
+        price: 1200,
+        timeAgo: '1d ago',
+        imageUrl: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=1200&q=80',
+        categories: ['Sports', 'Cycling'],
+        sellerName: 'David R.',
+        description: 'Specialized Allez Sprint with carbon frame, Shimano 105 groupset. Well maintained, ready to ride. Size 54cm.',
+      },
+      {
+        id: '8',
+        title: 'Designer Leather Sofa Set',
+        subtitle: 'Furniture',
+        price: 1100,
+        timeAgo: '2d ago',
+        imageUrl: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=1200&q=80',
+        categories: ['Furniture', 'Living Room'],
+        sellerName: 'Sophie L.',
+        description: '3-piece genuine leather sofa set in cognac brown. Modern design, very comfortable. Selling due to downsizing.',
       },
     ],
     []
   );
 
-  const [mode, setMode] = useState<'grid' | 'search' | 'detail' | 'messaging' | 'sell'>('grid');
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-
-  const selected = useMemo(
-    () => (selectedId ? listings.find((l) => l.id === selectedId) ?? null : null),
-    [selectedId, listings]
-  );
-
   const openDetail = (id: string) => {
-    setSelectedId(id);
+    setSelected(listings.find((l) => l.id === id) ?? null);
     setMode('detail');
   };
 
@@ -978,10 +1595,10 @@ export default function ExchangePage() {
     setMode('messaging');
   };
 
-  const [query, setQuery] = useState('Antique Table');
+  const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState('Alberta');
 
-  const [likedIds, setLikedIds] = useState<Set<string>>(() => new Set());
   const toggleLike = (id: string) => {
     setLikedIds((prev) => {
       const next = new Set(prev);
@@ -990,17 +1607,6 @@ export default function ExchangePage() {
       return next;
     });
   };
-
-  // Filters
-  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
-  const [filterOpen, setFilterOpen] = useState(false);
-
-  const [draft, setDraft] = useState(() => ({
-    minPriceText: '',
-    maxPriceText: '',
-    sortBy: DEFAULT_FILTERS.sortBy as SortBy,
-    radiusMiles: DEFAULT_FILTERS.radiusMiles,
-  }));
 
   // focus search input when entering search mode
   useEffect(() => {
@@ -1011,33 +1617,33 @@ export default function ExchangePage() {
   useEffect(() => {
     if (!filterOpen) return;
     setDraft({
-      minPriceText: filters.minPrice == null ? '' : String(filters.minPrice),
-      maxPriceText: filters.maxPrice == null ? '' : String(filters.maxPrice),
-      sortBy: filters.sortBy,
-      radiusMiles: filters.radiusMiles,
+      minPriceText: appliedFilters.minPrice == null ? '' : String(appliedFilters.minPrice),
+      maxPriceText: appliedFilters.maxPrice == null ? '' : String(appliedFilters.maxPrice),
+      sortBy: appliedFilters.sortBy,
+      radiusMiles: appliedFilters.radiusMiles,
     });
-  }, [filterOpen, filters]);
+  }, [filterOpen, appliedFilters]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     let arr = listings.slice();
 
     if (q) arr = arr.filter((l) => l.title.toLowerCase().includes(q) || l.subtitle.toLowerCase().includes(q));
-    if (filters.minPrice != null) arr = arr.filter((l) => l.price >= filters.minPrice!);
-    if (filters.maxPrice != null) arr = arr.filter((l) => l.price <= filters.maxPrice!);
+    if (appliedFilters.minPrice != null) arr = arr.filter((l) => l.price >= appliedFilters.minPrice!);
+    if (appliedFilters.maxPrice != null) arr = arr.filter((l) => l.price <= appliedFilters.maxPrice!);
 
-    if (filters.sortBy === 'price_desc') arr.sort((a, b) => b.price - a.price);
-    else if (filters.sortBy === 'price_asc') arr.sort((a, b) => a.price - b.price);
+    if (appliedFilters.sortBy === 'price_desc') arr.sort((a, b) => b.price - a.price);
+    else if (appliedFilters.sortBy === 'price_asc') arr.sort((a, b) => a.price - b.price);
     else arr.sort((a, b) => parseTimeAgoToMinutes(a.timeAgo) - parseTimeAgoToMinutes(b.timeAgo));
 
     return arr;
-  }, [listings, query, filters]);
+  }, [listings, query, appliedFilters]);
 
   const applyDraftFilters = () => {
     const minP = draft.minPriceText ? Number(draft.minPriceText) : null;
     const maxP = draft.maxPriceText ? Number(draft.maxPriceText) : null;
 
-    setFilters({
+    setAppliedFilters({
       minPrice: Number.isFinite(minP as number) ? minP : null,
       maxPrice: Number.isFinite(maxP as number) ? maxP : null,
       sortBy: draft.sortBy,
@@ -1054,9 +1660,19 @@ export default function ExchangePage() {
       sortBy: DEFAULT_FILTERS.sortBy,
       radiusMiles: DEFAULT_FILTERS.radiusMiles,
     });
-    setFilters(DEFAULT_FILTERS);
+    setAppliedFilters(DEFAULT_FILTERS);
     setFilterOpen(false);
   };
+
+  // ✅ Location screen
+  if (mode === 'location') {
+    return (
+      <LocationScreen
+        onBack={() => setMode('grid')}
+        onLocationSelect={(location) => setSelectedLocation(location)}
+      />
+    );
+  }
 
   // ✅ Sell Item screen
   if (mode === 'sell') {
@@ -1091,6 +1707,26 @@ export default function ExchangePage() {
     );
   }
 
+  // Check if AI chat should be shown - after all hooks are called
+  if (aiChatOpen) {
+    return (
+      <>
+        <AIChatScreen 
+          aiMessages={aiMessages}
+          aiInputText={aiInputText}
+          setAiInputText={setAiInputText}
+          sendAIMessage={sendAIMessage}
+          setChatHistoryOpen={setChatHistoryOpen}
+          setAiChatOpen={setAiChatOpen}
+        />
+        {chatHistoryOpen && <ChatHistorySidebar 
+          chatHistories={chatHistories}
+          setChatHistoryOpen={setChatHistoryOpen}
+        />}
+      </>
+    );
+  }
+
   return (
     <div className="min-h-dvh bg-[#F5EEE6] text-slate-900">
       {/* Header */}
@@ -1119,7 +1755,12 @@ export default function ExchangePage() {
                 >
                   <Search className="h-5 w-5 text-[#B56A1E]" />
                 </button>
-                <button type="button" aria-label="Filters" className="grid h-10 w-10 place-items-center rounded-full active:scale-95 transition">
+                <button 
+                  type="button" 
+                  aria-label="AI Chat" 
+                  onClick={() => setAiChatOpen(true)}
+                  className="grid h-10 w-10 place-items-center rounded-full active:scale-95 transition"
+                >
                   <Sparkles className="h-5 w-5 text-[#B56A1E]" />
                 </button>
               </div>
@@ -1132,8 +1773,14 @@ export default function ExchangePage() {
                 <p className="text-[13px] font-semibold text-slate-600">Todays Picks</p>
 
                 <div className="flex items-center gap-1 text-[12px] text-slate-600">
-                  <MapPin className="h-4 w-4 text-[#B56A1E]" />
-                  <span>Alberta</span>
+                  <button
+                    type="button"
+                    onClick={() => setMode('location')}
+                    className="flex items-center gap-1 hover:text-[#B56A1E] active:scale-95 transition"
+                  >
+                    <MapPin className="h-4 w-4 text-[#B56A1E]" />
+                    <span>{selectedLocation}</span>
+                  </button>
                 </div>
               </div>
             </div>
