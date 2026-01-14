@@ -605,7 +605,7 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
 
   return (
     <div 
-      className="w-full max-w-4xl mx-auto p-6 sm:p-8 rounded-2xl relative"
+      className="w-full max-w-4xl mx-auto px-4 py-6 sm:p-6 md:p-8 rounded-2xl relative"
       style={{
         background: 'rgba(244, 114, 182, 0.12)',
         backdropFilter: 'blur(20px) saturate(180%)',
@@ -725,16 +725,16 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
         {/* Time Display (left) */}
-        <div className="flex items-center gap-4 text-sm sm:text-base text-white/80 font-mono">
+        <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm md:text-base text-white/80 font-mono order-1 sm:order-1">
           <span>{formatTime(currentTime)}</span>
           <span className="text-white/40">/</span>
           <span>{formatTime(duration)}</span>
         </div>
 
         {/* Center group: Skip Back, Play/Pause, Skip Forward */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 order-2 sm:order-2">
           {/* Skip Back button (left of Play) */}
           <button
             onClick={handleSkipBack}
@@ -834,7 +834,7 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
         </div>
 
         {/* Volume Control - right */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-2 order-3 sm:order-3 w-full sm:w-auto justify-center sm:justify-start">
           <button
             onClick={toggleMute}
             className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 hover:scale-110 group/button"
@@ -865,7 +865,7 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
             step="0.01"
             value={isMuted ? 0 : volume}
             onChange={handleVolumeChange}
-            className="w-20 sm:w-24 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer podcast-slider"
+            className="w-24 sm:w-24 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer podcast-slider"
             style={{
               background: `linear-gradient(to right, rgba(244, 114, 182, 0.7) 0%, rgba(244, 114, 182, 0.7) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.1) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.1) 100%)`,
             }}
