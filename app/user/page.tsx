@@ -161,28 +161,30 @@ export default function UserPage() {
             </div>
 
             {/* Celulares a la derecha */}
-            <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[650px] overflow-hidden">
+            <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[650px] overflow-visible px-8 lg:px-16">
               {/* Celular izquierdo - The Integrity Perspective */}
               <div
                 onClick={() => setSelectedPhone(0)}
-                className={`absolute transition-all duration-500 cursor-pointer ${
+                className={`absolute transition-all duration-700 ease-in-out cursor-pointer ${
                   selectedPhone === 0
                     ? 'z-30 opacity-100'
                     : selectedPhone === 1
-                    ? 'z-20 opacity-80'
-                    : 'z-10 opacity-60'
+                    ? 'z-20 opacity-95'
+                    : 'z-10 opacity-90'
                 }`}
                 style={{
                   left: selectedPhone === 0
-                    ? '50%'
+                    ? 'calc(50% + 2.5rem)'
                     : selectedPhone === 1
-                    ? isMobile ? 'calc(50% - 4rem)' : 'calc(50% - 8rem)'
-                    : isMobile ? 'calc(50% - 8rem)' : 'calc(50% - 16rem)',
+                    ? isMobile ? 'calc(50% - 1.5rem)' : 'calc(50% - 5.5rem)'
+                    : isMobile ? 'calc(50% - 5.5rem)' : 'calc(50% - 13.5rem)',
                   top: '50%',
-                  transform: 'translate(-50%, -50%) scale(1)',
+                  transform: selectedPhone === 0 
+                    ? 'translate(-50%, -50%) scale(1.05)' 
+                    : 'translate(-50%, -50%) scale(1)',
                 }}
               >
-                <div className="relative w-[12.5rem] sm:w-72 md:w-80 h-[26rem] sm:h-[36rem] md:h-[40rem] transition-all duration-300">
+                <div className="relative w-[10.5rem] sm:w-60 md:w-68 h-[23rem] sm:h-[30rem] md:h-[34rem] transition-all duration-300">
                   <Image
                     src="/Perspective Web.png"
                     alt="Perspective Interface"
@@ -195,24 +197,26 @@ export default function UserPage() {
               {/* Celular medio - Dialog */}
               <div
                 onClick={() => setSelectedPhone(1)}
-                className={`absolute transition-all duration-500 cursor-pointer ${
+                className={`absolute transition-all duration-700 ease-in-out cursor-pointer ${
                   selectedPhone === 1
                     ? 'z-30 opacity-100'
                     : selectedPhone === 0 || selectedPhone === 2
-                    ? 'z-20 opacity-80'
-                    : 'z-10 opacity-60'
+                    ? 'z-20 opacity-95'
+                    : 'z-10 opacity-90'
                 }`}
                 style={{
                   left: selectedPhone === 1
-                    ? '50%'
+                    ? 'calc(50% + 2.5rem)'
                     : selectedPhone === 0
-                    ? isMobile ? 'calc(50% + 4rem)' : 'calc(50% + 8rem)'
-                    : isMobile ? 'calc(50% - 4rem)' : 'calc(50% - 8rem)',
+                    ? isMobile ? 'calc(50% + 6.5rem)' : 'calc(50% + 10.5rem)'
+                    : isMobile ? 'calc(50% - 1.5rem)' : 'calc(50% - 5.5rem)',
                   top: '50%',
-                  transform: 'translate(-50%, -50%) scale(1)',
+                  transform: selectedPhone === 1 
+                    ? 'translate(-50%, -50%) scale(1.05)' 
+                    : 'translate(-50%, -50%) scale(1)',
                 }}
               >
-                <div className="relative w-[12.5rem] sm:w-72 md:w-80 h-[26rem] sm:h-[36rem] md:h-[40rem] transition-all duration-300">
+                <div className="relative w-[10.5rem] sm:w-60 md:w-68 h-[23rem] sm:h-[30rem] md:h-[34rem] transition-all duration-300">
                   <Image
                     src="/Dialog Web.png"
                     alt="Perspective Interface"
@@ -225,24 +229,26 @@ export default function UserPage() {
               {/* Celular derecho - The Integrity Exchange */}
               <div
                 onClick={() => setSelectedPhone(2)}
-                className={`absolute transition-all duration-500 cursor-pointer ${
+                className={`absolute transition-all duration-700 ease-in-out cursor-pointer ${
                   selectedPhone === 2
                     ? 'z-30 opacity-100'
                     : selectedPhone === 1
-                    ? 'z-20 opacity-80'
-                    : 'z-10 opacity-60'
+                    ? 'z-20 opacity-95'
+                    : 'z-10 opacity-90'
                 }`}
                 style={{
                   left: selectedPhone === 2
-                    ? '50%'
+                    ? 'calc(50% + 2.5rem)'
                     : selectedPhone === 1
-                    ? isMobile ? 'calc(50% + 4rem)' : 'calc(50% + 8rem)'
-                    : isMobile ? 'calc(50% + 8rem)' : 'calc(50% + 16rem)',
+                    ? isMobile ? 'calc(50% + 6.5rem)' : 'calc(50% + 10.5rem)'
+                    : isMobile ? 'calc(50% + 10.5rem)' : 'calc(50% + 18.5rem)',
                   top: '50%',
-                  transform: 'translate(-50%, -50%) scale(1)',
+                  transform: selectedPhone === 2 
+                    ? 'translate(-50%, -50%) scale(1.05)' 
+                    : 'translate(-50%, -50%) scale(1)',
                 }}
               >
-                <div className="relative w-[12.5rem] sm:w-72 md:w-80 h-[26rem] sm:h-[36rem] md:h-[40rem] transition-all duration-300">
+                <div className="relative w-[10.5rem] sm:w-60 md:w-68 h-[23rem] sm:h-[30rem] md:h-[34rem] transition-all duration-300">
                   <Image
                     src="/Exchange Web.png"
                     alt="Exchange Interface"
@@ -258,7 +264,9 @@ export default function UserPage() {
 
       {/* Experience Human-AI Symbiosis - Simple Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16">
-        <div className="max-w-4xl mx-auto text-left">
+        <div className="max-w-4xl mx-auto text-left relative">
+          {/* Decorative line */}
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-pink-400/50 to-transparent"></div>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
             {t('user.symbiosis.title')}{' '}<span className="tone-highlight">{t('user.symbiosis.human')}</span>{' '}{t('user.symbiosis.subtitle')}
           </h2>
@@ -271,14 +279,9 @@ export default function UserPage() {
       {/* Step 1 Section - Two Columns */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-2 items-stretch">
             {/* Left Section - Text Content */}
-            <div className="text-left flex flex-col">
-              {/* Step 1 Badge */}
-              <div className="inline-flex items-center justify-center rounded-full w-16 h-16 mb-4 tone-button" style={{ backgroundColor: 'var(--tone-primary)' }}>
-                <span className="text-white font-semibold text-xs">{t('user.step.badge')} 1</span>
-              </div>
-              
+            <div className="text-left flex flex-col justify-center">
               {/* Main Title */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 font-sans tracking-tight">
                 {t('user.step1.title.part1')}
@@ -293,35 +296,19 @@ export default function UserPage() {
               </h2>
               
               {/* Descriptive Text */}
-              <p className="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed font-sans">
+              <p className="text-base sm:text-lg text-gray-300 mb-0 leading-relaxed font-sans">
                 {t('user.step1.desc')}
               </p>
-              
-              {/* Three buttons with arrows */}
-              <div className="space-y-3">
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans flex items-center gap-3 tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
-                  <span>{t('user.step1.button1')}</span>
-                </button>
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans flex items-center gap-3 tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
-                  <span>{t('user.step1.button2')}</span>
-                </button>
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans flex items-center gap-3 tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
-                  <span>{t('user.step1.button3')}</span>
-                </button>
-              </div>
             </div>
 
             {/* Right Section - Image */}
-            <div className="flex items-stretch justify-center lg:justify-end">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl h-full min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px] 2xl:min-h-[550px]">
+            <div className="flex items-center justify-center lg:justify-start lg:pl-8">
+              <div className="relative w-full max-w-[12rem] sm:max-w-[14rem] md:max-w-[16rem] lg:max-w-[18rem] xl:max-w-[20rem] 2xl:max-w-[22rem] aspect-[9/16]">
                 <Image
-                  src="/user-image-1.png"
+                  src="/Onboarding 1.png"
                   alt="Step 1"
                   fill
-                  className="rounded-2xl object-cover"
+                  className="rounded-2xl object-contain"
                 />
               </div>
             </div>
@@ -332,26 +319,21 @@ export default function UserPage() {
       {/* Step 2 Section - Humanized Dialogue - Two Columns */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-2 items-stretch">
             {/* Left Section - Image */}
-            <div className="flex items-stretch justify-center lg:justify-start order-2 lg:order-1">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl h-full min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px] 2xl:min-h-[550px]">
+            <div className="flex items-center justify-center lg:justify-end lg:pr-8 order-2 lg:order-1">
+              <div className="relative w-full max-w-[12rem] sm:max-w-[14rem] md:max-w-[16rem] lg:max-w-[18rem] xl:max-w-[20rem] 2xl:max-w-[22rem] aspect-[9/16]">
                 <Image
-                  src="/user-image-2.png"
+                  src="/Onboarding 2.png"
                   alt="Step 2"
                   fill
-                  className="rounded-2xl object-cover"
+                  className="rounded-2xl object-contain"
                 />
               </div>
             </div>
 
             {/* Right Section - Text Content */}
-            <div className="text-left order-1 lg:order-2 flex flex-col">
-              {/* Step 2 Badge */}
-              <div className="inline-flex items-center justify-center rounded-full w-16 h-16 mb-4 tone-button" style={{ backgroundColor: 'var(--tone-primary)' }}>
-                <span className="text-white font-semibold text-xs">{t('user.step.badge')} 2</span>
-              </div>
-
+            <div className="text-left order-1 lg:order-2 flex flex-col justify-center">
               {/* Main Title */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
                 {t('user.step2.title.part1')}
@@ -360,22 +342,9 @@ export default function UserPage() {
               </h2>
 
               {/* Descriptive Paragraph */}
-              <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed font-sans">
+              <p className="text-base sm:text-lg text-gray-300 mb-0 leading-relaxed font-sans">
                 {t('user.step2.desc')}
               </p>
-
-              {/* Interactive Prompt Buttons */}
-              <div className="space-y-4">
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  {t('user.step2.button1')}
-                </button>
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  {t('user.step2.button2')}
-                </button>
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  {t('user.step2.button3')}
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -384,46 +353,28 @@ export default function UserPage() {
       {/* Step 3 Section - Snapshot: Your Integrity Profile - Two Columns */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-2 items-stretch">
             {/* Left Section - Text Content */}
-            <div className="text-left flex flex-col">
-              {/* Step 3 Badge */}
-              <div className="inline-flex items-center justify-center rounded-full w-16 h-16 mb-4 tone-button" style={{ backgroundColor: 'var(--tone-primary)' }}>
-                <span className="text-white font-semibold text-xs">{t('user.step.badge')} 3</span>
-              </div>
-
+            <div className="text-left flex flex-col justify-center">
               {/* Main Title */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
                 {t('user.step3.title')}
               </h2>
 
               {/* Descriptive Paragraph */}
-              <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed font-sans">
+              <p className="text-base sm:text-lg text-gray-300 mb-0 leading-relaxed font-sans">
                 {t('user.step3.desc')}
               </p>
-
-              {/* Three buttons/bullet points */}
-              <div className="space-y-4">
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  {t('user.step3.button1')}
-                </button>
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  {t('user.step3.button2')}
-                </button>
-                <button className="w-full rounded-lg px-6 py-4 text-left text-white font-semibold text-base sm:text-lg transition-colors font-sans tone-button" style={{ backgroundColor: 'rgba(236, 72, 153, 0.85)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.95)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(236, 72, 153, 0.85)'}>
-                  {t('user.step3.button3')}
-                </button>
-              </div>
             </div>
 
             {/* Right Section - Image */}
-            <div className="flex items-stretch justify-center lg:justify-end">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl h-full min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[450px] xl:min-h-[500px] 2xl:min-h-[550px]">
+            <div className="flex items-center justify-center lg:justify-start lg:pl-8">
+              <div className="relative w-full max-w-[12rem] sm:max-w-[14rem] md:max-w-[16rem] lg:max-w-[18rem] xl:max-w-[20rem] 2xl:max-w-[22rem] aspect-[9/16]">
                 <Image
-                  src="/user-image-3.png"
+                  src="/Onboarding 3.png"
                   alt="Step 3"
                   fill
-                  className="rounded-2xl object-cover"
+                  className="rounded-2xl object-contain"
                 />
               </div>
             </div>

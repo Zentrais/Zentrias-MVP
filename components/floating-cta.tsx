@@ -61,7 +61,7 @@ export default function FloatingCTA() {
   }
 
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
+    <div className="fixed top-1/2 -translate-y-1/2 z-50 hidden lg:block" style={{ right: '12px' }}>
       <button
         onClick={handleClick}
         className={`${buttonColorClass} text-white px-4 py-8 rounded-l-2xl rounded-r-none transition-all duration-300 hover:scale-105 group flex items-center gap-3 font-bold text-sm sm:text-base backdrop-blur-sm`}
