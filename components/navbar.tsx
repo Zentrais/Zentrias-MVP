@@ -10,7 +10,7 @@ export default function Navbar() {
   const pathname = usePathname();
   
   // Rutas donde la navbar debe ser sticky
-  const stickyRoutes = ['/', '/user', '/investors', '/collaborator', '/media', '/privacy', '/about', '/contact', '/career', '/reviews', '/terms', '/cookie-policy', '/security-policy', '/legal-center', '/dpa', '/legal-compliance-handbook', '/gdpr-cookie-consent', '/legal-governance-suite'];
+  const stickyRoutes = ['/', '/user', '/investors', '/collaborator', '/media', '/podcast', '/privacy', '/about', '/contact', '/career', '/reviews', '/terms', '/cookie-policy', '/security-policy', '/legal-center', '/dpa', '/legal-compliance-handbook', '/gdpr-cookie-consent', '/legal-governance-suite'];
   const isSticky = stickyRoutes.includes(pathname);
   const isHomepage = pathname === '/';
 
@@ -23,9 +23,10 @@ export default function Navbar() {
         background: 'linear-gradient(to bottom, rgba(34, 23, 43, 0.98) 0%, rgba(34, 23, 43, 0.98) 70%, rgba(37, 24, 46, 0.98) 85%, rgba(39, 25, 48, 0.98) 100%)',
         backdropFilter: 'blur(8px) saturate(180%)',
         WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+        overflow: 'visible'
       }}
     >
-      <div className="flex justify-between items-center py-0 px-4 sm:px-6 h-auto min-h-0">
+      <div className="flex justify-between items-center py-0 px-4 sm:px-6" style={{ height: 'auto', overflow: 'visible', position: 'relative' }}>
         {isHomepage ? (
           <>
             <div className="flex-1"></div>
@@ -77,7 +78,7 @@ export default function Navbar() {
                 style={{ marginTop: '4px' }}
               />
             </Link>
-            <div className="flex justify-end items-center gap-4">
+            <div className="flex justify-end items-center gap-4" style={{ position: 'relative' }}>
               <ChannelSelector />
               <LanguageSelector />
             </div>

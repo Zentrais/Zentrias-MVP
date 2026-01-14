@@ -31,6 +31,10 @@ export const translations: Record<Language, Record<string, string>> = {
     'pagetitle.investors': 'Investors',
     'pagetitle.collaborator': 'Collaborator',
     'pagetitle.media': 'Media',
+    'pagetitle.podcast': 'Our Perspective',
+    
+    // Podcast Page
+    'podcast.title': 'Our Perspective',
     
     // User Page
     'user.hero.title': 'Shape how AI learns to respect humans',
@@ -919,6 +923,10 @@ export const translations: Record<Language, Record<string, string>> = {
     'pagetitle.investors': 'Inversores',
     'pagetitle.collaborator': 'Colaborador',
     'pagetitle.media': 'Medios',
+    'pagetitle.podcast': 'Nuestra Perspectiva',
+    
+    // Podcast Page
+    'podcast.title': 'Nuestra Perspectiva',
     
     // User Page
     'user.hero.title': 'Moldea cómo la IA aprende a respetar a los humanos',

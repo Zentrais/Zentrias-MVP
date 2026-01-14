@@ -8,9 +8,12 @@ interface PodcastPlayerProps {
   title?: string;
   artist?: string;
   intro?: string;
+  onPreviousEpisode?: () => void;
+  onNextEpisode?: () => void;
+  autoPlay?: boolean;
 }
 
-export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', artist = 'Zentrais', intro }: PodcastPlayerProps) {
+export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', artist = 'Zentrais', intro, onPreviousEpisode, onNextEpisode, autoPlay = false }: PodcastPlayerProps) {
   const waveformRef = useRef<HTMLDivElement>(null);
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -23,12 +26,18 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
   const previousWaveDataRef = useRef<number[]>([]); // For smooth interpolation of bar heights
   const skipBackClickRef = useRef<number>(0);
   const skipForwardClickRef = useRef<number>(0);
+  const autoPlayRef = useRef(autoPlay);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [volume, setVolume] = useState(1); // Volume 0-1
   const [isMuted, setIsMuted] = useState(false);
+
+  // Keep autoPlay ref in sync
+  useEffect(() => {
+    autoPlayRef.current = autoPlay;
+  }, [autoPlay]);
 
   // Format time helper
   const formatTime = (seconds: number): string => {
@@ -468,6 +477,19 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
         connectAudio(); // Connect when metadata is loaded
       });
 
+    // Auto-play when audio is ready to play (for episode changes)
+    const handleCanPlay = () => {
+      if (autoPlayRef.current) {
+        console.log('Auto-playing audio after episode change');
+        setTimeout(() => {
+          audio.play().catch((error) => {
+            console.error('Error auto-playing audio:', error);
+          });
+        }, 500); // 0.5 second delay
+      }
+    };
+    audio.addEventListener('canplay', handleCanPlay);
+
     audio.addEventListener('timeupdate', () => {
       setCurrentTime(audio.currentTime);
     });
@@ -514,13 +536,14 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
     // Cleanup
     return () => {
       stopVisualization();
+      audio.removeEventListener('canplay', handleCanPlay);
       audio.pause();
       audio.src = '';
       if (audioContext.state !== 'closed') {
         audioContext.close();
       }
     };
-  }, [audioUrl, startVisualization, stopVisualization]);
+  }, [audioUrl, startVisualization, stopVisualization, volume]);
 
   // Toggle play/pause
   const togglePlayPause = useCallback(() => {
@@ -536,39 +559,34 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
     }
   }, [isPlaying]);
 
-  // Skip back: single click = restart, double click = previous video
+  // Skip back: single click = restart, double click = previous episode
   const handleSkipBack = useCallback(() => {
     const audio = audioElementRef.current;
     if (!audio) return;
 
     const now = Date.now();
-    if (now - skipBackClickRef.current < 300) {
-      // Double click: go to previous video (placeholder - implement navigation logic)
-      console.log('Previous video');
-      // TODO: Implement navigation to previous video
+    if (now - skipBackClickRef.current < 2500) {
+      // Double click: go to previous episode
+      if (onPreviousEpisode) {
+        onPreviousEpisode();
+      }
     } else {
       // Single click: restart current audio
       audio.currentTime = 0;
     }
     skipBackClickRef.current = now;
-  }, []);
+  }, [onPreviousEpisode]);
 
-  // Skip forward: single click = skip 10s, double click = next video
+  // Skip forward: single click = next episode
   const handleSkipForward = useCallback(() => {
     const audio = audioElementRef.current;
     if (!audio) return;
 
-    const now = Date.now();
-    if (now - skipForwardClickRef.current < 300) {
-      // Double click: go to next video (placeholder - implement navigation logic)
-      console.log('Next video');
-      // TODO: Implement navigation to next video
-    } else {
-      // Single click: skip forward 10 seconds
-      audio.currentTime = Math.min(audio.currentTime + 10, audio.duration);
+    // Single click: go to next episode
+    if (onNextEpisode) {
+      onNextEpisode();
     }
-    skipForwardClickRef.current = now;
-  }, []);
+  }, [onNextEpisode]);
 
   // Toggle mute/unmute
   const toggleMute = useCallback(() => {
@@ -734,7 +752,7 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
         </div>
 
         {/* Center group: Skip Back, Play/Pause, Skip Forward */}
-        <div className="flex items-center gap-3 sm:gap-4 order-2 sm:order-2">
+        <div className="flex items-center justify-center gap-3 sm:gap-4 order-2 sm:order-2 w-full sm:w-auto" style={{ marginLeft: '32px' }}>
           {/* Skip Back button (left of Play) */}
           <button
             onClick={handleSkipBack}
@@ -834,10 +852,10 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
         </div>
 
         {/* Volume Control - right */}
-        <div className="flex items-center gap-2 sm:gap-2 order-3 sm:order-3 w-full sm:w-auto justify-center sm:justify-start">
+        <div className="flex items-center justify-center gap-2 sm:gap-2 order-3 sm:order-3 w-full sm:w-auto sm:justify-start">
           <button
             onClick={toggleMute}
-            className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 hover:scale-110 group/button"
+            className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 hover:scale-110 group/button self-center"
             style={{
               background: 'rgba(244, 114, 182, 0.25)',
               backdropFilter: 'blur(10px) saturate(180%)',

@@ -35,12 +35,13 @@ export default function LanguageSelector() {
   };
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative inline-block" ref={dropdownRef} style={{ verticalAlign: 'middle' }}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-white hover:opacity-80 transition-all duration-300 cursor-pointer"
+        className="flex items-center gap-2 text-white hover:opacity-80 transition-all duration-300 cursor-pointer whitespace-nowrap"
         aria-label="Select language"
         aria-expanded={isOpen}
+        style={{ position: 'relative', zIndex: 1 }}
       >
         <Languages className="w-6 h-6" />
         <span className="text-xl font-semibold">{currentLanguage.code.toUpperCase()}</span>
@@ -48,7 +49,15 @@ export default function LanguageSelector() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-slate-900/95 backdrop-blur-lg border border-white/20 rounded-lg shadow-xl overflow-hidden z-50">
+        <div 
+          className="absolute right-0 w-48 bg-slate-900/95 backdrop-blur-lg border border-white/20 rounded-lg shadow-xl overflow-hidden"
+          style={{ 
+            zIndex: 1000,
+            top: '100%',
+            marginTop: '4px',
+            position: 'absolute'
+          }}
+        >
           {languages.map((lang) => (
             <button
               key={lang.code}

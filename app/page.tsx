@@ -4,6 +4,7 @@ import { useEffect, useMemo, memo, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Users, DollarSign, Handshake, Camera } from 'lucide-react';
+import Image from 'next/image';
 import { useLanguage } from '../contexts/language-context';
 
 // Pre-load critical components to avoid blank screen - use eager loading
@@ -81,6 +82,19 @@ const colorClasses = {
     iconHover: 'text-pink-300',
     iconGlow: 'drop-shadow(0 0 8px rgba(244, 114, 182, 0.6))',
     iconGlowHover: 'drop-shadow(0 0 16px rgba(244, 114, 182, 0.9))',
+  },
+  purple: {
+    // Glassmorphism colors - Purple (Morado)
+    glassBg: 'rgba(139, 92, 246, 0.08)',
+    glassBgHover: 'rgba(139, 92, 246, 0.15)',
+    borderGradient: 'linear-gradient(135deg, rgba(139, 92, 246, 0.4) 0%, rgba(99, 102, 241, 0.2) 50%, rgba(139, 92, 246, 0.1) 100%)',
+    borderGradientHover: 'linear-gradient(135deg, rgba(139, 92, 246, 0.6) 0%, rgba(99, 102, 241, 0.4) 50%, rgba(139, 92, 246, 0.3) 100%)',
+    glowColor: 'rgba(139, 92, 246, 0.5)',
+    glowColorHover: 'rgba(139, 92, 246, 0.8)',
+    icon: 'text-purple-400',
+    iconHover: 'text-purple-300',
+    iconGlow: 'drop-shadow(0 0 8px rgba(139, 92, 246, 0.6))',
+    iconGlowHover: 'drop-shadow(0 0 16px rgba(139, 92, 246, 0.9))',
   },
 };
 
@@ -361,6 +375,129 @@ export default function HomePage() {
                 {/* Shimmer effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500 rounded-2xl pointer-events-none" style={{ willChange: 'transform, opacity' }}></div>
               </div>
+            </div>
+          </div>
+
+          {/* Zentrais Explained Section - Podcast Link */}
+          <div className="mt-12 sm:mt-16 md:mt-20 flex justify-center animate-fade-in-up animation-delay-900" style={{ contain: 'layout style' }}>
+            <div className="w-full max-w-4xl px-4 sm:px-6">
+              {(() => {
+                const colors = colorClasses.purple;
+                return (
+                  <div
+                    className="group relative p-6 sm:p-8 rounded-2xl cursor-pointer overflow-hidden animate-fade-in-up text-center"
+                    style={{ 
+                      animationDelay: '900ms',
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      contain: 'layout style paint',
+                      // Glassmorphism base
+                      background: colors.glassBg,
+                      backdropFilter: 'blur(20px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      boxShadow: `0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 0 1px rgba(255, 255, 255, 0.05) inset`,
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = colors.glassBgHover;
+                      e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+                      e.currentTarget.style.boxShadow = `0 12px 40px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 40px ${colors.glowColor}`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = colors.glassBg;
+                      e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                      e.currentTarget.style.boxShadow = `0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 0 1px rgba(255, 255, 255, 0.05) inset`;
+                    }}
+                    onClick={() => handleNavigate('/podcast')}
+                  >
+                    {/* Gradient border with glow effect */}
+                    <div 
+                      className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                      style={{ 
+                        background: colors.borderGradientHover,
+                        filter: `blur(8px)`,
+                        transition: 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                        zIndex: -1,
+                      }}
+                    />
+                    
+                    {/* Subtle border gradient */}
+                    <div 
+                      className="absolute -inset-[1px] rounded-2xl opacity-30 group-hover:opacity-60 transition-opacity duration-400 pointer-events-none"
+                      style={{ 
+                        background: colors.borderGradient,
+                        zIndex: -1,
+                      }}
+                    />
+
+                    {/* Inner glow on hover */}
+                    <div
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-400 pointer-events-none"
+                      style={{ 
+                        background: `radial-gradient(circle at center, ${colors.glowColor} 0%, transparent 70%)`,
+                        transition: 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      }}
+                    />
+
+                    {/* Shimmer effect on hover */}
+                    <div
+                      className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                      style={{ 
+                        transform: 'translateZ(0)',
+                        backfaceVisibility: 'hidden',
+                        transition: 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      }}
+                    />
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                      {/* Icon with glow effect */}
+                      <div 
+                        className="relative inline-block mb-3 sm:mb-4 group/icon" 
+                        style={{ 
+                          transform: 'translateZ(0)', 
+                          backfaceVisibility: 'hidden',
+                          filter: colors.iconGlow,
+                          transition: 'filter 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                        }}
+                        onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+                          e.currentTarget.style.filter = colors.iconGlowHover;
+                        }}
+                        onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+                          e.currentTarget.style.filter = colors.iconGlow;
+                        }}
+                      >
+                        <Image
+                          src="/Zentrais Flaticon 150x150-03.png"
+                          alt="Zentrais Explained!"
+                          width={48}
+                          height={48}
+                          className="w-10 h-10 sm:w-12 sm:h-12 mx-auto transition-all duration-400 group-hover:scale-110 group-hover:rotate-3"
+                        />
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="font-bold text-white text-base sm:text-lg mb-2 transition-all duration-300 group-hover:text-white group-hover:tracking-wide uppercase tracking-wider font-sans">
+                        Zentrais Explained!
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-xs sm:text-sm text-white/80 transition-all duration-300 group-hover:text-white/95 font-sans leading-relaxed">
+                        Discover our perspective and learn more about Zentrais through our podcast series
+                      </p>
+                    </div>
+
+                    {/* Corner accent dots */}
+                    <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-400"
+                      style={{ background: colors.glowColor, boxShadow: `0 0 8px ${colors.glowColor}` }}
+                    />
+                    <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-400"
+                      style={{ background: colors.glowColor, boxShadow: `0 0 8px ${colors.glowColor}` }}
+                    />
+                  </div>
+                );
+              })()}
             </div>
           </div>
 
