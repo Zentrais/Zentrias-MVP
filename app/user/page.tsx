@@ -65,6 +65,17 @@ export default function UserPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentParticipants, setCurrentParticipants] = useState(342);
   const [selectedPhone, setSelectedPhone] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si es mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Auto-rotar carrusel
   useEffect(() => {
@@ -150,7 +161,7 @@ export default function UserPage() {
             </div>
 
             {/* Celulares a la derecha */}
-            <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[650px]">
+            <div className="relative h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[650px] overflow-hidden">
               {/* Celular izquierdo - The Integrity Perspective */}
               <div
                 onClick={() => setSelectedPhone(0)}
@@ -165,15 +176,15 @@ export default function UserPage() {
                   left: selectedPhone === 0
                     ? '50%'
                     : selectedPhone === 1
-                    ? 'calc(50% - 8rem)'
-                    : 'calc(50% - 16rem)',
+                    ? isMobile ? 'calc(50% - 4rem)' : 'calc(50% - 8rem)'
+                    : isMobile ? 'calc(50% - 8rem)' : 'calc(50% - 16rem)',
                   top: '50%',
                   transform: 'translate(-50%, -50%) scale(1)',
                 }}
               >
-                <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
+                <div className="relative w-[12.5rem] sm:w-72 md:w-80 h-[26rem] sm:h-[36rem] md:h-[40rem] transition-all duration-300">
                   <Image
-                    src="/Debate-Zentrais.png"
+                    src="/Perspective Web.png"
                     alt="Perspective Interface"
                     fill
                     className="object-contain rounded-2xl"
@@ -195,15 +206,15 @@ export default function UserPage() {
                   left: selectedPhone === 1
                     ? '50%'
                     : selectedPhone === 0
-                    ? 'calc(50% + 8rem)'
-                    : 'calc(50% - 8rem)',
+                    ? isMobile ? 'calc(50% + 4rem)' : 'calc(50% + 8rem)'
+                    : isMobile ? 'calc(50% - 4rem)' : 'calc(50% - 8rem)',
                   top: '50%',
                   transform: 'translate(-50%, -50%) scale(1)',
                 }}
               >
-                <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
+                <div className="relative w-[12.5rem] sm:w-72 md:w-80 h-[26rem] sm:h-[36rem] md:h-[40rem] transition-all duration-300">
                   <Image
-                    src="/Chat-Zentrais.png"
+                    src="/Dialog Web.png"
                     alt="Perspective Interface"
                     fill
                     className="object-contain rounded-2xl"
@@ -225,15 +236,15 @@ export default function UserPage() {
                   left: selectedPhone === 2
                     ? '50%'
                     : selectedPhone === 1
-                    ? 'calc(50% + 8rem)'
-                    : 'calc(50% + 16rem)',
+                    ? isMobile ? 'calc(50% + 4rem)' : 'calc(50% + 8rem)'
+                    : isMobile ? 'calc(50% + 8rem)' : 'calc(50% + 16rem)',
                   top: '50%',
                   transform: 'translate(-50%, -50%) scale(1)',
                 }}
               >
-                <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
+                <div className="relative w-[12.5rem] sm:w-72 md:w-80 h-[26rem] sm:h-[36rem] md:h-[40rem] transition-all duration-300">
                   <Image
-                    src="/Marketplace-Zentrais.png"
+                    src="/Exchange Web.png"
                     alt="Exchange Interface"
                     fill
                     className="object-contain rounded-2xl"
@@ -437,13 +448,13 @@ export default function UserPage() {
 
       {/* The Beta Dashboard - Three Panels with Phones */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20 lg:gap-24 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 md:gap-28 lg:gap-32 max-w-6xl mx-auto items-end">
           {/* The Integrity Perspective */}
           <div className="flex flex-col items-center hover:scale-105 transition-all duration-300">
-            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-300 mb-3 sm:mb-4 font-sans text-center w-full px-2 break-words">{t('user.dashboard.integrity.debate')}</div>
-            <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[30rem] 2xl:w-[32rem] h-[36rem] sm:h-[40rem] md:h-[44rem] lg:h-[48rem] xl:h-[52rem] 2xl:h-[56rem]">
+            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-300 mb-6 sm:mb-10 md:mb-12 font-sans text-center w-56 sm:w-64 md:w-72 lg:w-[22rem] xl:w-[24rem] 2xl:w-[26rem] whitespace-nowrap overflow-hidden text-ellipsis">{t('user.dashboard.integrity.debate')}</div>
+            <div className="relative w-56 sm:w-64 md:w-72 lg:w-[22rem] xl:w-[24rem] 2xl:w-[26rem] h-[28rem] sm:h-[32rem] md:h-[36rem] lg:h-[40rem] xl:h-[44rem] 2xl:h-[48rem]">
               <Image
-                src="/Debate-Zentrais.png"
+                src="/Perspective Web.png"
                 alt="Perspective Interface"
                 fill
                 className="object-contain rounded-2xl"
@@ -453,10 +464,10 @@ export default function UserPage() {
 
           {/* Dialog */}
           <div className="flex flex-col items-center hover:scale-105 transition-all duration-300">
-            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-emerald-300 mb-3 sm:mb-4 font-sans text-center w-full px-2 break-words">{t('user.dashboard.chat')}</div>
-            <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[30rem] 2xl:w-[32rem] h-[36rem] sm:h-[40rem] md:h-[44rem] lg:h-[48rem] xl:h-[52rem] 2xl:h-[56rem]">
+            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-emerald-300 mb-6 sm:mb-10 md:mb-12 font-sans text-center w-56 sm:w-64 md:w-72 lg:w-[22rem] xl:w-[24rem] 2xl:w-[26rem] break-words">{t('user.dashboard.chat')}</div>
+            <div className="relative w-56 sm:w-64 md:w-72 lg:w-[22rem] xl:w-[24rem] 2xl:w-[26rem] h-[28rem] sm:h-[32rem] md:h-[36rem] lg:h-[40rem] xl:h-[44rem] 2xl:h-[48rem]">
               <Image
-                src="/Chat-Zentrais.png"
+                src="/Dialog Web.png"
                 alt="Perspective Interface"
                 fill
                 className="object-contain rounded-2xl"
@@ -466,10 +477,10 @@ export default function UserPage() {
 
           {/* The Integrity Exchange */}
           <div className="flex flex-col items-center hover:scale-105 transition-all duration-300">
-            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-orange-300 mb-3 sm:mb-4 font-sans text-center w-full px-2 break-words">{t('user.dashboard.integrity.marketplace')}</div>
-            <div className="relative w-72 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[30rem] 2xl:w-[32rem] h-[36rem] sm:h-[40rem] md:h-[44rem] lg:h-[48rem] xl:h-[52rem] 2xl:h-[56rem]">
+            <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-orange-300 mb-6 sm:mb-10 md:mb-12 font-sans text-center w-56 sm:w-64 md:w-72 lg:w-[22rem] xl:w-[24rem] 2xl:w-[26rem] break-words">{t('user.dashboard.integrity.marketplace')}</div>
+            <div className="relative w-56 sm:w-64 md:w-72 lg:w-[22rem] xl:w-[24rem] 2xl:w-[26rem] h-[28rem] sm:h-[32rem] md:h-[36rem] lg:h-[40rem] xl:h-[44rem] 2xl:h-[48rem]">
               <Image
-                src="/Marketplace-Zentrais.png"
+                src="/Exchange Web.png"
                 alt="Exchange Interface"
                 fill
                 className="object-contain rounded-2xl"
