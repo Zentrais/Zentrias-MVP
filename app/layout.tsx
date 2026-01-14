@@ -93,7 +93,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`min-h-screen flex flex-col ${spaceGrotesk.variable} ${playfairDisplay.variable} ${inter.variable}`} style={{ backgroundColor: 'transparent' }}>
+      <body className={`min-h-screen flex flex-col relative ${spaceGrotesk.variable} ${playfairDisplay.variable} ${inter.variable}`} style={{ backgroundColor: 'transparent' }}>
         <LanguageProviderWrapper>
           {/* FONDO GLOBAL ÚNICO - Renderizado una sola vez */}
           <div className="app-bg"></div>

@@ -7,9 +7,10 @@ interface PodcastPlayerProps {
   audioUrl: string;
   title?: string;
   artist?: string;
+  intro?: string;
 }
 
-export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', artist = 'Zentrais' }: PodcastPlayerProps) {
+export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', artist = 'Zentrais', intro }: PodcastPlayerProps) {
   const waveformRef = useRef<HTMLDivElement>(null);
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -725,111 +726,114 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
 
       {/* Controls */}
       <div className="flex items-center justify-between">
-        {/* Left side: Skip Back button */}
-        <button
-          onClick={handleSkipBack}
-          disabled={isLoading}
-          className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed group/button"
-          style={{
-            background: 'rgba(244, 114, 182, 0.3)',
-            backdropFilter: 'blur(10px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(10px) saturate(180%)',
-            border: '1px solid rgba(244, 114, 182, 0.4)',
-            boxShadow: '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(244, 114, 182, 0.4)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(244, 114, 182, 0.3)';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
-          }}
-        >
-          <SkipBack className="w-5 h-5 sm:w-6 sm:h-6 text-pink-200 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 4px rgba(244, 114, 182, 0.5))' }} />
-        </button>
-
-        {/* Time Display */}
+        {/* Time Display (left) */}
         <div className="flex items-center gap-4 text-sm sm:text-base text-white/80 font-mono">
           <span>{formatTime(currentTime)}</span>
           <span className="text-white/40">/</span>
           <span>{formatTime(duration)}</span>
         </div>
 
-        {/* Play/Pause Button */}
-        <button
-          onClick={togglePlayPause}
-          disabled={isLoading}
-          className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed group/button"
-          style={{
-            background: isPlaying 
-              ? 'rgba(244, 114, 182, 0.35)'
-              : 'rgba(244, 114, 182, 0.4)',
-            backdropFilter: 'blur(10px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(10px) saturate(180%)',
-            border: '1px solid rgba(244, 114, 182, 0.5)',
-            boxShadow: isPlaying 
-              ? '0 4px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 30px rgba(244, 114, 182, 0.25)'
-              : '0 4px 12px rgba(244, 114, 182, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = isPlaying 
-              ? 'rgba(244, 114, 182, 0.45)'
-              : 'rgba(244, 114, 182, 0.5)';
-            e.currentTarget.style.boxShadow = '0 6px 24px rgba(244, 114, 182, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(244, 114, 182, 0.3)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = isPlaying 
-              ? 'rgba(244, 114, 182, 0.35)'
-              : 'rgba(244, 114, 182, 0.4)';
-            e.currentTarget.style.boxShadow = isPlaying 
-              ? '0 4px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 30px rgba(244, 114, 182, 0.25)'
-              : '0 4px 12px rgba(244, 114, 182, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
-          }}
-        >
-          {/* Liquid glass border glow */}
-          <div 
-            className="absolute -inset-[1px] rounded-full pointer-events-none"
-            style={{ 
-              background: 'linear-gradient(135deg, rgba(244, 114, 182, 0.2) 0%, rgba(219, 39, 119, 0.15) 50%, rgba(244, 114, 182, 0.18) 100%)',
-              filter: 'blur(3px)',
-              opacity: 0.4,
-              zIndex: -1,
+        {/* Center group: Skip Back, Play/Pause, Skip Forward */}
+        <div className="flex items-center gap-4">
+          {/* Skip Back button (left of Play) */}
+          <button
+            onClick={handleSkipBack}
+            disabled={isLoading}
+            className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed group/button"
+            style={{
+              background: 'rgba(244, 114, 182, 0.3)',
+              backdropFilter: 'blur(10px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(10px) saturate(180%)',
+              border: '1px solid rgba(244, 114, 182, 0.4)',
+              boxShadow: '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
             }}
-          />
-          
-          {isPlaying ? (
-            <Pause className="w-6 h-6 sm:w-7 sm:h-7 text-pink-300 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 4px rgba(244, 114, 182, 0.5))' }} />
-          ) : (
-            <Play className="w-6 h-6 sm:w-7 sm:h-7 text-pink-200 ml-1 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 6px rgba(244, 114, 182, 0.7)), brightness(1.3)' }} />
-          )}
-        </button>
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 114, 182, 0.4)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 114, 182, 0.3)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
+            }}
+          >
+            <SkipBack className="w-5 h-5 sm:w-6 sm:h-6 text-pink-200 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 4px rgba(244, 114, 182, 0.5))' }} />
+          </button>
 
-        {/* Right side: Skip Forward button */}
-        <button
-          onClick={handleSkipForward}
-          disabled={isLoading}
-          className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed group/button"
-          style={{
-            background: 'rgba(244, 114, 182, 0.3)',
-            backdropFilter: 'blur(10px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(10px) saturate(180%)',
-            border: '1px solid rgba(244, 114, 182, 0.4)',
-            boxShadow: '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(244, 114, 182, 0.4)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(244, 114, 182, 0.3)';
-            e.currentTarget.style.boxShadow = '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
-          }}
-        >
-          <SkipForward className="w-5 h-5 sm:w-6 sm:h-6 text-pink-200 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 4px rgba(244, 114, 182, 0.5))' }} />
-        </button>
+          {/* Play/Pause Button (center) */}
+          <button
+            onClick={togglePlayPause}
+            disabled={isLoading}
+            className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed group/button"
+            style={{
+              background: isPlaying 
+                ? 'rgba(244, 114, 182, 0.35)'
+                : 'rgba(244, 114, 182, 0.4)',
+              backdropFilter: 'blur(10px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(10px) saturate(180%)',
+              border: '1px solid rgba(244, 114, 182, 0.5)',
+              boxShadow: isPlaying 
+                ? '0 4px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 30px rgba(244, 114, 182, 0.25)'
+                : '0 4px 12px rgba(244, 114, 182, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = isPlaying 
+                ? 'rgba(244, 114, 182, 0.45)'
+                : 'rgba(244, 114, 182, 0.5)';
+              e.currentTarget.style.boxShadow = '0 6px 24px rgba(244, 114, 182, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(244, 114, 182, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = isPlaying 
+                ? 'rgba(244, 114, 182, 0.35)'
+                : 'rgba(244, 114, 182, 0.4)';
+              e.currentTarget.style.boxShadow = isPlaying 
+                ? '0 4px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 30px rgba(244, 114, 182, 0.25)'
+                : '0 4px 12px rgba(244, 114, 182, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
+            }}
+          >
+            {/* Liquid glass border glow */}
+            <div 
+              className="absolute -inset-[1px] rounded-full pointer-events-none"
+              style={{ 
+                background: 'linear-gradient(135deg, rgba(244, 114, 182, 0.2) 0%, rgba(219, 39, 119, 0.15) 50%, rgba(244, 114, 182, 0.18) 100%)',
+                filter: 'blur(3px)',
+                opacity: 0.4,
+                zIndex: -1,
+              }}
+            />
+            
+            {isPlaying ? (
+              <Pause className="w-6 h-6 sm:w-7 sm:h-7 text-pink-300 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 4px rgba(244, 114, 182, 0.5))' }} />
+            ) : (
+              <Play className="w-6 h-6 sm:w-7 sm:h-7 text-pink-200 ml-1 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 6px rgba(244, 114, 182, 0.7)), brightness(1.3)' }} />
+            )}
+          </button>
 
-        {/* Volume Control - Right side near edge */}
+          {/* Skip Forward button (right of Play) */}
+          <button
+            onClick={handleSkipForward}
+            disabled={isLoading}
+            className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed group/button"
+            style={{
+              background: 'rgba(244, 114, 182, 0.3)',
+              backdropFilter: 'blur(10px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(10px) saturate(180%)',
+              border: '1px solid rgba(244, 114, 182, 0.4)',
+              boxShadow: '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 114, 182, 0.4)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15) inset';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(244, 114, 182, 0.3)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(244, 114, 182, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset';
+            }}
+          >
+            <SkipForward className="w-5 h-5 sm:w-6 sm:h-6 text-pink-200 relative z-10" fill="currentColor" style={{ filter: 'drop-shadow(0 0 4px rgba(244, 114, 182, 0.5))' }} />
+          </button>
+        </div>
+
+        {/* Volume Control - right */}
         <div className="flex items-center gap-2">
           <button
             onClick={toggleMute}
@@ -868,6 +872,29 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
           />
         </div>
       </div>
+
+      {/* Intro Text Box */}
+      {intro && (
+        <div className="mt-6">
+          <div 
+            className="w-full p-4 sm:p-6 rounded-xl relative"
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(10px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(10px) saturate(180%)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
+            }}
+          >
+            <h4 className="text-base sm:text-lg font-semibold text-white/90 mb-3 font-sans">
+              Intro
+            </h4>
+            <p className="text-sm sm:text-base text-white/70 leading-relaxed font-sans">
+              {intro}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Hidden audio element */}
       <audio
