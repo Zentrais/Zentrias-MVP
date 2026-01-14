@@ -328,15 +328,17 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
       }
 
       // Get frequency data from AnalyserNode
-      if (dataArrayRef.current) {
-        analyserRef.current!.getByteFrequencyData(dataArrayRef.current);
+      if (dataArrayRef.current && analyserRef.current) {
+        // Create a new Uint8Array to avoid type issues
+        const frequencyData = new Uint8Array(dataArrayRef.current.length);
+        analyserRef.current.getByteFrequencyData(frequencyData);
         
         // Check if audio is silent (all frequencies very low)
-        const avgFrequency = Array.from(dataArrayRef.current).reduce((sum, val) => sum + val, 0) / dataArrayRef.current.length;
+        const avgFrequency = Array.from(frequencyData).reduce((sum, val) => sum + val, 0) / frequencyData.length;
         const isSilent = avgFrequency < 5; // Threshold for silence
         
         // Draw bars with frequency data (or in silent mode if no sound)
-        drawBars(dataArrayRef.current, isSilent);
+        drawBars(frequencyData, isSilent);
       }
 
       animationFrameRef.current = requestAnimationFrame(animate);
