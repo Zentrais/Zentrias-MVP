@@ -770,9 +770,9 @@ export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Epi
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 relative">
+      <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 sm:gap-0 relative">
         {/* Time Display and Volume Control (left) */}
-        <div className="flex items-center gap-2 sm:gap-3 order-1 sm:order-1">
+        <div className="flex items-center gap-2 sm:gap-3 order-1 sm:order-1 w-full sm:w-auto justify-center sm:justify-start">
           {/* Time Display */}
           <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm md:text-base text-white/80 font-mono">
             <span>{formatTime(currentTime)}</span>
@@ -820,7 +820,7 @@ export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Epi
         </div>
 
         {/* Center group: Skip Back, Play/Pause, Skip Forward */}
-        <div className="flex items-center justify-center gap-3 sm:gap-4 order-2 sm:order-2 w-full sm:w-auto absolute left-1/2 -translate-x-1/2">
+        <div className="flex items-center justify-center gap-3 sm:gap-4 order-2 sm:order-2 w-full sm:w-auto sm:absolute sm:left-1/2 sm:-translate-x-1/2">
           {/* Skip Back button (left of Play) */}
           <button
             onClick={handleSkipBack}
@@ -921,7 +921,7 @@ export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Epi
 
         {/* Next Episode Button */}
         {nextEpisodeNumber && onNextEpisode && (
-          <div className="order-3 sm:order-3">
+          <div className="order-3 sm:order-3 w-full sm:w-auto flex justify-center sm:justify-start">
             <button
               onClick={onNextEpisode}
               disabled={isLoading}
