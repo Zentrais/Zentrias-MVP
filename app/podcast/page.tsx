@@ -103,6 +103,7 @@ export default function PodcastPage() {
                 intro={selectedEpisode.intro}
                 onPreviousEpisode={currentEpisodeIndex > 0 ? handlePreviousEpisode : undefined}
                 onNextEpisode={currentEpisodeIndex < PODCAST_EPISODES.length - 1 ? handleNextEpisode : undefined}
+                nextEpisodeNumber={currentEpisodeIndex < PODCAST_EPISODES.length - 1 ? currentEpisodeIndex + 2 : undefined}
                 autoPlay={autoPlay}
               />
             </div>

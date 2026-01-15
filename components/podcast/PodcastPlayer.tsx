@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, ArrowRight } from 'lucide-react';
 
 interface PodcastPlayerProps {
   audioUrl: string;
@@ -11,10 +11,11 @@ interface PodcastPlayerProps {
   intro?: string;
   onPreviousEpisode?: () => void;
   onNextEpisode?: () => void;
+  nextEpisodeNumber?: number;
   autoPlay?: boolean;
 }
 
-export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Episode', artist = 'Zentrais', intro, onPreviousEpisode, onNextEpisode, autoPlay = false }: PodcastPlayerProps) {
+export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Episode', artist = 'Zentrais', intro, onPreviousEpisode, onNextEpisode, nextEpisodeNumber, autoPlay = false }: PodcastPlayerProps) {
   const waveformRef = useRef<HTMLDivElement>(null);
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -769,16 +770,57 @@ export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Epi
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
-        {/* Time Display (left) */}
-        <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm md:text-base text-white/80 font-mono order-1 sm:order-1">
-          <span>{formatTime(currentTime)}</span>
-          <span className="text-white/40">/</span>
-          <span>{formatTime(duration)}</span>
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 relative">
+        {/* Time Display and Volume Control (left) */}
+        <div className="flex items-center gap-2 sm:gap-3 order-1 sm:order-1">
+          {/* Time Display */}
+          <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm md:text-base text-white/80 font-mono">
+            <span>{formatTime(currentTime)}</span>
+            <span className="text-white/40">/</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+          {/* Volume Control */}
+          <div className="flex items-center gap-1.5 sm:gap-2 group/volume">
+            <button
+              onClick={toggleMute}
+              className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full transition-all duration-300 hover:scale-110 group/button self-center"
+              style={{
+                background: 'rgba(244, 114, 182, 0.25)',
+                backdropFilter: 'blur(10px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(10px) saturate(180%)',
+                border: '1px solid rgba(244, 114, 182, 0.3)',
+                boxShadow: '0 2px 8px rgba(244, 114, 182, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(244, 114, 182, 0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(244, 114, 182, 0.25)';
+              }}
+            >
+              {isMuted ? (
+                <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-200" />
+              ) : (
+                <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-pink-200" />
+              )}
+            </button>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={isMuted ? 0 : volume}
+              onChange={handleVolumeChange}
+              className="w-20 sm:w-20 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer podcast-slider opacity-0 scale-x-0 origin-left group-hover/volume:opacity-100 group-hover/volume:scale-x-100 transition-all duration-200 pointer-events-none group-hover/volume:pointer-events-auto"
+              style={{
+                background: `linear-gradient(to right, rgba(244, 114, 182, 0.7) 0%, rgba(244, 114, 182, 0.7) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.1) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.1) 100%)`,
+              }}
+            />
+          </div>
         </div>
 
         {/* Center group: Skip Back, Play/Pause, Skip Forward */}
-        <div className="flex items-center justify-center gap-3 sm:gap-4 order-2 sm:order-2 w-full sm:w-auto" style={{ marginLeft: '32px' }}>
+        <div className="flex items-center justify-center gap-3 sm:gap-4 order-2 sm:order-2 w-full sm:w-auto absolute left-1/2 -translate-x-1/2">
           {/* Skip Back button (left of Play) */}
           <button
             onClick={handleSkipBack}
@@ -877,44 +919,46 @@ export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Epi
           </button>
         </div>
 
-        {/* Volume Control - right */}
-        <div className="flex items-center justify-center gap-2 sm:gap-2 order-3 sm:order-3 w-full sm:w-auto sm:justify-start">
-          <button
-            onClick={toggleMute}
-            className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-300 hover:scale-110 group/button self-center"
-            style={{
-              background: 'rgba(244, 114, 182, 0.25)',
-              backdropFilter: 'blur(10px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(10px) saturate(180%)',
-              border: '1px solid rgba(244, 114, 182, 0.3)',
-              boxShadow: '0 2px 8px rgba(244, 114, 182, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(244, 114, 182, 0.35)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(244, 114, 182, 0.25)';
-            }}
-          >
-            {isMuted ? (
-              <VolumeX className="w-4 h-4 sm:w-5 sm:h-5 text-pink-200" />
-            ) : (
-              <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 text-pink-200" />
-            )}
-          </button>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={isMuted ? 0 : volume}
-            onChange={handleVolumeChange}
-            className="w-24 sm:w-24 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer podcast-slider"
-            style={{
-              background: `linear-gradient(to right, rgba(244, 114, 182, 0.7) 0%, rgba(244, 114, 182, 0.7) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.1) ${(isMuted ? 0 : volume) * 100}%, rgba(255, 255, 255, 0.1) 100%)`,
-            }}
-          />
-        </div>
+        {/* Next Episode Button */}
+        {nextEpisodeNumber && onNextEpisode && (
+          <div className="order-3 sm:order-3">
+            <button
+              onClick={onNextEpisode}
+              disabled={isLoading}
+              className="relative flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed group/button"
+              style={{
+                background: 'rgba(244, 114, 182, 0.28)',
+                backdropFilter: 'blur(12px) saturate(190%)',
+                WebkitBackdropFilter: 'blur(12px) saturate(190%)',
+                border: '1px solid rgba(255, 255, 255, 0.18)',
+                boxShadow: '0 4px 16px rgba(244, 114, 182, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 0 20px rgba(244, 114, 182, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1) inset',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(244, 114, 182, 0.38)';
+                e.currentTarget.style.boxShadow = '0 6px 24px rgba(244, 114, 182, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 30px rgba(244, 114, 182, 0.25), 0 1px 2px rgba(0, 0, 0, 0.1) inset';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(244, 114, 182, 0.28)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(244, 114, 182, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 0 20px rgba(244, 114, 182, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1) inset';
+              }}
+            >
+              {/* Liquid glass glow effect */}
+              <div 
+                className="absolute -inset-[1px] rounded-2xl pointer-events-none"
+                style={{ 
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(244, 114, 182, 0.15) 50%, rgba(255, 255, 255, 0.08) 100%)',
+                  filter: 'blur(6px)',
+                  opacity: 0.4,
+                  zIndex: -1,
+                }}
+              />
+              <span className="text-white font-semibold text-sm sm:text-base relative z-10 flex items-center gap-2" style={{ textShadow: '0 0 8px rgba(244, 114, 182, 0.5)' }}>
+                Episode {nextEpisodeNumber}
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" style={{ filter: 'drop-shadow(0 0 4px rgba(244, 114, 182, 0.5))' }} />
+              </span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Intro Text Box */}
