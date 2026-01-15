@@ -409,6 +409,17 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
     };
   }, []);
 
+  // Sync volume with audio element (without reinicializing audio)
+  useEffect(() => {
+    const audio = audioElementRef.current;
+    if (!audio) return;
+    
+    // Only update volume if it's different to avoid unnecessary updates
+    if (audio.volume !== volume && !isMuted) {
+      audio.volume = volume;
+    }
+  }, [volume, isMuted]);
+
   // Initialize Audio Element and Web Audio API
   useEffect(() => {
     // Wait for audio element to be available
@@ -472,8 +483,10 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
         setIsLoading(false);
         setDuration(audio.duration);
         console.log('Audio metadata loaded, duration:', audio.duration);
-        // Set initial volume
-        audio.volume = volume;
+        // Set initial volume (use current volume state, but don't depend on it in useEffect)
+        if (audio.volume !== volume) {
+          audio.volume = volume;
+        }
         connectAudio(); // Connect when metadata is loaded
       });
 
@@ -543,7 +556,7 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
         audioContext.close();
       }
     };
-  }, [audioUrl, startVisualization, stopVisualization, volume]);
+  }, [audioUrl, startVisualization, stopVisualization]);
 
   // Toggle play/pause
   const togglePlayPause = useCallback(() => {
@@ -608,7 +621,9 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
     if (!audio) return;
 
     const newVolume = parseFloat(e.target.value);
+    // Update audio volume immediately without waiting for state update
     audio.volume = newVolume;
+    // Update state (this won't cause audio to reinitialize since volume is not in useEffect deps)
     setVolume(newVolume);
     setIsMuted(newVolume === 0);
   }, []);
