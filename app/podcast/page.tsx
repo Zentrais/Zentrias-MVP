@@ -18,9 +18,23 @@ const PODCAST_EPISODES = [
   {
     id: 'episode-2',
     audioUrl: '/audio/The_Integrity_Economy_Versus_Speculation_E2.mp3',
-    title: 'The Investor Is Broken — This Is the Relaunch',
+    title: 'Episode 2: The Investor Is Broken — This Is the Relaunch',
     artist: 'Zentrais Team',
     intro: 'For decades, investing chased speed, exits, and artificial growth. The result is a system rich in capital and poor in trust. This episode is not about returns. It\'s about responsibility. A raw conversation that challenges investors to go back to square one, shed speculation, and reclaim their true role as builders of shared prosperity. Zentrais is not asking you to fund the future. It\'s asking you to rebuild it.',
+  },
+  {
+    id: 'episode-3',
+    audioUrl: '/audio/Credibility_Compounding_Versus_Manipulation_Decay_E3.mp3',
+    title: 'Episode 3: Credibility doesn\'t go viral. It Compounds',
+    artist: 'Zentrais Team',
+    intro: 'Manipulation does the opposite. It spreads fast, burns trust, and leaves nothing behind. In this episode, Zentrais confronts the uncomfortable truth behind today\'s media collapse. News didn\'t lose trust by accident. It was traded for clicks, outrage, and algorithmic reach. Perspective was blurred. Context was buried. Audiences were told what to feel before they were given the facts. This conversation isn\'t about blaming the media. It\'s about resetting it. Zentrais introduces a Perspective-first approach where intent is visible, facts stand on their own, debate becomes productive again, and credibility is allowed to grow over time. No spin. No noise. No performance. Just the return of journalism with a backbone.',
+  },
+  {
+    id: 'episode-4',
+    audioUrl: '/audio/Replacing_Influencer_Marketing_with_Proof_E4.mp3',
+    title: 'Episode 4: The end of Influencers. The rise of trust Builders',
+    artist: 'Zentrais Team',
+    intro: 'Influence didn\'t fade. It collapsed. 92% trust people they know. Only 11% trust influencer ads. Macro-influencer engagement in 2026 sits below 0.6%. That\'s not influence. That\'s noise. Brands bought reach. Audiences stopped believing. Trust walked away. This episode is a reality check. Zentrais doesn\'t optimize collaborations. It replaces them. No hype. No follower math. Just one question: What do you stand for when nobody is paying you?',
   },
 ];
 
