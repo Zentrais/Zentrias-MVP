@@ -5,6 +5,7 @@ import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-rea
 
 interface PodcastPlayerProps {
   audioUrl: string;
+  imageUrl?: string;
   title?: string;
   artist?: string;
   intro?: string;
@@ -13,7 +14,7 @@ interface PodcastPlayerProps {
   autoPlay?: boolean;
 }
 
-export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', artist = 'Zentrais', intro, onPreviousEpisode, onNextEpisode, autoPlay = false }: PodcastPlayerProps) {
+export default function PodcastPlayer({ audioUrl, imageUrl, title = 'Podcast Episode', artist = 'Zentrais', intro, onPreviousEpisode, onNextEpisode, autoPlay = false }: PodcastPlayerProps) {
   const waveformRef = useRef<HTMLDivElement>(null);
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -686,22 +687,32 @@ export default function PodcastPlayer({ audioUrl, title = 'Podcast Episode', art
             width: '100%',
             aspectRatio: '1 / 1',
             maxWidth: '700px',
-            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
             borderRadius: '12px',
             padding: '4px 2px 16px 2px',
             border: '1px solid rgba(244, 114, 182, 0.1)',
-            backgroundImage: 'url(/posible-fondo-podcast.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
             position: 'relative',
           }}
         >
-          {/* Overlay oscuro para mejorar contraste */}
+          {/* Episode Cover Image */}
+          <img
+            src={imageUrl || '/posible-fondo-podcast.jpg'}
+            alt={title}
+            className="w-full h-full object-cover rounded-lg"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+          {/* Overlay sutil para mejorar contraste */}
           <div 
             className="absolute inset-0 rounded-lg"
             style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              backgroundColor: 'rgba(0, 0, 0, 0.15)',
               pointerEvents: 'none',
             }}
           />
