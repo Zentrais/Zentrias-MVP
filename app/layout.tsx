@@ -109,6 +109,20 @@ export default function RootLayout({
             {/* FLOATING CTA */}
             <FloatingCTA />
           </main>
+          {/* Zoho SalesIQ Script */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.$zoho=window.$zoho || {};
+                $zoho.salesiq=$zoho.salesiq||{ready:function(){}}
+              `,
+            }}
+          />
+          <script
+            id="zsiqscript"
+            src="https://salesiq.zohopublic.com/widget?wc=siq8c01c3bccbdcc08ffcab0f4c42a26a195585367960265b6cb52657a89846efc8"
+            defer
+          />
         </LanguageProviderWrapper>
       </body>
     </html>
