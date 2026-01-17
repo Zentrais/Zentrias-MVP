@@ -17,14 +17,16 @@ export const translations: Record<Language, Record<string, string>> = {
     'home.proof.builders': '60+ global builders',
     'home.proof.founders': 'Founders from AI, psychology, behavior, and product',
     'home.proof.beta': 'Beta launching Q1 2026',
-    'home.card.user.title': 'BECOME A USER',
-    'home.card.user.desc': 'Be among the first to experience a new standard of digital interaction.',
-    'home.card.investor.title': 'INVEST IN US',
-    'home.card.investor.desc': 'Explore our purpose, team, and the vision behind the Integrity Economy.',
-    'home.card.collaborator.title': 'COLLABORATE',
-    'home.card.collaborator.desc': 'Work with us to build something meaningful, scalable, and globally relevant.',
-    'home.card.media.title': 'SPREAD THE BUZZ',
-    'home.card.media.desc': 'Share real stories of real change. A space for Zenzers and true media.',
+    'home.card.user.title': 'BETA USERS',
+    'home.card.user.desc': 'Join early. Help set the rules before they\'re locked.',
+    'home.card.investor.title': 'INVESTORS',
+    'home.card.investor.desc': 'Enter before integrity becomes infrastructure others control.',
+    'home.card.collaborator.title': 'COLLABORATORS',
+    'home.card.collaborator.desc': '(Brands, Zenzers, Builders of Trust) Build verified trust now, or keep renting attention.',
+    'home.card.media.title': 'MEDIA & NEWS GENERATORS',
+    'home.card.media.desc': 'Cover signal first, or report it later second-hand.',
+    'home.podcast.title': 'ZENTRAIS EXPLAINED!',
+    'home.podcast.desc': 'Discover our perspective and learn more about Zentrais through our podcast series',
     
     // Page Titles
     'pagetitle.user': 'User',
@@ -917,6 +919,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'home.card.collaborator.desc': 'Trabaja con nosotros para construir algo significativo, escalable y globalmente relevante.',
     'home.card.media.title': 'DIFUNDE LA NOTICIA',
     'home.card.media.desc': 'Comparte historias reales de cambio real. Un espacio para Zenzers y medios verdaderos.',
+    'home.podcast.title': '¡ZENTRAIS EXPLICADO!',
+    'home.podcast.desc': 'Descubre nuestra perspectiva y aprende más sobre Zentrais a través de nuestra serie de podcasts',
     
     // Page Titles
     'pagetitle.user': 'Usuario',

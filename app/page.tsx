@@ -500,12 +500,12 @@ export default function HomePage() {
                       
                       {/* Title */}
                       <h3 className="font-bold text-white text-base sm:text-lg mb-2 transition-all duration-300 group-hover:text-white group-hover:tracking-wide uppercase tracking-wider font-sans">
-                        Zentrais Explained!
+                        {t('home.podcast.title')}
                       </h3>
                       
                       {/* Description */}
                       <p className="text-xs sm:text-sm text-white/80 transition-all duration-300 group-hover:text-white/95 font-sans leading-relaxed">
-                        Discover our perspective and learn more about Zentrais through our podcast series
+                        {t('home.podcast.desc')}
                       </p>
                     </div>
 
