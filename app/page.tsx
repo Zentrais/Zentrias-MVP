@@ -527,29 +527,27 @@ export default function HomePage() {
             className="mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-10 border-t border-white/20 animate-fade-in-up animation-delay-1000"
             style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style' }}
           >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 text-center text-white/70 text-sm sm:text-base">
+            <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-center text-white/70 text-sm sm:text-base">
               <div className="flex items-center gap-2 group/proof hover:text-white transition-opacity" style={{ transitionDuration: '200ms' }}>
                 <span 
-                  className="inline-block w-2 h-2 bg-cyan-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
+                  className="inline-block w-2 h-2 bg-cyan-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity flex-shrink-0"
                   style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
-                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.builders')}</span>
+                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform whitespace-nowrap" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.builders')}</span>
               </div>
-              <div className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}></div>
               <div className="flex items-center gap-2 group/proof hover:text-white transition-opacity" style={{ transitionDuration: '200ms' }}>
                 <span 
-                  className="inline-block w-2 h-2 bg-purple-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
+                  className="inline-block w-2 h-2 bg-purple-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity flex-shrink-0"
                   style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
-                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.founders')}</span>
+                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform whitespace-nowrap" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.founders')}</span>
               </div>
-              <div className="hidden sm:block w-px h-6 bg-gradient-to-b from-transparent via-white/30 to-transparent opacity-60" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}></div>
               <div className="flex items-center gap-2 group/proof hover:text-white transition-opacity" style={{ transitionDuration: '200ms' }}>
                 <span 
-                  className="inline-block w-2 h-2 bg-pink-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity"
+                  className="inline-block w-2 h-2 bg-pink-400 rounded-full opacity-80 group-hover/proof:opacity-100 transition-opacity flex-shrink-0"
                   style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
                 ></span>
-                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.beta')}</span>
+                <span className="font-semibold text-white/90 group-hover/proof:scale-105 transition-transform whitespace-nowrap" style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}>{t('home.proof.beta')}</span>
               </div>
             </div>
           </div>
