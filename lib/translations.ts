@@ -3,9 +3,9 @@ export type Language = 'en' | 'es';
 export const translations: Record<Language, Record<string, string>> = {
   en: {
     // Homepage
-    'home.headline': 'Zentrais is the Human–AI Platform Built on Integrity.',
-    'home.subheadline': 'Clarity. Accountability. Real identities. Real value.',
-    'home.description': 'One ecosystem for verified insights, respectful dialog, and clean commerce.',
+    'home.headline': 'Zentrais is the Human-AI Plataform for a Broken Internet.',
+    'home.subheadline': 'Built on Integrity. Enforced by Accountability.',
+    'home.description': 'Real people. Verified insight. Measured trust.',
     'home.countdown.title': 'ZENTRAIS GOES LIVE!',
     'home.countdown.days': 'Days',
     'home.countdown.hours': 'Hours',
@@ -154,7 +154,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'investors.cta.data': 'Request Data Room Access',
     'investors.cta.deck': 'Download Investor Deck',
     'investors.cta.relations': 'Contact Investor Relations',
-    'investors.cta.note': 'Pre-Seed Round Open through Q4 2025.',
+    'investors.cta.note': 'Pre-Seed Round Open through Q4 2026.',
     'investors.footer': 'Zentrais isn\'t a platform. It\'s a new economic operating system for trust.',
     
     // Investors Page - Additional translations (legacy)
@@ -291,7 +291,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'investors.why.defensible.identity': 'Verified Identity infrastructure (partner-integrated)',
     'investors.why.defensible.architecture': 'Architecture designed for global scale and compliant data flows',
     'investors.why.ip.title': 'IP Positioning',
-    'investors.why.ip.patents': 'Multiple flows and models for patent submission (2025)',
+    'investors.why.ip.patents': 'Multiple flows and models for patent submission (2026)',
     'investors.why.ip.cri': 'CRI classification and intent-layer algorithms under IP review',
     'investors.why.ip.trademark': 'Trademark and Integrity Economy framework filings in progress',
     'investors.why.flywheel.title': 'Economic Flywheel',
@@ -475,7 +475,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'media.coverage.title': 'Featured Coverage & Mentions',
     'media.coverage.body': 'As the Integrity Economy gains momentum, global outlets and thought leaders are starting to tell its story. Below are highlights from our recent media mentions and collaborations.',
     'media.coverage.quote': 'Zentrais could redefine how AI learns from — and values — human input.',
-    'media.coverage.source': 'Emerging Tech Review, 2025',
+    'media.coverage.source': 'Emerging Tech Review, 2026',
     'media.coverage.cta': 'Request Media Access',
     'media.stories.title': 'Explore Storylines Shaping the Integrity Economy',
     'media.stories.trust.title': 'Rebuilding Trust',
@@ -563,7 +563,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Privacy Policy
     'legal.privacy.title': 'ZENTRAIS PRIVACY POLICY',
-    'legal.privacy.version': 'Ver. 11/15/2025',
+    'legal.privacy.version': 'Ver. 11/15/2026',
     'legal.privacy.intro': 'Zentrais is built to protect people first. Your data is yours; your identity is yours, and your interactions belong to you. This Privacy Policy explains what we collect, how we use it, and how we safeguard every interaction across Dialog, Perspective, and Exchange. If you disagree with this policy, please stop using Zentrais.',
     'legal.privacy.section1.title': '1. WHO WE ARE',
     'legal.privacy.section1.desc': 'Zentrais, Inc. operates a human-AI ecosystem designed for authentic, transparent, and integrity-driven interactions.',
@@ -638,7 +638,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Terms of Service
     'legal.terms.title': 'ZENTRAIS TERMS OF SERVICE (TOS)',
-    'legal.terms.effective': 'Effective Date: 11/15/2025',
+    'legal.terms.effective': 'Effective Date: 11/15/2026',
     'legal.terms.welcome': 'Welcome to Zentrais.',
     'legal.terms.intro': 'The following Terms of Service ("Terms") govern your access to and use of the Zentrais platform, including Dialog, Perspective, and Exchange.',
     'legal.terms.agree': 'By using Zentrais, you agree to these Terms. If you do not agree, stop using the platform.',
@@ -692,7 +692,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Cookie Policy
     'legal.cookie.title': 'ZENTRAIS COOKIE POLICY',
-    'legal.cookie.version': 'Ver. 11/15/2025',
+    'legal.cookie.version': 'Ver. 11/15/2026',
     'legal.cookie.intro': 'Zentrais uses minimal cookies to operate the platform securely.',
     'legal.cookie.section1.title': '1. WHAT COOKIES WE USE',
     'legal.cookie.section1.essential.title': 'Essential Cookies',
@@ -717,7 +717,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Security Policy
     'legal.security.title': 'ZENTRAIS SECURITY POLICY',
-    'legal.security.version': 'Ver. 11/15/2025',
+    'legal.security.version': 'Ver. 11/15/2026',
     'legal.security.intro': 'Zentrais is built on zero-compromise security. Below are the protections we enforce across all systems.',
     'legal.security.section1.title': '1. SECURITY PRINCIPLES',
     'legal.security.section2.title': '2. TECHNICAL CONTROLS',
@@ -736,9 +736,9 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - DPA
     'legal.dpa.title': 'ZENTRAIS DATA PROCESSING AGREEMENT (DPA)',
-    'legal.dpa.version': 'Ver. 11/15/2025',
+    'legal.dpa.version': 'Ver. 11/15/2026',
     'legal.dpa.intro': 'For GDPR, CPRA, LGPD, and global compliance',
-    'legal.dpa.effective': 'Effective Date: 11/15/2025',
+    'legal.dpa.effective': 'Effective Date: 11/15/2026',
     'legal.dpa.forms': 'This Data Processing Agreement ("DPA") forms part of the Terms of Service between:',
     'legal.dpa.controller': 'Controller: Zentrais users',
     'legal.dpa.processor': 'Processor: Zentrais, Inc.',
@@ -771,9 +771,9 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - GDPR Cookie Consent
     'legal.gdpr.title': 'GDPR-COMPLIANT COOKIE/CONSENT BANNER',
-    'legal.gdpr.date': 'Nov 15, 2025',
+    'legal.gdpr.date': 'Nov 15, 2026',
     'legal.gdpr.content.title': 'ZENTRAIS GDPR-COMPLIANT COOKIE/CONSENT BANNER',
-    'legal.gdpr.content.effective': 'Effective Date: 11/15/2025',
+    'legal.gdpr.content.effective': 'Effective Date: 11/15/2026',
     
     // Legal Pages - Legal Center
     'legal.center.title': 'LEGAL CENTER',
@@ -784,8 +784,8 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Legal Compliance Handbook (key sections only due to length)
     'legal.handbook.title': 'ZENTRAIS LEGAL & COMPLIANCE HANDBOOK',
-    'legal.handbook.date': 'Nov 15, 2025',
-    'legal.handbook.version': 'Version 1.0 — Effective 11/15/2025',
+    'legal.handbook.date': 'Nov 15, 2026',
+    'legal.handbook.version': 'Version 1.0 — Effective 11/15/2026',
     'legal.handbook.intro': 'This handbook consolidates all essential legal, privacy, compliance, governance, and risk documentation into a single authoritative reference for:',
     'legal.handbook.master': 'This is the master document to be placed inside the Investor Data Room, linked on the website footer, and shared with partners.',
     'legal.handbook.section0.title': '0. INTRODUCTION',
@@ -795,7 +795,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Legal Governance Suite (key sections only due to length)
     'legal.suite.title': 'COMPLETE LEGAL + GOVERNANCE SUITE',
-    'legal.suite.date': 'Nov 15, 2025',
+    'legal.suite.date': 'Nov 15, 2026',
     'legal.suite.index': 'INDEX',
     
     // About Page
@@ -1046,7 +1046,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'investors.cta.data': 'Solicitar Acceso a la Sala de Datos',
     'investors.cta.deck': 'Descargar Deck de Inversor',
     'investors.cta.relations': 'Contactar Relaciones con Inversores',
-    'investors.cta.note': 'Ronda Pre-Seed Abierta hasta Q4 2025.',
+    'investors.cta.note': 'Ronda Pre-Seed Abierta hasta Q4 2026.',
     'investors.footer': 'Zentrais no es una plataforma. Es un nuevo sistema operativo económico para la confianza.',
     
     // Collaborator Page
@@ -1137,7 +1137,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'media.coverage.title': 'Cobertura y Menciones Destacadas',
     'media.coverage.body': 'A medida que la Economía de la Integridad gana impulso, los medios globales y los líderes de opinión están comenzando a contar su historia. A continuación se muestran los aspectos más destacados de nuestras menciones y colaboraciones recientes en los medios.',
     'media.coverage.quote': 'Zentrais podría redefinir cómo la IA aprende y valora la entrada humana.',
-    'media.coverage.source': 'Emerging Tech Review, 2025',
+    'media.coverage.source': 'Emerging Tech Review, 2026',
     'media.coverage.cta': 'Solicitar Acceso a Medios',
     'media.stories.title': 'Explora Historias que Dan Forma a la Economía de la Integridad',
     'media.stories.trust.title': 'Reconstruyendo la Confianza',
@@ -1436,7 +1436,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'investors.why.defensible.identity': 'Infraestructura de Identidad Verificada (integración con socios)',
     'investors.why.defensible.architecture': 'Arquitectura diseñada para escala global y flujos de datos compatibles',
     'investors.why.ip.title': 'Posicionamiento de PI',
-    'investors.why.ip.patents': 'Múltiples flujos y modelos para presentación de patentes (2025)',
+    'investors.why.ip.patents': 'Múltiples flujos y modelos para presentación de patentes (2026)',
     'investors.why.ip.cri': 'Clasificación CRI y algoritmos de capa de intención bajo revisión de PI',
     'investors.why.ip.trademark': 'Marcas registradas y presentaciones del marco de Economía de Integridad en progreso',
     'investors.why.flywheel.title': 'Rueda de Inercia Económica',
@@ -1469,7 +1469,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Privacy Policy (Spanish)
     'legal.privacy.title': 'POLÍTICA DE PRIVACIDAD DE ZENTRAIS',
-    'legal.privacy.version': 'Ver. 11/15/2025',
+    'legal.privacy.version': 'Ver. 11/15/2026',
     'legal.privacy.intro': 'Zentrais está construido para proteger a las personas primero. Tus datos son tuyos; tu identidad es tuya, y tus interacciones te pertenecen. Esta Política de Privacidad explica qué recopilamos, cómo lo usamos y cómo protegemos cada interacción en Dialog, Perspective y Exchange. Si no estás de acuerdo con esta política, por favor deja de usar Zentrais.',
     'legal.privacy.section1.title': '1. QUIÉNES SOMOS',
     'legal.privacy.section1.desc': 'Zentrais, Inc. opera un ecosistema humano-IA diseñado para interacciones auténticas, transparentes e impulsadas por la integridad.',
@@ -1559,7 +1559,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Terms of Service (Spanish)
     'legal.terms.title': 'TÉRMINOS DE SERVICIO DE ZENTRAIS (TOS)',
-    'legal.terms.effective': 'Fecha de Vigencia: 11/15/2025',
+    'legal.terms.effective': 'Fecha de Vigencia: 11/15/2026',
     'legal.terms.welcome': 'Bienvenido a Zentrais.',
     'legal.terms.intro': 'Los siguientes Términos de Servicio ("Términos") rigen tu acceso y uso de la plataforma Zentrais, incluyendo Dialog, Perspective y Exchange.',
     'legal.terms.agree': 'Al usar Zentrais, aceptas estos Términos. Si no estás de acuerdo, deja de usar la plataforma.',
@@ -1613,7 +1613,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Cookie Policy (Spanish)
     'legal.cookie.title': 'POLÍTICA DE COOKIES DE ZENTRAIS',
-    'legal.cookie.version': 'Ver. 11/15/2025',
+    'legal.cookie.version': 'Ver. 11/15/2026',
     'legal.cookie.intro': 'Zentrais usa cookies mínimas para operar la plataforma de forma segura.',
     'legal.cookie.section1.title': '1. QUÉ COOKIES USAMOS',
     'legal.cookie.section1.essential.title': 'Cookies Esenciales',
@@ -1638,7 +1638,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Security Policy (Spanish)
     'legal.security.title': 'POLÍTICA DE SEGURIDAD DE ZENTRAIS',
-    'legal.security.version': 'Ver. 11/15/2025',
+    'legal.security.version': 'Ver. 11/15/2026',
     'legal.security.intro': 'Zentrais está construido sobre seguridad sin compromisos. A continuación se encuentran las protecciones que aplicamos en todos los sistemas.',
     'legal.security.section1.title': '1. PRINCIPIOS DE SEGURIDAD',
     'legal.security.section2.title': '2. CONTROLES TÉCNICOS',
@@ -1657,9 +1657,9 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - DPA (Spanish)
     'legal.dpa.title': 'ACUERDO DE PROCESAMIENTO DE DATOS DE ZENTRAIS (DPA)',
-    'legal.dpa.version': 'Ver. 11/15/2025',
+    'legal.dpa.version': 'Ver. 11/15/2026',
     'legal.dpa.intro': 'Para cumplimiento GDPR, CPRA, LGPD y global',
-    'legal.dpa.effective': 'Fecha de Vigencia: 11/15/2025',
+    'legal.dpa.effective': 'Fecha de Vigencia: 11/15/2026',
     'legal.dpa.forms': 'Este Acuerdo de Procesamiento de Datos ("DPA") forma parte de los Términos de Servicio entre:',
     'legal.dpa.controller': 'Controlador: Usuarios de Zentrais',
     'legal.dpa.processor': 'Procesador: Zentrais, Inc.',
@@ -1692,9 +1692,9 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - GDPR Cookie Consent (Spanish)
     'legal.gdpr.title': 'BANNER DE CONSENTIMIENTO DE COOKIES COMPATIBLE CON GDPR',
-    'legal.gdpr.date': '15 Nov 2025',
+    'legal.gdpr.date': '15 Nov 2026',
     'legal.gdpr.content.title': 'BANNER DE CONSENTIMIENTO DE COOKIES COMPATIBLE CON GDPR DE ZENTRAIS',
-    'legal.gdpr.content.effective': 'Fecha de Vigencia: 11/15/2025',
+    'legal.gdpr.content.effective': 'Fecha de Vigencia: 11/15/2026',
     
     // Legal Pages - Legal Center (Spanish)
     'legal.center.title': 'CENTRO LEGAL',
@@ -1705,8 +1705,8 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Legal Compliance Handbook (Spanish - key sections)
     'legal.handbook.title': 'MANUAL LEGAL Y DE CUMPLIMIENTO DE ZENTRAIS',
-    'legal.handbook.date': '15 Nov 2025',
-    'legal.handbook.version': 'Versión 1.0 — Vigente 11/15/2025',
+    'legal.handbook.date': '15 Nov 2026',
+    'legal.handbook.version': 'Versión 1.0 — Vigente 11/15/2026',
     'legal.handbook.intro': 'Este manual consolida toda la documentación esencial legal, de privacidad, cumplimiento, gobernanza y riesgo en una única referencia autoritativa para:',
     'legal.handbook.master': 'Este es el documento maestro que se colocará dentro de la Sala de Datos de Inversores, vinculado en el pie de página del sitio web y compartido con socios.',
     'legal.handbook.section0.title': '0. INTRODUCCIÓN',
@@ -1716,7 +1716,7 @@ export const translations: Record<Language, Record<string, string>> = {
     
     // Legal Pages - Legal Governance Suite (Spanish - key sections)
     'legal.suite.title': 'SUITE COMPLETA LEGAL + GOBERNANZA',
-    'legal.suite.date': '15 Nov 2025',
+    'legal.suite.date': '15 Nov 2026',
     'legal.suite.index': 'ÍNDICE',
     
     // About Page (Spanish - Complete)

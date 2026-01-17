@@ -93,7 +93,7 @@ export default function LegalGovernanceSuitePage() {
               1. END USER LICENSE AGREEMENT (EULA — MOBILE APP)
             </h2>
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-4">
-              Effective Date: 11/15/2025
+              Effective Date: 11/15/2026
             </p>
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed font-sans mb-4">
               Applies to: iOS, Android, progressive web apps

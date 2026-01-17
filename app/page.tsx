@@ -281,6 +281,27 @@ export default function HomePage() {
     },
   ], [t]);
 
+  // Calculate tomorrow at 2:00 AM in local timezone
+  const tomorrowAt2AM = useMemo(() => {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(now.getDate() + 1);
+    tomorrow.setHours(2, 0, 0, 0);
+    
+    // Format as ISO string with timezone offset
+    const offset = -tomorrow.getTimezoneOffset();
+    const offsetHours = Math.floor(Math.abs(offset) / 60);
+    const offsetMinutes = Math.abs(offset) % 60;
+    const offsetSign = offset >= 0 ? '+' : '-';
+    const offsetString = `${offsetSign}${String(offsetHours).padStart(2, '0')}:${String(offsetMinutes).padStart(2, '0')}`;
+    
+    const year = tomorrow.getFullYear();
+    const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const day = String(tomorrow.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}T02:00:00${offsetString}`;
+  }, []);
+
   // Render content immediately, even before components are fully loaded
   return (
     <div className="min-h-screen relative" style={{ transform: 'translateZ(0)', contain: 'layout style paint', willChange: 'auto', minHeight: '100vh' }}>
@@ -348,8 +369,8 @@ export default function HomePage() {
 
           <Countdown
             className="mt-10 sm:mt-12 md:mt-14 animate-fade-in-up animation-delay-750"
-            // Jan 17, 2026 11:00 AM Eastern Time (EST = -05:00)
-            targetISO="2026-01-17T11:00:00-05:00"
+            // Tomorrow at 2:00 AM
+            targetISO={tomorrowAt2AM}
           />
 
           {/* YouTube Video Embed */}

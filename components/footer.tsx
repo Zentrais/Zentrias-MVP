@@ -54,7 +54,7 @@ export default function Footer() {
             </div>
             <div className="space-y-2">
               <p className="text-slate-400 text-sm leading-relaxed font-sans">
-                © 2025 Zentrais, Inc. All rights reserved.
+                © 2026 Zentrais, Inc. All rights reserved.
               </p>
               <p className="text-slate-400 text-sm leading-relaxed font-sans">
                 Built on Truth, Trust, and Transparency.
@@ -184,7 +184,7 @@ export default function Footer() {
             Zentrais is redefining how stories of truth are told: through integrity, transparency, and human connection.
           </p>
           <p className="text-slate-500 text-sm font-sans text-center md:text-left">
-            © 2025 Zentrais. All Rights Reserved.
+            © 2026 Zentrais. All Rights Reserved.
           </p>
         </div>
       </div>

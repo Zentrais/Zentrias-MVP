@@ -185,7 +185,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
           <div className="bg-slate-900/60 rounded-2xl border border-blue-400/30 p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-gray-100 collaborator-body">
             <div className="space-y-2">
               <p>
-                <span className="font-semibold text-blue-200">{isEs ? 'Fundada:' : 'Founded:'}</span> 2025
+                <span className="font-semibold text-blue-200">{isEs ? 'Fundada:' : 'Founded:'}</span> 2026
               </p>
               <p>
                 <span className="font-semibold text-blue-200">{isEs ? 'Fundadores:' : 'Founders:'}</span>{' '}
