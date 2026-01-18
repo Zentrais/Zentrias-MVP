@@ -3,6 +3,7 @@
 import { useEffect, useMemo, memo, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { Users, DollarSign, Handshake, Camera } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '../contexts/language-context';
@@ -281,23 +282,28 @@ export default function HomePage() {
     },
   ], [t]);
 
-  // Calculate tomorrow at 2:00 AM in local timezone
-  const tomorrowAt2AM = useMemo(() => {
+  // Calculate today at 2:00 AM in local timezone (or tomorrow if already past 2 AM)
+  const todayAt2AM = useMemo(() => {
     const now = new Date();
-    const tomorrow = new Date(now);
-    tomorrow.setDate(now.getDate() + 1);
-    tomorrow.setHours(2, 0, 0, 0);
+    const target = new Date(now);
+    target.setHours(2, 0, 0, 0);
+    target.setSeconds(0, 0);
+    
+    // If it's already past 2 AM today, set for tomorrow
+    if (now >= target) {
+      target.setDate(target.getDate() + 1);
+    }
     
     // Format as ISO string with timezone offset
-    const offset = -tomorrow.getTimezoneOffset();
+    const offset = -target.getTimezoneOffset();
     const offsetHours = Math.floor(Math.abs(offset) / 60);
     const offsetMinutes = Math.abs(offset) % 60;
     const offsetSign = offset >= 0 ? '+' : '-';
     const offsetString = `${offsetSign}${String(offsetHours).padStart(2, '0')}:${String(offsetMinutes).padStart(2, '0')}`;
     
-    const year = tomorrow.getFullYear();
-    const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
-    const day = String(tomorrow.getDate()).padStart(2, '0');
+    const year = target.getFullYear();
+    const month = String(target.getMonth() + 1).padStart(2, '0');
+    const day = String(target.getDate()).padStart(2, '0');
     
     return `${year}-${month}-${day}T02:00:00${offsetString}`;
   }, []);
@@ -369,8 +375,8 @@ export default function HomePage() {
 
           <Countdown
             className="mt-10 sm:mt-12 md:mt-14 animate-fade-in-up animation-delay-750"
-            // Tomorrow at 2:00 AM
-            targetISO={tomorrowAt2AM}
+            // Today at 2:00 AM (or tomorrow if already past 2 AM)
+            targetISO={todayAt2AM}
           />
 
           {/* MVP Enter Section */}
@@ -383,8 +389,9 @@ export default function HomePage() {
               <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 via-pink-400/15 to-pink-500/20 rounded-full blur-xl opacity-60" style={{ zIndex: 1 }}></div>
 
               {/* Glass Button Section */}
-              <div 
-                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-2xl p-6 sm:p-8 md:p-10 text-center transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60"
+              <Link 
+                href="https://zentrais-railway-fronend-production.up.railway.app/welcome"
+                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-2xl p-6 sm:p-8 md:p-10 text-center transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 cursor-pointer block"
                 style={{ 
                   zIndex: 2,
                   backdropFilter: 'blur(20px) saturate(180%)',
@@ -403,7 +410,7 @@ export default function HomePage() {
                     Enter the MVP →
                   </span>
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* Text below section */}

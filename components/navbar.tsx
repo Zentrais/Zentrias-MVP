@@ -78,11 +78,11 @@ export default function Navbar() {
                 style={{ marginTop: '4px' }}
               />
             </Link>
-            <div className="flex justify-end items-center gap-4" style={{ position: 'relative' }}>
+            <div className="flex justify-end items-center gap-2 sm:gap-4" style={{ position: 'relative' }}>
               {/* Enter MVP Button */}
               <Link 
-                href="/"
-                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-lg px-4 py-2 transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 group"
+                href="https://zentrais-railway-fronend-production.up.railway.app/welcome"
+                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-lg px-2 py-1 sm:px-4 sm:py-2 transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 group flex-shrink-0"
                 style={{ 
                   backdropFilter: 'blur(20px) saturate(180%)',
                   WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -95,7 +95,7 @@ export default function Navbar() {
                 }}></div>
                 
                 {/* Content */}
-                <span className="relative z-10 text-white font-extrabold text-sm sm:text-base tracking-tight drop-shadow-lg whitespace-nowrap">
+                <span className="relative z-10 text-white font-extrabold text-xs sm:text-sm md:text-base tracking-tight drop-shadow-lg whitespace-nowrap">
                   Enter the MVP →
                 </span>
               </Link>

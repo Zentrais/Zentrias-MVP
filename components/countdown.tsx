@@ -98,8 +98,38 @@ export default function Countdown({ targetISO, className = '' }: CountdownProps)
           </div>
 
           {ended && (
-            <div className="mt-4 text-center text-sm text-white/80">
-              {t('home.countdown.ended')}
+            <div
+              className="mt-5 sm:mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
+              aria-live="polite"
+              suppressHydrationWarning
+            >
+              <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
+                <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums" suppressHydrationWarning>00</div>
+                <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
+                  {t('home.countdown.days')}
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
+                <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums" suppressHydrationWarning>00</div>
+                <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
+                  {t('home.countdown.hours')}
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
+                <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums" suppressHydrationWarning>00</div>
+                <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
+                  {t('home.countdown.minutes')}
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
+                <div className="text-2xl sm:text-3xl font-extrabold text-red-400 tabular-nums" suppressHydrationWarning>00</div>
+                <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
+                  {t('home.countdown.seconds')}
+                </div>
+              </div>
             </div>
           )}
 
