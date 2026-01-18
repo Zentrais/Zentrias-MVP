@@ -59,7 +59,7 @@ export default function Navbar() {
           <>
             <Link 
               href="/" 
-              className="group flex items-center cursor-pointer hover:opacity-80 transition-all duration-300"
+              className="group flex items-center cursor-pointer hover:opacity-80 transition-all duration-300 flex-shrink-0 min-w-0"
               style={{ gap: '0.5px', alignItems: 'center' }}
             >
               <Image
@@ -67,22 +67,22 @@ export default function Navbar() {
                 alt="Zentrais Logo"
                 width={36}
                 height={36}
-                className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 transition-transform duration-300 group-hover:scale-110 self-center"
+                className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 transition-transform duration-300 group-hover:scale-110 self-center flex-shrink-0"
               />
               <Image
                 src="/logo-1.png"
                 alt="Zentrais"
                 width={130}
                 height={130}
-                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain self-center"
+                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain self-center flex-shrink-0"
                 style={{ marginTop: '4px' }}
               />
             </Link>
-            <div className="flex justify-end items-center gap-2 sm:gap-4" style={{ position: 'relative' }}>
+            <div className="flex justify-end items-center gap-1 sm:gap-4 flex-shrink-0 min-w-0" style={{ position: 'relative' }}>
               {/* Enter MVP Button */}
               <Link 
                 href="https://zentrais-railway-fronend-production.up.railway.app/welcome"
-                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-lg px-2 py-1 sm:px-4 sm:py-2 transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 group flex-shrink-0"
+                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-lg px-1.5 py-0.5 sm:px-4 sm:py-2 transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 group flex-shrink-0"
                 style={{ 
                   backdropFilter: 'blur(20px) saturate(180%)',
                   WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -95,8 +95,10 @@ export default function Navbar() {
                 }}></div>
                 
                 {/* Content */}
-                <span className="relative z-10 text-white font-extrabold text-xs sm:text-sm md:text-base tracking-tight drop-shadow-lg whitespace-nowrap">
-                  Enter the MVP →
+                <span className="relative z-10 text-white font-extrabold text-[10px] sm:text-sm md:text-base tracking-tight drop-shadow-lg whitespace-nowrap">
+                  <span className="hidden sm:inline">Enter the MVP </span>
+                  <span className="sm:hidden">MVP</span>
+                  <span className="hidden sm:inline"> →</span>
                 </span>
               </Link>
               <ChannelSelector />
