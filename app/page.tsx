@@ -373,6 +373,68 @@ export default function HomePage() {
             targetISO={tomorrowAt2AM}
           />
 
+          {/* MVP Enter Section */}
+          <div className="mt-10 sm:mt-12 md:mt-14 flex flex-col items-center animate-fade-in-up animation-delay-800" style={{ contain: 'layout style' }}>
+            <div className="relative mx-auto w-full max-w-5xl">
+              {/* Background blocker to hide stars - solid background behind */}
+              <div className="absolute inset-0 rounded-full" style={{ backgroundColor: 'rgba(34, 23, 43, 1)', zIndex: 0 }}></div>
+              
+              {/* Glow - pink sutil */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 via-pink-400/15 to-pink-500/20 rounded-full blur-xl opacity-60" style={{ zIndex: 1 }}></div>
+
+              {/* Glass Button Section */}
+              <div 
+                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-2xl p-6 sm:p-8 md:p-10 text-center transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60"
+                style={{ 
+                  zIndex: 2,
+                  backdropFilter: 'blur(20px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                  boxShadow: '0 8px 32px 0 rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
+                }}
+              >
+                {/* Inner glow effect */}
+                <div className="absolute inset-0 rounded-full opacity-0 hover:opacity-20 transition-opacity duration-300 pointer-events-none" style={{ 
+                  background: 'radial-gradient(circle at center, rgba(244, 114, 182, 0.5) 0%, transparent 70%)',
+                }}></div>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <span className="text-white font-extrabold text-lg sm:text-xl md:text-2xl tracking-tight drop-shadow-lg">
+                    Enter the MVP →
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Text below section */}
+            <p className="mt-6 sm:mt-8 text-white/90 text-base sm:text-lg md:text-xl text-center max-w-3xl mx-auto px-4 font-semibold tracking-wide drop-shadow font-sans">
+              Enter the MVP. Help prove integrity as a system
+            </p>
+
+            {/* Pink glowing line separator */}
+            <div className="relative w-full max-w-5xl mt-6 sm:mt-8 px-4" style={{ contain: 'layout style' }}>
+              <div className="relative h-[1px] w-full overflow-hidden">
+                {/* Pink glowing line */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-400 to-transparent"
+                  style={{
+                    height: '2px',
+                    boxShadow: '0 0 10px rgba(244, 114, 182, 0.8), 0 0 20px rgba(244, 114, 182, 0.6), 0 0 30px rgba(244, 114, 182, 0.4)',
+                    filter: 'blur(0.5px)',
+                  }}
+                ></div>
+                {/* Soft glow around the line */}
+                <div 
+                  className="absolute inset-0 bg-pink-400/30"
+                  style={{
+                    height: '1px',
+                    filter: 'blur(3px)',
+                  }}
+                ></div>
+              </div>
+            </div>
+          </div>
+
           {/* YouTube Video Embed */}
           <div className="mt-12 sm:mt-16 md:mt-20 flex justify-center animate-fade-in-up animation-delay-800" style={{ contain: 'layout style' }}>
             <div className="w-full max-w-6xl px-4 sm:px-6">

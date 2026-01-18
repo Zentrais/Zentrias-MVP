@@ -79,6 +79,26 @@ export default function Navbar() {
               />
             </Link>
             <div className="flex justify-end items-center gap-4" style={{ position: 'relative' }}>
+              {/* Enter MVP Button */}
+              <Link 
+                href="/"
+                className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-lg px-4 py-2 transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 group"
+                style={{ 
+                  backdropFilter: 'blur(20px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                  boxShadow: '0 4px 16px 0 rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
+                }}
+              >
+                {/* Inner glow effect */}
+                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none" style={{ 
+                  background: 'radial-gradient(circle at center, rgba(244, 114, 182, 0.5) 0%, transparent 70%)',
+                }}></div>
+                
+                {/* Content */}
+                <span className="relative z-10 text-white font-extrabold text-sm sm:text-base tracking-tight drop-shadow-lg whitespace-nowrap">
+                  Enter the MVP →
+                </span>
+              </Link>
               <ChannelSelector />
               <LanguageSelector />
             </div>
