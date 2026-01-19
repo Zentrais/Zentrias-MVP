@@ -407,7 +407,7 @@ export default function HomePage() {
                 {/* Content */}
                 <div className="relative z-10">
                   <span className="text-white font-extrabold text-lg sm:text-xl md:text-2xl tracking-tight drop-shadow-lg">
-                    Enter the MVP →
+                    JOIN THE BETA →
                   </span>
                 </div>
               </Link>

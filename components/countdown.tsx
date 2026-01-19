@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../contexts/language-context';
 
 type CountdownProps = {
@@ -11,38 +10,8 @@ type CountdownProps = {
   className?: string;
 };
 
-function pad2(n: number) {
-  return String(n).padStart(2, '0');
-}
-
-function splitSeconds(totalSeconds: number) {
-  const days = Math.floor(totalSeconds / 86400);
-  const hours = Math.floor((totalSeconds % 86400) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  return { days, hours, minutes, seconds };
-}
-
-export default function Countdown({ targetISO, className = '' }: CountdownProps) {
+export default function Countdown({ className = '' }: CountdownProps) {
   const { t } = useLanguage();
-
-  const targetMs = useMemo(() => {
-    const parsed = Date.parse(targetISO);
-    return Number.isFinite(parsed) ? parsed : NaN;
-  }, [targetISO]);
-
-  const [nowMs, setNowMs] = useState(() => Date.now());
-
-  useEffect(() => {
-    const id = window.setInterval(() => setNowMs(Date.now()), 1000);
-    return () => window.clearInterval(id);
-  }, []);
-
-  const remainingMs = Math.max(0, targetMs - nowMs);
-  const totalSeconds = Number.isFinite(remainingMs) ? Math.floor(remainingMs / 1000) : 0;
-  const ended = Number.isFinite(targetMs) ? targetMs <= nowMs : false;
-  // Always show 00 for all values
-  const { days, hours, minutes, seconds } = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
   return (
     <div className={className}>
@@ -62,46 +31,6 @@ export default function Countdown({ targetISO, className = '' }: CountdownProps)
               </p>
             </div>
           </div>
-
-          <div
-            className="mt-5 sm:mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
-            aria-live="polite"
-            aria-label={t('home.countdown.aria')}
-            suppressHydrationWarning
-          >
-            <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums" suppressHydrationWarning>00</div>
-              <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
-                {t('home.countdown.days')}
-              </div>
-            </div>
-
-            <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums" suppressHydrationWarning>00</div>
-              <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
-                {t('home.countdown.hours')}
-              </div>
-            </div>
-
-            <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums" suppressHydrationWarning>00</div>
-              <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
-                {t('home.countdown.minutes')}
-              </div>
-            </div>
-
-            <div className="rounded-xl bg-black/20 border border-white/15 p-4 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-red-400 tabular-nums" suppressHydrationWarning>00</div>
-              <div className="mt-1 text-[11px] sm:text-xs text-white/70 uppercase tracking-wider">
-                {t('home.countdown.seconds')}
-              </div>
-            </div>
-          </div>
-
-
-          {!Number.isFinite(targetMs) && (
-            <div className="mt-4 text-center text-sm text-white/80">{t('home.countdown.invalid')}</div>
-          )}
         </div>
       </div>
     </div>
