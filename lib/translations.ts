@@ -3,7 +3,7 @@ export type Language = 'en' | 'es';
 export const translations: Record<Language, Record<string, string>> = {
   en: {
     // Homepage
-    'home.headline': 'Zentrais is the Human-AI Plataform for a Broken Internet.',
+    'home.headline': 'Zentrais is the Human-AI Platform for a Broken Internet.',
     'home.subheadline': 'Built on Integrity. Enforced by Accountability.',
     'home.description': 'Real people. Verified insight. Measured trust.',
     'home.countdown.title': 'Zentrais is now live!',
