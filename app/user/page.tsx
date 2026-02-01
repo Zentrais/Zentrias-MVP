@@ -98,10 +98,7 @@ export default function UserPage() {
   }, []);
 
   const handleJoinBeta = () => {
-    const formElement = document.getElementById('waitlist-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    window.location.href = 'https://zentrais-railway-fronend-production.up.railway.app/onboarding';
   };
 
   return (
