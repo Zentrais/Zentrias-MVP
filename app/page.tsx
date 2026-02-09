@@ -358,35 +358,21 @@ export default function HomePage() {
           className="container mx-auto pt-8 sm:pt-12 md:pt-16 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6"
           style={{ contain: 'layout style' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center" style={{ contain: 'layout style' }}>
-            {audienceCards.map((card, index) => {
-              const colors = colorClasses[card.color as keyof typeof colorClasses];
-              return (
-                <AudienceCard
-                  key={card.id}
-                  card={card}
-                  index={index}
-                  onNavigate={handleNavigate}
-                  colors={colors}
-                />
-              );
-            })}
-          </div>
-
+          {/* Countdown Section */}
           <Countdown
-            className="mt-10 sm:mt-12 md:mt-14 animate-fade-in-up animation-delay-750"
+            className="mt-0 sm:mt-1 md:mt-2 animate-fade-in-up animation-delay-750"
             // Today at 2:00 AM (or tomorrow if already past 2 AM)
             targetISO={todayAt2AM}
           />
 
           {/* MVP Enter Section */}
-          <div className="mt-10 sm:mt-12 md:mt-14 flex flex-col items-center animate-fade-in-up animation-delay-800" style={{ contain: 'layout style' }}>
-            <div className="relative mx-auto w-full max-w-5xl">
+          <div className="mt-5 sm:mt-6 md:mt-7 flex flex-col items-center animate-fade-in-up animation-delay-800" style={{ contain: 'layout style', isolation: 'isolate', position: 'relative', zIndex: 10, overflow: 'visible' }}>
+            <div className="relative mx-auto w-full max-w-5xl" style={{ isolation: 'isolate', transform: 'translateZ(0)', backfaceVisibility: 'hidden', overflow: 'visible', position: 'relative' }}>
               {/* Background blocker to hide stars - solid background behind */}
-              <div className="absolute inset-0 rounded-full" style={{ backgroundColor: 'rgba(34, 23, 43, 1)', zIndex: 0 }}></div>
+              <div className="absolute inset-0 rounded-full" style={{ backgroundColor: 'rgba(34, 23, 43, 1)', zIndex: 0, transform: 'translateZ(0)', backfaceVisibility: 'hidden', pointerEvents: 'none' }}></div>
               
               {/* Glow - pink sutil */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 via-pink-400/15 to-pink-500/20 rounded-full blur-xl opacity-60" style={{ zIndex: 1 }}></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-pink-500/20 via-pink-400/15 to-pink-500/20 rounded-full blur-xl opacity-60" style={{ zIndex: 1, transform: 'translateZ(0)', backfaceVisibility: 'hidden', willChange: 'auto', pointerEvents: 'none' }}></div>
 
               {/* Glass Button Section */}
               <Link 
@@ -397,26 +383,30 @@ export default function HomePage() {
                   backdropFilter: 'blur(20px) saturate(180%)',
                   WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                   boxShadow: '0 8px 32px 0 rgba(244, 114, 182, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  isolation: 'isolate',
+                  willChange: 'auto',
+                  position: 'relative',
+                  overflow: 'visible',
                 }}
               >
                 {/* Inner glow effect */}
                 <div className="absolute inset-0 rounded-full opacity-0 hover:opacity-20 transition-opacity duration-300 pointer-events-none" style={{ 
                   background: 'radial-gradient(circle at center, rgba(244, 114, 182, 0.5) 0%, transparent 70%)',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  willChange: 'opacity',
                 }}></div>
                 
                 {/* Content */}
-                <div className="relative z-10">
-                  <span className="text-white font-extrabold text-lg sm:text-xl md:text-2xl tracking-tight drop-shadow-lg">
-                    JOIN THE BETA →
+                <div className="relative z-10" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', position: 'relative' }}>
+                  <span className="text-white font-extrabold text-lg sm:text-xl md:text-2xl tracking-tight drop-shadow-lg" style={{ textRendering: 'optimizeLegibility', WebkitFontSmoothing: 'antialiased' }}>
+                    BE COUNTED AS CREDIBLE →
                   </span>
                 </div>
               </Link>
             </div>
-
-            {/* Text below section */}
-            <p className="mt-6 sm:mt-8 text-white/90 text-base sm:text-lg md:text-xl text-center max-w-3xl mx-auto px-4 font-semibold tracking-wide drop-shadow font-sans">
-              Enter the MVP. Help prove integrity as a system
-            </p>
 
             {/* Pink glowing line separator */}
             <div className="relative w-full max-w-5xl mt-6 sm:mt-8 px-4" style={{ contain: 'layout style' }}>
@@ -440,6 +430,21 @@ export default function HomePage() {
                 ></div>
               </div>
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center mt-24 sm:mt-28 md:mt-32" style={{ contain: 'layout style' }}>
+            {audienceCards.map((card, index) => {
+              const colors = colorClasses[card.color as keyof typeof colorClasses];
+              return (
+                <AudienceCard
+                  key={card.id}
+                  card={card}
+                  index={index}
+                  onNavigate={handleNavigate}
+                  colors={colors}
+                />
+              );
+            })}
           </div>
 
           {/* YouTube Video Embed */}

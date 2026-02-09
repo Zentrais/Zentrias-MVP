@@ -5,8 +5,8 @@ export const translations: Record<Language, Record<string, string>> = {
     // Homepage
     'home.headline': 'Zentrais is the Human-AI Platform for a Broken Internet.',
     'home.subheadline': 'Built on Integrity. Enforced by Accountability.',
-    'home.description': 'Real people. Verified insight. Measured trust.',
-    'home.countdown.title': 'Zentrais is now live!',
+    'home.description': 'Where credibility is earned, not claimed.',
+    'home.countdown.title': 'Late entry. Lower credibility',
     'home.countdown.days': 'Days',
     'home.countdown.hours': 'Hours',
     'home.countdown.minutes': 'Minutes',
@@ -43,7 +43,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'user.hero.subtitle': 'Join the ecosystem that transforms integrity into real value. Every authentic interaction grants you',
     'user.hero.tokens': 'Integrity Tokens',
     'user.hero.subtitle2': 'and builds a digital future where trust is the new currency.',
-    'user.cta.join': 'Join the beta',
+    'user.cta.join': 'Be Counted as Credible',
     'user.section.discover': 'Discover the future you will experience',
     'user.carousel.debate.title': 'Perspective Engine',
     'user.carousel.debate.desc': 'Exchange ideas without noise. Experience structured and respectful perspectives driven by verified data.',
@@ -72,7 +72,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'user.progress.remaining': 'spots remaining',
     'user.progress.full': 'Phase 1 is full',
     'user.footer.cta': 'Join the beta and start earning integrity',
-    'user.footer.button': 'Join the beta',
+    'user.footer.button': 'Be Counted as Credible',
     
     // User Page - Additional translations
     'user.hero.connect.title': 'Connect with People',

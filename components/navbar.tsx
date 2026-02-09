@@ -96,8 +96,8 @@ export default function Navbar() {
                 
                 {/* Content */}
                 <span className="relative z-10 text-white font-extrabold text-[10px] sm:text-sm md:text-base tracking-tight drop-shadow-lg whitespace-nowrap">
-                  <span className="hidden sm:inline">JOIN THE BETA </span>
-                  <span className="sm:hidden">BETA</span>
+                  <span className="hidden sm:inline">BE COUNTED AS CREDIBLE </span>
+                  <span className="sm:hidden">CREDIBLE</span>
                   <span className="hidden sm:inline"> →</span>
                 </span>
               </Link>
