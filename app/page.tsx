@@ -4,7 +4,7 @@ import { useEffect, useMemo, memo, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { Users, DollarSign, Handshake, Camera } from 'lucide-react';
+import { DollarSign, Handshake, Camera } from 'lucide-react';
 import Image from 'next/image';
 import { useLanguage } from '../contexts/language-context';
 
@@ -108,6 +108,46 @@ type CardType = {
   color: keyof typeof colorClasses;
   icon: React.ComponentType<{ className?: string }>;
 };
+
+const UsersCardIcon: React.FC<{ className?: string }> = () => (
+  <Image
+    src="/User.png"
+    alt="Beta Users"
+    width={96}
+    height={96}
+    className="rounded-full object-contain"
+  />
+);
+
+const CollaboratorsCardIcon: React.FC<{ className?: string }> = () => (
+  <Image
+    src="/Collaborators.png"
+    alt="Collaborators"
+    width={96}
+    height={96}
+    className="rounded-full object-contain"
+  />
+);
+
+const MediaCardIcon: React.FC<{ className?: string }> = () => (
+  <Image
+    src="/Media.png"
+    alt="Media"
+    width={96}
+    height={96}
+    className="rounded-full object-contain"
+  />
+);
+
+const InvestorsCardIcon: React.FC<{ className?: string }> = () => (
+  <Image
+    src="/Investors.png"
+    alt="Investors"
+    width={96}
+    height={96}
+    className="rounded-full object-contain"
+  />
+);
 
 const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: CardType, index: number, onNavigate: (route: string) => void, colors: typeof colorClasses[keyof typeof colorClasses] }) => {
   const Icon = card.icon;
@@ -254,7 +294,7 @@ export default function HomePage() {
       description: t('home.card.user.desc'),
       route: '/user',
       color: 'emerald',
-      icon: Users,
+      icon: UsersCardIcon,
     },
     {
       id: 'investor',
@@ -262,7 +302,7 @@ export default function HomePage() {
       description: t('home.card.investor.desc'),
       route: '/investors',
       color: 'indigo',
-      icon: DollarSign,
+      icon: InvestorsCardIcon,
     },
     {
       id: 'collaborator',
@@ -270,7 +310,7 @@ export default function HomePage() {
       description: t('home.card.collaborator.desc'),
       route: '/collaborator',
       color: 'amber',
-      icon: Handshake,
+      icon: CollaboratorsCardIcon,
     },
     {
       id: 'media',
@@ -278,7 +318,7 @@ export default function HomePage() {
       description: t('home.card.media.desc'),
       route: '/media',
       color: 'pink',
-      icon: Camera,
+      icon: MediaCardIcon,
     },
   ], [t]);
 

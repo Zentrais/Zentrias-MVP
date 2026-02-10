@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Users, DollarSign, Handshake, Camera, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 type ChannelIcon = React.ComponentType<{ className?: string }> | string;
 
@@ -17,10 +17,10 @@ type Channel = {
 };
 
 const channels: Channel[] = [
-  { id: 'user', name: 'User', route: '/user', icon: Users, colorClass: 'text-emerald-400' },
-  { id: 'investor', name: 'Investor', route: '/investors', icon: DollarSign, colorClass: 'text-indigo-400' },
-  { id: 'collaborator', name: 'Collaborator', route: '/collaborator', icon: Handshake, colorClass: 'text-amber-400' },
-  { id: 'media', name: 'Media', route: '/media', icon: Camera, colorClass: 'text-pink-400' },
+  { id: 'user', name: 'User', route: '/user', icon: '/User.png', isImage: true },
+  { id: 'investor', name: 'Investor', route: '/investors', icon: '/Investors.png', isImage: true },
+  { id: 'collaborator', name: 'Collaborator', route: '/collaborator', icon: '/Collaborators.png', isImage: true },
+  { id: 'media', name: 'Media', route: '/media', icon: '/Media.png', isImage: true },
   { id: 'podcast', name: 'Zentrais Explained!', route: '/podcast', icon: '/Zentrais Flaticon 150x150-03.png', isImage: true },
 ];
 
@@ -61,19 +61,33 @@ export default function ChannelSelector() {
   };
 
   const renderIcon = (channel: Channel, className?: string) => {
+    // Special handling for collaborator icon (uses background-image to avoid any Image issues)
+    if (channel.id === 'collaborator') {
+      return (
+        <div
+          aria-label={channel.name}
+          className={className || 'w-6 h-6'}
+          style={{
+            backgroundImage: 'url(/Collaborators.png)',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+          }}
+        />
+      );
+    }
+
     if (channel.isImage && typeof channel.icon === 'string') {
       return (
         <Image
           src={channel.icon}
           alt={channel.name}
-          width={20}
-          height={20}
-          className={className || 'w-5 h-5'}
+          loading="eager"
+          width={24}
+          height={24}
+          className={className || 'w-6 h-6'}
         />
       );
-    } else if (typeof channel.icon !== 'string') {
-      const IconComponent = channel.icon;
-      return <IconComponent className={className || `w-5 h-5 ${channel.colorClass || ''}`} />;
     }
     return null;
   };

@@ -40,6 +40,7 @@ export default function Navbar() {
                 alt="Zentrais Logo"
                 width={36}
                 height={36}
+                priority
                 className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 transition-transform duration-300 group-hover:scale-110 self-center"
               />
               <Image
@@ -47,6 +48,7 @@ export default function Navbar() {
                 alt="Zentrais"
                 width={130}
                 height={130}
+                priority
                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain self-center"
                 style={{ marginTop: '4px' }}
               />
@@ -67,6 +69,7 @@ export default function Navbar() {
                 alt="Zentrais Logo"
                 width={36}
                 height={36}
+                priority
                 className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 transition-transform duration-300 group-hover:scale-110 self-center flex-shrink-0"
               />
               <Image
@@ -74,6 +77,7 @@ export default function Navbar() {
                 alt="Zentrais"
                 width={130}
                 height={130}
+                priority
                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain self-center flex-shrink-0"
                 style={{ marginTop: '4px' }}
               />
