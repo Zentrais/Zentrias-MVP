@@ -183,7 +183,7 @@ const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: CardType
       />
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 text-left">
         {/* Icon with glow effect */}
         <div 
           className="relative inline-block mb-3 sm:mb-4 group/icon" 
@@ -201,7 +201,7 @@ const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: CardType
           }}
         >
           <Icon
-            className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} mx-auto transition-all duration-400 group-hover:${colors.iconHover} group-hover:scale-110 group-hover:rotate-3`}
+            className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} transition-all duration-400 group-hover:${colors.iconHover} group-hover:scale-110 group-hover:rotate-3`}
           />
         </div>
         
@@ -314,9 +314,9 @@ export default function HomePage() {
       {/* Content - Render immediately */}
       <div className="relative z-10" style={{ contain: 'layout style', visibility: 'visible' }}>
       {/* HEADLINE SECTION */}
-      <div className="container mx-auto px-4 sm:px-6 pt-6 sm:pt-8 md:pt-10 text-center relative" style={{ contain: 'layout style', opacity: 1 }}>
+      <div className="container mx-auto px-6 sm:px-8 md:px-12 lg:px-16 pt-6 sm:pt-8 md:pt-10 text-center relative" style={{ contain: 'layout style', opacity: 1 }}>
         
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-2xl font-sans animate-fade-in-up relative group" style={{ contain: 'layout style', opacity: 1 }}>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-2xl font-sans animate-fade-in-up relative group whitespace-nowrap overflow-hidden" style={{ contain: 'layout style', opacity: 1 }}>
           <span className="inline-block bg-gradient-to-r from-white via-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent bg-[length:200%_auto] relative">
             {t('home.headline')}
             {/* Subtle glow behind text - reduced blur */}
@@ -358,15 +358,8 @@ export default function HomePage() {
           className="container mx-auto pt-8 sm:pt-12 md:pt-16 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6"
           style={{ contain: 'layout style' }}
         >
-          {/* Countdown Section */}
-          <Countdown
-            className="mt-0 sm:mt-1 md:mt-2 animate-fade-in-up animation-delay-750"
-            // Today at 2:00 AM (or tomorrow if already past 2 AM)
-            targetISO={todayAt2AM}
-          />
-
           {/* MVP Enter Section */}
-          <div className="mt-5 sm:mt-6 md:mt-7 flex flex-col items-center animate-fade-in-up animation-delay-800" style={{ contain: 'layout style', isolation: 'isolate', position: 'relative', zIndex: 10, overflow: 'visible' }}>
+          <div className="mt-0 sm:mt-1 md:mt-2 flex flex-col items-center animate-fade-in-up animation-delay-750" style={{ contain: 'layout style', isolation: 'isolate', position: 'relative', zIndex: 10, overflow: 'visible' }}>
             <div className="relative mx-auto w-full max-w-5xl" style={{ isolation: 'isolate', transform: 'translateZ(0)', backfaceVisibility: 'hidden', overflow: 'visible', position: 'relative' }}>
               {/* Background blocker to hide stars - solid background behind */}
               <div className="absolute inset-0 rounded-full" style={{ backgroundColor: 'rgba(34, 23, 43, 1)', zIndex: 0, transform: 'translateZ(0)', backfaceVisibility: 'hidden', pointerEvents: 'none' }}></div>
@@ -407,32 +400,39 @@ export default function HomePage() {
                 </div>
               </Link>
             </div>
+          </div>
 
-            {/* Pink glowing line separator */}
-            <div className="relative w-full max-w-5xl mt-6 sm:mt-8 px-4" style={{ contain: 'layout style' }}>
-              <div className="relative h-[1px] w-full overflow-hidden">
-                {/* Pink glowing line */}
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-400 to-transparent"
-                  style={{
-                    height: '2px',
-                    boxShadow: '0 0 10px rgba(244, 114, 182, 0.8), 0 0 20px rgba(244, 114, 182, 0.6), 0 0 30px rgba(244, 114, 182, 0.4)',
-                    filter: 'blur(0.5px)',
-                  }}
-                ></div>
-                {/* Soft glow around the line */}
-                <div 
-                  className="absolute inset-0 bg-pink-400/30"
-                  style={{
-                    height: '1px',
-                    filter: 'blur(3px)',
-                  }}
-                ></div>
-              </div>
+          {/* Countdown Section */}
+          <Countdown
+            className="mt-5 sm:mt-6 md:mt-7 animate-fade-in-up animation-delay-800"
+            // Today at 2:00 AM (or tomorrow if already past 2 AM)
+            targetISO={todayAt2AM}
+          />
+
+          {/* Pink glowing line separator */}
+          <div className="relative w-full max-w-5xl mx-auto mt-8 sm:mt-10 md:mt-12 px-4" style={{ contain: 'layout style' }}>
+            <div className="relative h-[1px] w-full overflow-hidden">
+              {/* Pink glowing line */}
+              <div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-400 to-transparent"
+                style={{
+                  height: '2px',
+                  boxShadow: '0 0 10px rgba(244, 114, 182, 0.8), 0 0 20px rgba(244, 114, 182, 0.6), 0 0 30px rgba(244, 114, 182, 0.4)',
+                  filter: 'blur(0.5px)',
+                }}
+              ></div>
+              {/* Soft glow around the line */}
+              <div 
+                className="absolute inset-0 bg-pink-400/30"
+                style={{
+                  height: '1px',
+                  filter: 'blur(3px)',
+                }}
+              ></div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center mt-24 sm:mt-28 md:mt-32" style={{ contain: 'layout style' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-24 sm:mt-28 md:mt-32" style={{ contain: 'layout style' }}>
             {audienceCards.map((card, index) => {
               const colors = colorClasses[card.color as keyof typeof colorClasses];
               return (
