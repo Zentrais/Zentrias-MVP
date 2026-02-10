@@ -113,8 +113,8 @@ const UsersCardIcon: React.FC<{ className?: string }> = () => (
   <Image
     src="/User.png"
     alt="Beta Users"
-    width={96}
-    height={96}
+    width={120}
+    height={120}
     className="rounded-full object-contain"
   />
 );
@@ -123,8 +123,8 @@ const CollaboratorsCardIcon: React.FC<{ className?: string }> = () => (
   <Image
     src="/Collaborators.png"
     alt="Collaborators"
-    width={96}
-    height={96}
+    width={120}
+    height={120}
     className="rounded-full object-contain"
   />
 );
@@ -133,8 +133,8 @@ const MediaCardIcon: React.FC<{ className?: string }> = () => (
   <Image
     src="/Media.png"
     alt="Media"
-    width={96}
-    height={96}
+    width={120}
+    height={120}
     className="rounded-full object-contain"
   />
 );
@@ -143,8 +143,8 @@ const InvestorsCardIcon: React.FC<{ className?: string }> = () => (
   <Image
     src="/Investors.png"
     alt="Investors"
-    width={96}
-    height={96}
+    width={120}
+    height={120}
     className="rounded-full object-contain"
   />
 );
@@ -223,10 +223,10 @@ const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: CardType
       />
 
       {/* Content */}
-      <div className="relative z-10 text-left">
-        {/* Icon with glow effect */}
+      <div className="relative z-10 flex items-center gap-3 sm:gap-4">
+        {/* Icon with glow effect - Left side */}
         <div 
-          className="relative inline-block mb-3 sm:mb-4 group/icon" 
+          className="relative flex-shrink-0 group/icon" 
           style={{ 
             transform: 'translateZ(0)', 
             backfaceVisibility: 'hidden',
@@ -245,15 +245,18 @@ const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: CardType
           />
         </div>
         
-        {/* Title */}
-        <h3 className="font-bold text-white text-base sm:text-lg mb-2 transition-all duration-300 group-hover:text-white group-hover:tracking-wide uppercase tracking-wider font-sans">
-          {card.title}
-        </h3>
-        
-        {/* Description */}
-        <p className="text-xs sm:text-sm text-white/80 transition-all duration-300 group-hover:text-white/95 font-sans leading-relaxed">
-          {card.description}
-        </p>
+        {/* Title and Description - Right side */}
+        <div className="flex-1 min-w-0">
+          {/* Title */}
+          <h3 className="font-bold text-white text-base sm:text-lg mb-1 transition-all duration-300 group-hover:text-white group-hover:tracking-wide uppercase tracking-wider font-sans">
+            {card.title}
+          </h3>
+          
+          {/* Description */}
+          <p className="text-xs sm:text-sm text-white/80 transition-all duration-300 group-hover:text-white/95 font-sans leading-relaxed">
+            {card.description}
+          </p>
+        </div>
       </div>
 
       {/* Corner accent dots */}
