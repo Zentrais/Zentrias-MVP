@@ -412,7 +412,7 @@ export default function HomePage() {
 
               {/* Glass Button Section */}
               <Link 
-                href="https://zentrais-railway-fronend-production.up.railway.app/onboarding"
+                href="/onboarding"
                 className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-2xl p-6 sm:p-8 md:p-10 text-center transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 cursor-pointer block"
                 style={{ 
                   zIndex: 2,
