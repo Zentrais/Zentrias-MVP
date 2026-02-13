@@ -247,15 +247,15 @@ const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: CardType
         
         {/* Title and Description - Right side */}
         <div className="flex-1 min-w-0">
-          {/* Title */}
+        {/* Title */}
           <h3 className="font-bold text-white text-base sm:text-lg mb-1 transition-all duration-300 group-hover:text-white group-hover:tracking-wide uppercase tracking-wider font-sans">
-            {card.title}
-          </h3>
-          
-          {/* Description */}
-          <p className="text-xs sm:text-sm text-white/80 transition-all duration-300 group-hover:text-white/95 font-sans leading-relaxed">
-            {card.description}
-          </p>
+          {card.title}
+        </h3>
+        
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-white/80 transition-all duration-300 group-hover:text-white/95 font-sans leading-relaxed">
+          {card.description}
+        </p>
         </div>
       </div>
 
@@ -412,7 +412,7 @@ export default function HomePage() {
 
               {/* Glass Button Section */}
               <Link 
-                href="/onboarding"
+                href="https://zentrais-railway-fronend-production.up.railway.app/onboarding"
                 className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-2xl p-6 sm:p-8 md:p-10 text-center transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 cursor-pointer block"
                 style={{ 
                   zIndex: 2,

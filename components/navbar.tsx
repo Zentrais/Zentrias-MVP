@@ -85,7 +85,7 @@ export default function Navbar() {
             <div className="flex justify-end items-center gap-1 sm:gap-4 flex-shrink-0 min-w-0" style={{ position: 'relative' }}>
               {/* Enter MVP Button */}
               <Link 
-                href="/onboarding"
+                href="https://zentrais-railway-fronend-production.up.railway.app/onboarding"
                 className="relative bg-pink-500/18 backdrop-blur-sm rounded-full border border-pink-400/40 shadow-lg px-1.5 py-0.5 sm:px-4 sm:py-2 transition-all duration-300 hover:bg-pink-500/25 hover:border-pink-400/60 group flex-shrink-0"
                 style={{ 
                   backdropFilter: 'blur(20px) saturate(180%)',

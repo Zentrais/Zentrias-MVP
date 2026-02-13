@@ -1,34 +1,4 @@
 {
-  "framework": "nextjs",
-  "rewrites": [
-    {
-      "source": "/onboarding",
-      "destination": "https://zentrais-railway-fronend-production.up.railway.app/onboarding"
-    },
-    {
-      "source": "/onboarding/:path*",
-      "destination": "https://zentrais-railway-fronend-production.up.railway.app/onboarding/:path*"
-    },
-    {
-      "source": "/login",
-      "destination": "https://zentrais-railway-fronend-production.up.railway.app/login"
-    },
-    {
-      "source": "/login/:path*",
-      "destination": "https://zentrais-railway-fronend-production.up.railway.app/login/:path*"
-    },
-    {
-      "source": "/dashboard",
-      "destination": "https://zentrais-railway-fronend-production.up.railway.app/dashboard"
-    },
-    {
-      "source": "/dashboard/:path*",
-      "destination": "https://zentrais-railway-fronend-production.up.railway.app/dashboard/:path*"
-    },
-    {
-      "source": "/api/:path*",
-      "destination": "https://zentrais-railway-fronend-production.up.railway.app/api/:path*"
-    }
-  ]
+  "framework": "nextjs"
 }
 
