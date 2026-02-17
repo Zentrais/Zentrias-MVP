@@ -137,14 +137,27 @@ export default function UserPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Texto a la izquierda */}
             <div className="text-left h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[650px] flex flex-col justify-center">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
-                {t('user.hero.connect.title')}{' '}
-                <span className="block">{t('user.hero.connect.subtitle')}</span>{' '}
-                <span className="tone-highlight">{t('user.hero.connect.understand')}</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white leading-tight font-sans tracking-tight">
+                <span className="whitespace-nowrap">{t('user.hero.connect.title')}</span>
+                <span className="block">{t('user.hero.connect.subtitle')}</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed font-sans">
-                {t('user.hero.connect.desc')}
-              </p>
+              {(() => {
+                const fullDesc = t('user.hero.connect.desc');
+                const [firstLine, ...restLines] = fullDesc.split('\n\n');
+                const restText = restLines.join('\n\n');
+                return (
+                  <>
+                    <p className="text-2xl sm:text-2xl text-white leading-relaxed font-sans whitespace-pre-line mb-8">
+                      {firstLine}
+                    </p>
+                    {restText && (
+                      <p className="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed font-sans whitespace-pre-line">
+                        {restText}
+                      </p>
+                    )}
+                  </>
+                );
+              })()}
               <Button
                 onClick={handleJoinBeta}
                 className="tone-button text-white text-lg sm:text-xl px-8 sm:px-10 py-4 sm:py-6 rounded-xl font-bold transition-all duration-500 hover:scale-110 group relative overflow-hidden transition-shadow duration-[1500ms]"

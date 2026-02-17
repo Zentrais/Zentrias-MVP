@@ -75,11 +75,11 @@ export const translations: Record<Language, Record<string, string>> = {
     'user.footer.button': 'Be Counted as Credible',
     
     // User Page - Additional translations
-    'user.hero.connect.title': 'Connect with People',
-    'user.hero.connect.subtitle': 'Who Truly',
-    'user.hero.connect.understand': 'Understand You',
-    'user.hero.connect.desc': 'Our AI helps you meet like-minded people and have conversations that feel natural, empathetic, and human. Be the first to experience it.',
-    'user.hero.connect.cta': 'Join Now',
+    'user.hero.connect.title': 'The Internet rewards attention.',
+    'user.hero.connect.subtitle': 'Zentrais rewards integrity',
+    'user.hero.connect.understand': '',
+    'user.hero.connect.desc': 'Join the first human-AI environment where reputation is earned through thinking, not posting.\n\nStart with one guided reflection. Receive a private integrity profile.\nThen connect only with people aligned with how you reason.',
+    'user.hero.connect.cta': 'APPLY FOR BETA ACCESS',
     'user.symbiosis.title': 'Experience',
     'user.symbiosis.human': 'Human-AI',
     'user.symbiosis.subtitle': 'Symbiosis',
@@ -969,11 +969,11 @@ export const translations: Record<Language, Record<string, string>> = {
     'user.footer.button': 'Únete a la beta',
     
     // User Page - Additional translations (Spanish)
-    'user.hero.connect.title': 'Conecta con Personas',
-    'user.hero.connect.subtitle': 'Que Realmente',
-    'user.hero.connect.understand': 'Te Entienden',
-    'user.hero.connect.desc': 'Nuestra IA te ayuda a conocer personas afines y tener conversaciones que se sienten naturales, empáticas y humanas. Sé el primero en experimentarlo.',
-    'user.hero.connect.cta': 'Únete Ahora',
+    'user.hero.connect.title': 'Internet recompensa la atención.',
+    'user.hero.connect.subtitle': 'Zentrais recompensa la integridad',
+    'user.hero.connect.understand': '',
+    'user.hero.connect.desc': 'Únete al primer entorno humano-IA donde la reputación se gana pensando, no publicando.\n\nComienza con una reflexión guiada. Recibe un perfil de integridad privado.\nLuego conéctate solo con personas alineadas con tu forma de razonar.',
+    'user.hero.connect.cta': 'SOLICITAR ACCESO BETA',
     'user.symbiosis.title': 'Experimenta',
     'user.symbiosis.human': 'Simbiosis Humano-IA',
     'user.symbiosis.subtitle': '',
