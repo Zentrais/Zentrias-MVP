@@ -98,7 +98,7 @@ export default function UserPage() {
   }, []);
 
   const handleJoinBeta = () => {
-    window.location.href = 'https://zentrais-railway-fronend-production.up.railway.app/onboarding';
+    window.location.href = 'https://app.zentrais.com/onboarding';
   };
 
   return (
